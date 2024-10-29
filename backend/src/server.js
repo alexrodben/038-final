@@ -1,13 +1,16 @@
+require('dotenv').config();
 const express = require('express');
-const cors = require('cors');
+const cors = require('./middleware/cors');
 const authRoutes = require('./routes/authRoutes');
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 // Habilitar CORS para todas las rutas
-app.use(cors());
-app.use(express.json()); // Para manejar JSON
+app.use(cors);
+
+// Para manejar JSON
+app.use(express.json());
 
 // Usar las rutas de autenticación
 app.use('/api', authRoutes);
