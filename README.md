@@ -2,6 +2,30 @@
 
 Este proyecto consiste en un sistema de gestión de proyectos de desarrollo que implementa una arquitectura de frontend y backend, utilizando una base de datos relacional en MySQL. La aplicación permite gestionar un módulo de maestro-detalle, así como un catálogo asociado, y ofrece un CRUD completo para las entidades definidas.
 
+## Explicación de la Estructura de Base de Datos
+
+-Proyectos: Tabla que almacena la información básica de cada proyecto, incluyendo un campo para el responsable que es una referencia a la tabla Colaboradores.
+
+-Colaboradores: Tabla para gestionar los colaboradores que participan en los proyectos, con campos que describen su rol y estado.
+
+-Tareas: Almacena las tareas asociadas a cada proyecto. Incluye referencias al proyecto y al responsable, así como un campo que relaciona el tipo de tarea a la tabla Tipos_Tarea.
+
+-Tipos_Tarea: Tabla de catálogo que clasifica los tipos de tareas disponibles en el sistema.
+
+-Presupuestos: Permite gestionar el presupuesto de cada proyecto, incluyendo gastos realizados y pendientes.
+
+-Riesgos: Almacena información sobre los riesgos asociados a los proyectos y a quién se le asigna la mitigación de dicho riesgo.
+
+-Documentos: Tabla para gestionar documentos relacionados con los proyectos, permitiendo adjuntar un responsable y un tipo de documento.
+
+-Asignaciones: Permite llevar un control sobre las asignaciones de tareas a diferentes colaboradores, útil para el seguimiento de subtareas.
+
+-Comentarios: Esta tabla facilita la colaboración al permitir comentarios en tareas y documentos por parte de los colaboradores.
+
+## Conclusión
+
+Esta estructura de base de datos está diseñada para ser escalable y flexible, permitiendo que la aplicación de gestión de proyectos de desarrollo sea robusta y capaz de adaptarse a las necesidades cambiantes de los usuarios y los proyectos. Además, facilita la implementación de funcionalidades adicionales como reportes avanzados, análisis de rendimiento y control de cambios en tiempo real.
+
 ## Estructura de la Base de Datos
 
 La base de datos se denomina `gestion_proyectos` y contiene las siguientes tablas:
