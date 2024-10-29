@@ -1,5 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-@import "@angular/material/prebuilt-themes/indigo-pink.css";
 /* @import "~@angular/material/prebuilt-themes/azure-blue.css"; */
 /* @import "~@angular/material/prebuilt-themes/cyan-orange.css"; */
 /* @import "~@angular/material/prebuilt-themes/deeppurple-amber.css"; */
@@ -8,11 +7,12 @@
 /* @import "~@angular/material/prebuilt-themes/pink-bluegrey.css"; */
 /* @import "~@angular/material/prebuilt-themes/purple-green.css"; */
 /* @import "~@angular/material/prebuilt-themes/rose-red.css"; */
+@import "@angular/material/prebuilt-themes/indigo-pink.css"; /* O el tema que elijas */
+
+/* Ajustar el body y el html para el tema */
 html,
 body {
   height: 100%;
-}
-body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: "Roboto", sans-serif;
 }

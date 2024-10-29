@@ -1,0 +1,51 @@
+.footer-toolbar {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+header {
+  background: #3f51b5; /* Color de fondo del encabezado */
+  color: white;
+  text-align: center;
+}
+.sidebar {
+  width: 200px; /* Ancho de la barra lateral */
+  background: #f4f4f4; /* Color de fondo de la barra lateral */
+  height: calc(100vh - 64px); /* Altura total menos el encabezado */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Sombra para la barra lateral */
+}
+.main-content {
+  flex: 1; /* Toma el espacio restante */
+  padding: 1rem; /* Espaciado interno */
+  background: #fff; /* Color de fondo del contenido */
+  height: calc(100vh - 64px - 96px); /* Altura total menos el encabezado */
+  overflow-y: auto; /* Permitir desplazamiento vertical si es necesario */
+}
+nav {
+  display: flex;
+  flex-direction: column; /* Organiza los enlaces en una columna */
+}
+nav a {
+  display: flex; /* Cambiar a flexbox para alinear icono y texto */
+  align-items: center; /* Centrar verticalmente */
+  margin-top: 5px; /* Espaciado entre los enlaces */
+  text-decoration: none; /* Quita la subraya */
+  padding: 10px 15px; /* Añadir padding para un mejor clic */
+  border-radius: 4px; /* Bordes redondeados */
+  transition: background-color 0.3s, color 0.3s; /* Animación para el hover */
+}
+nav a mat-icon {
+  margin-right: 10px; /* Espacio entre el icono y el texto */
+}
+nav a:hover {
+  background-color: rgba(63, 81, 181, 0.1); /* Color de fondo en hover */
+  color: #3f51b5; /* Color de texto en hover */
+}
+nav a.mat-button {
+  justify-content: flex-start; /* Alinear el texto a la izquierda */
+}
+nav a.mat-button:hover {
+  background-color: rgba(63, 81, 181, 0.2); /* Fondo más oscuro en hover */
+  color: white; /* Cambia el color de texto en hover */
+}
