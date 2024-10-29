@@ -4,23 +4,23 @@ Este proyecto consiste en un sistema de gestión de proyectos de desarrollo que 
 
 ## Explicación de la Estructura de Base de Datos
 
--Proyectos: Tabla que almacena la información básica de cada proyecto, incluyendo un campo para el responsable que es una referencia a la tabla Colaboradores.
+- **Proyectos**: Tabla que almacena la información básica de cada proyecto, incluyendo un campo para el responsable que es una referencia a la tabla Colaboradores.
 
--Colaboradores: Tabla para gestionar los colaboradores que participan en los proyectos, con campos que describen su rol y estado.
+- **Colaboradores**: Tabla para gestionar los colaboradores que participan en los proyectos, con campos que describen su rol y estado.
 
--Tareas: Almacena las tareas asociadas a cada proyecto. Incluye referencias al proyecto y al responsable, así como un campo que relaciona el tipo de tarea a la tabla Tipos_Tarea.
+- **Tareas**: Almacena las tareas asociadas a cada proyecto. Incluye referencias al proyecto y al responsable, así como un campo que relaciona el tipo de tarea a la tabla Tipos_Tarea.
 
--Tipos_Tarea: Tabla de catálogo que clasifica los tipos de tareas disponibles en el sistema.
+- **Tipos_Tarea**: Tabla de catálogo que clasifica los tipos de tareas disponibles en el sistema.
 
--Presupuestos: Permite gestionar el presupuesto de cada proyecto, incluyendo gastos realizados y pendientes.
+- **Presupuestos**: Permite gestionar el presupuesto de cada proyecto, incluyendo gastos realizados y pendientes.
 
--Riesgos: Almacena información sobre los riesgos asociados a los proyectos y a quién se le asigna la mitigación de dicho riesgo.
+- **Riesgos**: Almacena información sobre los riesgos asociados a los proyectos y a quién se le asigna la mitigación de dicho riesgo.
 
--Documentos: Tabla para gestionar documentos relacionados con los proyectos, permitiendo adjuntar un responsable y un tipo de documento.
+- **Documentos**: Tabla para gestionar documentos relacionados con los proyectos, permitiendo adjuntar un responsable y un tipo de documento.
 
--Asignaciones: Permite llevar un control sobre las asignaciones de tareas a diferentes colaboradores, útil para el seguimiento de subtareas.
+- **Asignaciones**: Permite llevar un control sobre las asignaciones de tareas a diferentes colaboradores, útil para el seguimiento de subtareas.
 
--Comentarios: Esta tabla facilita la colaboración al permitir comentarios en tareas y documentos por parte de los colaboradores.
+- **Comentarios**: Esta tabla facilita la colaboración al permitir comentarios en tareas y documentos por parte de los colaboradores.
 
 ## Conclusión
 
