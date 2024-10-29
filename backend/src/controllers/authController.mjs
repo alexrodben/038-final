@@ -4,8 +4,7 @@ import logger from '../config/logger.mjs'; // Importar el logger
 const login = (req, res) => {
     logger.info("Iniciando sesión...");
     const { username, password } = req.body;
-    logger.info('Iniciando sesión...', { username: req.body.username, password: req.body.password }); // Usar un objeto para el mensaje
-
+    logger.info('Datos recibidos', req.body);
     // Consulta para verificar usuario y contraseña
     const query = 'SELECT * FROM Usuarios WHERE username = ? AND password = ?';
     db.execute(query, [username, password], (err, results) => {

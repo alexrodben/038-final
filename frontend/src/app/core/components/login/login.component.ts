@@ -52,8 +52,17 @@ export class LoginComponent {
       (error) => {
         // Manejar errores
         console.error('Error al iniciar sesión:', error);
-        this.errorMessage =
-          'Error al iniciar sesión. Verifica tus credenciales y vuelve a intentarlo.'; // Mensaje de error de API
+        if (error.status === 401) {
+          this.errorMessage =
+            'Credenciales incorrectas. Por favor, inténtalo de nuevo.'; // 401 Unauthorized
+        } else if (error.status === 403) {
+          this.errorMessage = 'No tienes permisos para acceder a esta sección.'; // 403 Forbidden
+        } else if (error.status === 500) {
+          this.errorMessage = 'Error interno del servidor. Intenta más tarde.'; // 500 Internal Server Error
+        } else {
+          this.errorMessage =
+            'Error al iniciar sesión. Verifica tus credenciales y vuelve a intentarlo.'; // Mensaje genérico para otros errores
+        }
       }
     );
   }

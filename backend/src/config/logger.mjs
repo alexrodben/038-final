@@ -27,9 +27,13 @@ const logger = createLogger({
             if (level === 'error' && stack) {
                 return `[${timestamp}] ${level.toUpperCase()}: ${message}\nStack Trace: ${stack}`; // Incluye stack trace
             }
-            // Formato para otros logs
-            return `[${timestamp}] ${level.toUpperCase()}: ${message}`; // Formato legible
         }),
+        format.printf(({ timestamp, level, message, ...meta }) => {
+            if (level !== 'error') {
+                const metaString = Object.keys(meta).length ? JSON.stringify(meta) : ''; // Convertir el objeto adicional a una cadena JSON
+                return `[${timestamp}] ${level.toUpperCase()}: ${message} ${metaString}`.trim(); // Incluir el objeto adicional
+            }
+        })
     ),
     transports: [
         new transports.File({ filename: logFilePath }), // Archivo para guardar logs
