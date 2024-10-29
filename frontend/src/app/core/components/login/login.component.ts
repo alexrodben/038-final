@@ -45,11 +45,21 @@ export class LoginComponent {
     };
 
     this.authService.login(credentials).subscribe(
-      (data) => {
+      (response) => {
         // Manejar la respuesta exitosa del servidor
-        console.log('Inicio de sesión exitoso:', data);
+        console.log('Inicio de sesión exitoso:', response);
+        this.authService.setToken(response.token); // Almacena el token después de login
+        this.authService.getProfile().subscribe(
+          (profile) => {
+            console.log('User profile:', profile);
+            this.router.navigate(['/dashboard']); // Redirigir a /dashboard
+          },
+          (error) => {
+            console.error('Error al obtener el perfil del usuario:', error);
+            this.errorMessage = 'Error al obtener el perfil del usuario.';
+          }
+        );
         // Redirigir o realizar otra acción
-        this.router.navigate(['/dashboard']); // Redirigir a /dashboard
       },
       (error) => {
         // Manejar errores

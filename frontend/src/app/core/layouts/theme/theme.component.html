@@ -1,11 +1,15 @@
 <mat-toolbar color="primary">
   <span>Mi Aplicación</span>
-  <span class="spacer"></span>
-  <nav>
-    <a mat-button routerLink="/logout" class="salir">
-      <mat-icon>logout</mat-icon>
-    </a>
-  </nav>
+  <span class="spacer"> </span>
+  <div *ngIf="username; else loading">
+    <small>
+      <small> Bienvenido, {{ username }} </small>
+    </small>
+  </div>
+  <ng-template #loading> Cargando usuario... </ng-template>
+  <a mat-button routerLink="/logout" class="salir" style="margin-left: 10px">
+    <mat-icon>logout</mat-icon>
+  </a>
 </mat-toolbar>
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav mode="side" opened class="sidebar">
