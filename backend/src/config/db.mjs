@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 import { createConnection } from 'mysql2';
+import logger from './logger.mjs';
 dotenv.config();
 
 
@@ -14,10 +15,10 @@ const connection = createConnection({
 // Conectar a la base de datos
 connection.connect((err) => {
     if (err) {
-        console.error('Error conectando a la base de datos:', err);
+        logger.error('Error conectando a la base de datos:', err);
         return;
     }
-    console.log('Conectado a la base de datos MySQL', process.env.DB_NAME);
+    logger.info('Conectado a la base de datos MySQL', process.env.DB_NAME);
 });
 
 // Exportar la conexión
