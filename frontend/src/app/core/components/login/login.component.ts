@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms'; // Necesario para ngModel
 import { MatButtonModule } from '@angular/material/button'; // Módulo para botones de Material
 import { MatFormFieldModule } from '@angular/material/form-field'; // Módulo para mat-form-field
 import { MatInputModule } from '@angular/material/input'; // Módulo para matInput
+import { Router } from '@angular/router'; // Importar Router
 import {
   AuthService,
   LoginCredentials,
@@ -27,7 +28,7 @@ export class LoginComponent {
   password: string = '';
   errorMessage: string | null = null; // Para almacenar el mensaje de error
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {} // Inyectar Router
 
   onSubmit() {
     this.errorMessage = null; // Reiniciar el mensaje de error al enviar el formulario
@@ -48,6 +49,7 @@ export class LoginComponent {
         // Manejar la respuesta exitosa del servidor
         console.log('Inicio de sesión exitoso:', data);
         // Redirigir o realizar otra acción
+        this.router.navigate(['/dashboard']); // Redirigir a /dashboard
       },
       (error) => {
         // Manejar errores
