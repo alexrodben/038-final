@@ -1,4 +1,4 @@
-const db = require('../config/db'); // Importar la conexión a la base de datos
+import db from '../config/db.mjs'; // Importar la conexión a la base de datos
 
 const login = (req, res) => {
     const { username, password } = req.body;
@@ -21,4 +21,4 @@ const login = (req, res) => {
     });
 };
 
-module.exports = { login };
+export { login };

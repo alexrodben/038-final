@@ -1,7 +1,7 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('./middleware/cors');
-const authRoutes = require('./routes/authRoutes');
+import express, { json } from 'express';
+import cors from './middleware/cors.mjs';
+import authRoutes from './routes/authRoutes.mjs';
+
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 5000;
 app.use(cors);
 
 // Para manejar JSON
-app.use(express.json());
+app.use(json());
 
 // Usar las rutas de autenticación
 app.use('/api', authRoutes);

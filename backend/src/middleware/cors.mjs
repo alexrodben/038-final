@@ -1,9 +1,9 @@
-const cors = require('cors');
-
+// cors.js
+import cors from 'cors';
 const corsOptions = {
     origin: 'http://localhost:4200', // Cambia esto según tu necesidad
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
 };
 
-module.exports = cors(corsOptions);
+export default cors(corsOptions);
