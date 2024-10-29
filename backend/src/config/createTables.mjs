@@ -14,6 +14,16 @@ const createTables = async () => {
                 horas_semanales INT DEFAULT 40
             );`,
 
+            `CREATE TABLE IF NOT EXISTS Usuarios (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                username VARCHAR(255) UNIQUE NOT NULL,
+                password VARCHAR(255) NOT NULL,  -- Asegúrate de almacenar la contraseña de manera segura (ej. hash)
+                rol ENUM('Admin', 'Colaborador', 'Gerente') NOT NULL,
+                estado ENUM('Activo', 'Inactivo') NOT NULL,
+                colaborador_id INT,  -- Columna que puede ser NULL si no hay un colaborador asociado
+                FOREIGN KEY (colaborador_id) REFERENCES Colaboradores(id) ON DELETE SET NULL  -- La relación es opcional
+            );`,
+
             `CREATE TABLE IF NOT EXISTS Proyectos (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 nombre VARCHAR(255) NOT NULL,

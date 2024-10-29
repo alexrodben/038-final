@@ -16,6 +16,23 @@ const seedDatabase = async () => {
             });
         });
 
+        // Inserciones en Usuarios
+        const insertUsuarios = `
+                INSERT INTO Usuarios (username, password, rol, estado, colaborador_id)
+                VALUES 
+                    ('admin', 'admin', 'Admin', 'Activo', NULL),
+                    ('juan', 'juan', 'Colaborador', 'Activo', 1),
+                    ('ana', 'ana', 'Colaborador', 'Activo', 2),
+                    ('gerente', 'gerente', 'Gerente', 'Activo', NULL);
+            `;
+        await new Promise((resolve, reject) => {
+            connection.query(insertUsuarios, (err, result) => {
+                if (err) return reject(err);
+                resolve(result);
+            });
+        });
+
+
         // Inserciones en Proyectos
         const insertProyectos = `
             INSERT INTO Proyectos (nombre, descripcion, cliente, fecha_inicio, fecha_estimacion, estado, responsable_id)
