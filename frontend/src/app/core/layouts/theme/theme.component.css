@@ -60,3 +60,8 @@ nav a.mat-button:hover {
   text-decoration: none;
   color: rgba(255, 255, 255, 0.9);
 }
+.active {
+  background-color: rgba(63, 81, 181, 0.1); /* Color de fondo en hover */
+  font-weight: bold;
+  color: #3f51b5; /* Color de texto en hover */
+}
