@@ -4,6 +4,8 @@ Este proyecto consiste en un sistema de gestión de proyectos de desarrollo que 
 
 ## Explicación de la Estructura de Base de Datos
 
+- **Usuarios**: Tabla que almacena la información de los usuarios que acceden al sistema, incluyendo campos para el nombre, correo electrónico y contraseña.
+
 - **Proyectos**: Tabla que almacena la información básica de cada proyecto, incluyendo un campo para el responsable que es una referencia a la tabla Colaboradores.
 
 - **Colaboradores**: Tabla para gestionar los colaboradores que participan en los proyectos, con campos que describen su rol y estado.
@@ -127,6 +129,7 @@ La base de datos se denomina `gestion_proyectos` y contiene las siguientes tabla
 
 - **Descripción**: Permite la colaboración a través de comentarios en tareas y documentos.
 - **Campos**:
+
   - `id`: Identificador único del comentario (PK).
   - `contenido`: Texto del comentario.
   - `fecha_comentario`: Fecha y hora del comentario.
@@ -134,11 +137,22 @@ La base de datos se denomina `gestion_proyectos` y contiene las siguientes tabla
   - `tarea_id`: ID de la tarea relacionada (FK).
   - `documento_id`: ID del documento relacionado (FK).
 
+  ### 10. Usuarios
+
+- **Descripción**: Almacena la información de los usuarios que acceden al sistema.
+- **Campos**:
+  - `id`: Identificador único del usuario (PK).
+  - `username`: Nombre de usuario.
+  - `password`: Contraseña del usuario.
+  - `rol`: Rol del usuario (Ej. Administrador, Colaborador).
+  - `estado`: Estado del usuario (Ej. Activo, Inactivo).
+  - `colaborador_id`: ID del colaborador asociado (FK).
+
 ## Requerimientos
 
 - MySQL 5.7 o superior.
-- Lenguaje de programación backend (Ej. Node.js, ASP.NET).
-- Framework frontend (Ej. Angular, React).
+- Lenguaje de programación backendNode.js
+- Framework frontend Angular
 - Herramienta para realizar migraciones de base de datos.
 
 ## Enlace al Sitio de Pruebas
