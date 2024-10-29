@@ -12,7 +12,7 @@ header {
 .sidebar {
   width: 200px; /* Ancho de la barra lateral */
   background: #f4f4f4; /* Color de fondo de la barra lateral */
-  height: calc(100vh - 64px); /* Altura total menos el encabezado */
+  height: calc(100vh - 64px - 64px); /* Altura total menos el encabezado */
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Sombra para la barra lateral */
 }
 .main-content {
@@ -25,6 +25,10 @@ header {
 nav {
   display: flex;
   flex-direction: column; /* Organiza los enlaces en una columna */
+}
+a {
+  color: inherit; /* Mantiene el color de texto predeterminado del enlace */
+  text-decoration: none; /* Elimina el subrayado */
 }
 nav a {
   display: flex; /* Cambiar a flexbox para alinear icono y texto */
@@ -48,4 +52,11 @@ nav a.mat-button {
 nav a.mat-button:hover {
   background-color: rgba(63, 81, 181, 0.2); /* Fondo más oscuro en hover */
   color: white; /* Cambia el color de texto en hover */
+}
+.spacer {
+  flex: 1 1 auto; /* Asegura que los enlaces estén a la derecha */
+}
+.salir {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.9);
 }
