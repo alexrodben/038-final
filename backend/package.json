@@ -6,7 +6,12 @@
   "main": "src/server.mjs",
   "scripts": {
     "start": "node src/server.mjs",
-    "dev": "nodemon src/server.mjs"
+    "dev": "nodemon src/server.mjs",
+    "db-create": "node src/config/createTables.mjs",
+    "db-seed": "node src/config/seedTables.mjs",
+    "db-drop": "node src/config/dropTables.mjs",
+    "db-reset": "npm run db-drop && npm run db-create && npm run db-seed",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "cors": "^2.8.5",
