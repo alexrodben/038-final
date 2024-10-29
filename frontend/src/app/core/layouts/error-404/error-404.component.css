@@ -1,0 +1,20 @@
+.not-found {
+  display: flex; /* Habilitar flexbox */
+  flex-direction: column; /* Alinear en columna */
+  justify-content: center; /* Centrar verticalmente */
+  align-items: center; /* Centrar horizontalmente */
+  height: calc(
+    100vh - 64px - 96px
+  ); /* Ajustar la altura para ocupar toda la pantalla, menos el header y footer */
+  text-align: center;
+  margin: 0; /* Eliminar margen */
+}
+
+.not-found h1 {
+  font-size: 3rem;
+  color: #f44336; /* Color rojo para el error */
+}
+
+.not-found p {
+  font-size: 1.5rem;
+}
