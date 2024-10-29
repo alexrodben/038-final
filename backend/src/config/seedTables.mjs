@@ -1,52 +1,29 @@
 import connection from './db.mjs';
 
-// Crear y poblar tablas
 const seedDatabase = async () => {
     try {
-        // Crear tablas
-        const createTablesQuery = `
-      CREATE TABLE IF NOT EXISTS users (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        username VARCHAR(50) NOT NULL,
-        password VARCHAR(255) NOT NULL,
-        email VARCHAR(100) NOT NULL UNIQUE,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-      );
-
-      CREATE TABLE IF NOT EXISTS posts (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        user_id INT,
-        title VARCHAR(255) NOT NULL,
-        content TEXT,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-      );
-    `;
-
-        // Ejecutar consulta para crear las tablas
-        await new Promise((resolve, reject) => {
-            connection.query(createTablesQuery, (err, result) => {
-                if (err) return reject(err);
-                resolve(result);
-            });
-        });
-
-        console.log('Tablas creadas exitosamente.');
-
-        // Insertar datos iniciales en las tablas
         const seedDataQuery = `
-      INSERT INTO users (username, password, email)
-      VALUES 
-        ('user1', 'password1', 'user1@example.com'),
-        ('user2', 'password2', 'user2@example.com');
+            INSERT INTO Colaboradores (nombre_completo, rol, email, telefono, estado)
+            VALUES 
+                ('Juan Pérez', 'Desarrollador', 'juan.perez@example.com', '123456789', 'Disponible'),
+                ('Ana Gómez', 'QA', 'ana.gomez@example.com', '987654321', 'Ocupado');
 
-      INSERT INTO posts (user_id, title, content)
-      VALUES 
-        (1, 'First Post', 'This is the first post content.'),
-        (2, 'Second Post', 'This is the second post content.');
-    `;
+            INSERT INTO Proyectos (nombre, descripcion, cliente, fecha_inicio, fecha_estimacion, estado, responsable_id)
+            VALUES 
+                ('Proyecto Alpha', 'Descripción del Proyecto Alpha', 'Cliente A', '2024-01-01', '2024-06-01', 'En Desarrollo', 1),
+                ('Proyecto Beta', 'Descripción del Proyecto Beta', 'Cliente B', '2024-02-01', '2024-07-01', 'En Planificación', 2);
+            
+            INSERT INTO Tipos_Tarea (nombre)
+            VALUES 
+                ('Desarrollo'), 
+                ('Pruebas');
 
-        // Ejecutar consulta para poblar las tablas
+            INSERT INTO Tareas (nombre, descripcion, fecha_inicio, fecha_entrega, estado, prioridad, horas_estimadas, proyecto_id, responsable_id, tipo_tarea_id)
+            VALUES 
+                ('Tarea 1', 'Descripción de Tarea 1', '2024-01-02', '2024-01-10', 'En Progreso', 'Alta', 10, 1, 1, 1),
+                ('Tarea 2', 'Descripción de Tarea 2', '2024-01-03', '2024-01-15', 'No Iniciada', 'Media', 5, 2, 2, 2);
+        `;
+
         await new Promise((resolve, reject) => {
             connection.query(seedDataQuery, (err, result) => {
                 if (err) return reject(err);
@@ -58,10 +35,8 @@ const seedDatabase = async () => {
     } catch (error) {
         console.error('Error al poblar la base de datos:', error);
     } finally {
-        // Cerrar la conexión
         connection.end();
     }
 };
 
-// Ejecutar el script de seed
 seedDatabase();

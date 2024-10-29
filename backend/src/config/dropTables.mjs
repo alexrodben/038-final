@@ -1,18 +1,33 @@
 import connection from './db.mjs';
 
-const databaseName = process.env.DB_NAME;
+const dropTables = async () => {
+    try {
+        const tables = [
+            'Comentarios',
+            'Asignaciones',
+            'Documentos',
+            'Riesgos',
+            'Presupuestos',
+            'Tareas',
+            'Colaboradores',
+            'Proyectos',
+            'Tipos_Tarea'
+        ];
 
-// Comando para eliminar y crear la base de datos
-const resetDatabase = `
-    DROP DATABASE IF EXISTS ${databaseName};
-    CREATE DATABASE ${databaseName};
-`;
-
-connection.query(resetDatabase, (err) => {
-    if (err) {
-        console.error('Error al resetear la base de datos:', err);
-        return;
+        for (const table of tables) {
+            await new Promise((resolve, reject) => {
+                connection.query(`DROP TABLE IF EXISTS ${table};`, (err, result) => {
+                    if (err) return reject(err);
+                    resolve(result);
+                });
+            });
+            console.log(`Tabla ${table} eliminada exitosamente.`);
+        }
+    } catch (error) {
+        console.error('Error al eliminar las tablas:', error);
+    } finally {
+        connection.end();
     }
-    console.log(`Base de datos '${databaseName}' reseteada exitosamente.`);
-    connection.end();
-});
+};
+
+dropTables();

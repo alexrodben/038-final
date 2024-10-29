@@ -17,7 +17,7 @@ connection.connect((err) => {
         console.error('Error conectando a la base de datos:', err);
         return;
     }
-    console.log('Conectado a la base de datos MySQL');
+    console.log('Conectado a la base de datos MySQL', process.env.DB_NAME);
 });
 
 // Exportar la conexión
