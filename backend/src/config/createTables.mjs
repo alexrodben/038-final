@@ -3,8 +3,18 @@ import connection from './db.mjs';
 
 const createTables = async () => {
     try {
-        const createTablesQuery = `
-            CREATE TABLE IF NOT EXISTS Proyectos (
+        const tables = [
+            `CREATE TABLE IF NOT EXISTS Colaboradores (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                nombre_completo VARCHAR(255) NOT NULL,
+                rol ENUM('Desarrollador', 'QA', 'Gerente de Proyecto') NOT NULL,
+                email VARCHAR(255) UNIQUE NOT NULL,
+                telefono VARCHAR(20),
+                estado ENUM('Disponible', 'Ocupado', 'En Vacaciones') NOT NULL,
+                horas_semanales INT DEFAULT 40
+            );`,
+
+            `CREATE TABLE IF NOT EXISTS Proyectos (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 nombre VARCHAR(255) NOT NULL,
                 descripcion TEXT,
@@ -14,19 +24,14 @@ const createTables = async () => {
                 estado ENUM('En Planificación', 'En Desarrollo', 'En Pruebas', 'Completado', 'Cancelado') NOT NULL,
                 responsable_id INT,
                 FOREIGN KEY (responsable_id) REFERENCES Colaboradores(id)
-            );
+            );`,
 
-            CREATE TABLE IF NOT EXISTS Colaboradores (
+            `CREATE TABLE IF NOT EXISTS Tipos_Tarea (
                 id INT AUTO_INCREMENT PRIMARY KEY,
-                nombre_completo VARCHAR(255) NOT NULL,
-                rol ENUM('Desarrollador', 'QA', 'Gerente de Proyecto') NOT NULL,
-                email VARCHAR(255) UNIQUE NOT NULL,
-                telefono VARCHAR(20),
-                estado ENUM('Disponible', 'Ocupado', 'En Vacaciones') NOT NULL,
-                horas_semanales INT DEFAULT 40
-            );
+                nombre VARCHAR(255) NOT NULL
+            );`,
 
-            CREATE TABLE IF NOT EXISTS Tareas (
+            `CREATE TABLE IF NOT EXISTS Tareas (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 nombre VARCHAR(255) NOT NULL,
                 descripcion TEXT,
@@ -42,14 +47,9 @@ const createTables = async () => {
                 FOREIGN KEY (proyecto_id) REFERENCES Proyectos(id),
                 FOREIGN KEY (responsable_id) REFERENCES Colaboradores(id),
                 FOREIGN KEY (tipo_tarea_id) REFERENCES Tipos_Tarea(id)
-            );
+            );`,
 
-            CREATE TABLE IF NOT EXISTS Tipos_Tarea (
-                id INT AUTO_INCREMENT PRIMARY KEY,
-                nombre VARCHAR(255) NOT NULL
-            );
-
-            CREATE TABLE IF NOT EXISTS Presupuestos (
+            `CREATE TABLE IF NOT EXISTS Presupuestos (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 proyecto_id INT,
                 presupuesto_estimado DECIMAL(10, 2),
@@ -58,9 +58,9 @@ const createTables = async () => {
                 variacion_presupuestaria DECIMAL(10, 2) DEFAULT 0,
                 moneda ENUM('USD', 'EUR', 'GTQ') DEFAULT 'GTQ',
                 FOREIGN KEY (proyecto_id) REFERENCES Proyectos(id)
-            );
+            );`,
 
-            CREATE TABLE IF NOT EXISTS Riesgos (
+            `CREATE TABLE IF NOT EXISTS Riesgos (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 descripcion TEXT NOT NULL,
                 probabilidad ENUM('Baja', 'Media', 'Alta') NOT NULL,
@@ -70,9 +70,9 @@ const createTables = async () => {
                 proyecto_id INT,
                 FOREIGN KEY (responsable_id) REFERENCES Colaboradores(id),
                 FOREIGN KEY (proyecto_id) REFERENCES Proyectos(id)
-            );
+            );`,
 
-            CREATE TABLE IF NOT EXISTS Documentos (
+            `CREATE TABLE IF NOT EXISTS Documentos (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 nombre VARCHAR(255) NOT NULL,
                 fecha_creacion DATE,
@@ -82,18 +82,18 @@ const createTables = async () => {
                 proyecto_id INT,
                 FOREIGN KEY (colaborador_responsable_id) REFERENCES Colaboradores(id),
                 FOREIGN KEY (proyecto_id) REFERENCES Proyectos(id)
-            );
+            );`,
 
-            CREATE TABLE IF NOT EXISTS Asignaciones (
+            `CREATE TABLE IF NOT EXISTS Asignaciones (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 tarea_id INT,
                 colaborador_id INT,
                 fecha_asignacion DATE,
                 FOREIGN KEY (tarea_id) REFERENCES Tareas(id),
                 FOREIGN KEY (colaborador_id) REFERENCES Colaboradores(id)
-            );
+            );`,
 
-            CREATE TABLE IF NOT EXISTS Comentarios (
+            `CREATE TABLE IF NOT EXISTS Comentarios (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 contenido TEXT NOT NULL,
                 fecha_comentario DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -103,15 +103,18 @@ const createTables = async () => {
                 FOREIGN KEY (colaborador_id) REFERENCES Colaboradores(id),
                 FOREIGN KEY (tarea_id) REFERENCES Tareas(id),
                 FOREIGN KEY (documento_id) REFERENCES Documentos(id)
-            );
-        `;
+            );`
+        ];
 
-        await new Promise((resolve, reject) => {
-            connection.query(createTablesQuery, (err, result) => {
-                if (err) return reject(err);
-                resolve(result);
+        // Ejecutar cada consulta por separado
+        for (const query of tables) {
+            await new Promise((resolve, reject) => {
+                connection.query(query, (err, result) => {
+                    if (err) return reject(err);
+                    resolve(result);
+                });
             });
-        });
+        }
 
         console.log('Tablas creadas exitosamente.');
     } catch (error) {
