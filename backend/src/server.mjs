@@ -2,6 +2,7 @@ import express, { json } from 'express';
 import logger from './config/logger.mjs';
 import cors from './middleware/cors.mjs';
 import authRoutes from './routes/authRoutes.mjs';
+import freeRoutes from './routes/freeRoutes.mjs';
 
 const app = express();
 const PORT = process.env.PORT;
@@ -14,6 +15,9 @@ app.use(json());
 
 // Usar las rutas de autenticación
 app.use('/api', authRoutes);
+
+// Usar las rutas de acceso libre
+app.use('/api', freeRoutes);
 
 // Iniciar el servidor
 app.listen(PORT, () => {

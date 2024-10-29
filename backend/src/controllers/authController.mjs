@@ -37,10 +37,25 @@ const login = (req, res) => {
 
 const profile = (req, res) => {
     logger.info("Consultando perfil...");
-    const user = req.user;
-    // Usuario del token
-    logger.info('Token válido', user);
-    return res.json(user);
+    const authHeader = req.headers['authorization'];
+    logger.info('Encabezado Authorization:', authHeader);
+
+    const token = authHeader && authHeader.split(' ')[1];
+    logger.info('Token extraído:', token);
+
+    if (!token) return res.status(401).json({ message: 'Access denied from middleware' });
+
+    jwt.verify(token, SECRET_KEY, (err, user) => {
+        if (err) {
+            console.log(err);
+            logger.error('Invalid token from middleware', err);
+            return res.status(403).json({ message: 'Invalid token from middleware' });
+        }
+        req.user = user;
+        // Usuario del token
+        logger.info('Token válido', user);
+        return res.json(user);
+    });
 }
 
 export { login, profile };

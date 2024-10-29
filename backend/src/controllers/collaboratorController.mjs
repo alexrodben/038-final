@@ -2,7 +2,7 @@ import db from '../config/db.mjs'; // Importar la conexión a la base de datos
 import logger from '../config/logger.mjs'; // Importar el logger
 
 // Función para crear un nuevo colaborador
-const createColaborador = (req, res) => {
+const createCollaborator = (req, res) => {
     const { nombre_completo, rol, email, telefono, estado, horas_semanales } = req.body;
 
     const query = 'INSERT INTO Colaboradores (nombre_completo, rol, email, telefono, estado, horas_semanales) VALUES (?, ?, ?, ?, ?, ?)';
@@ -17,7 +17,7 @@ const createColaborador = (req, res) => {
 };
 
 // Función para obtener todos los colaboradores
-const getAllColaboradores = (req, res) => {
+const getAllCollaborators = (req, res) => {
     const query = 'SELECT id, nombre_completo, rol, email, estado, telefono, horas_semanales FROM Colaboradores';
     db.execute(query, (err, results) => {
         if (err) {
@@ -29,7 +29,7 @@ const getAllColaboradores = (req, res) => {
 };
 
 // Función para obtener un colaborador por su ID
-const getColaboradorById = (req, res) => {
+const getCollaboratorById = (req, res) => {
     const { id } = req.params;
     const query = 'SELECT id, nombre_completo, rol, email, estado, telefono, horas_semanales FROM Colaboradores WHERE id = ?';
     db.execute(query, [id], (err, results) => {
@@ -45,7 +45,7 @@ const getColaboradorById = (req, res) => {
 };
 
 // Función para actualizar un colaborador
-const updateColaborador = (req, res) => {
+const updateCollaborator = (req, res) => {
     const { id, nombre_completo, rol, email, telefono, estado, horas_semanales } = req.body;
 
     const query = 'UPDATE Colaboradores SET nombre_completo = ?, rol = ?, email = ?, telefono = ?, estado = ?, horas_semanales = ? WHERE id = ?';
@@ -60,7 +60,7 @@ const updateColaborador = (req, res) => {
 };
 
 // Función para eliminar un colaborador
-const deleteColaborador = (req, res) => {
+const deleteCollaborator = (req, res) => {
     const { id } = req.params;
 
     const query = 'DELETE FROM Colaboradores WHERE id = ?';
@@ -77,4 +77,5 @@ const deleteColaborador = (req, res) => {
     });
 };
 
-export { createColaborador, deleteColaborador, getAllColaboradores, getColaboradorById, updateColaborador };
+export { createCollaborator, deleteCollaborator, getAllCollaborators, getCollaboratorById, updateCollaborator };
+
