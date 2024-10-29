@@ -9,9 +9,9 @@ const dropTables = async () => {
             'Riesgos',
             'Presupuestos',
             'Tareas',
-            'Colaboradores',
+            'Tipos_Tarea',
             'Proyectos',
-            'Tipos_Tarea'
+            'Colaboradores',
         ];
 
         for (const table of tables) {
