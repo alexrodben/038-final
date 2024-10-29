@@ -1,0 +1,74 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif; /* Cambia la fuente si lo deseas */
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    #6a11cb 0%,
+    #2575fc 25%,
+    #00c6ff 50%,
+    #ff6a00 75%,
+    #ff3f20 100%
+  ); /* Degradado de fondo con múltiples colores */
+  background-size: 400% 400%; /* Permite la animación del degradado */
+  animation: gradientAnimation 5s ease infinite; /* Animación del degradado */
+}
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 50% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  75% {
+    background-position: 50% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.login-form {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.9
+  ); /* Fondo blanco semitransparente */
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra del formulario */
+  width: 400px; /* Ancho del formulario */
+}
+
+mat-form-field {
+  width: 100%; /* Asegura que los campos ocupen todo el ancho del formulario */
+  margin-bottom: 1rem; /* Espacio entre los campos */
+}
+
+button {
+  width: 100%; /* Botón ocupa todo el ancho */
+}
+
+h2 {
+  margin: 0 0 1rem 0; /* Espaciado del título */
+  font-weight: bold; /* Texto en negrita */
+  text-align: center; /* Centra el texto */
+}
+
+.error-message {
+  color: red; /* Color del texto de error */
+  margin-bottom: 1rem; /* Espaciado superior */
+  text-align: center; /* Centra el texto */
+}
