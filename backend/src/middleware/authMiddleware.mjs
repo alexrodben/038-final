@@ -9,12 +9,10 @@ const SECRET_KEY = process.env.SECRET_KEY;
 
 const authenticateToken = (req, res, next) => {
     logger.info("Iniciando peticion...");
-    const authHeader = req.headers['authorization'];
-    logger.info(`Authorization: ${authHeader}`);
     logger.info(`Datos recibidos: `, req.body);
-
+    const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
-    logger.info(`Token extraído: ${token}`);
+    logger.info(`Token Authorization: ${token}`);
 
     if (!token) return res.status(401).json({ message: 'Access denied from middleware' });
 

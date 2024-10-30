@@ -67,7 +67,6 @@ export class UserEditComponent implements OnInit {
   getUser(id: string): void {
     this.userService.getUserById(id).subscribe((user) => {
       this.user = user;
-      // Rellena los campos del formulario con los datos del usuario
       this.userForm.patchValue({
         id: user.id,
         username: user.username,
@@ -90,9 +89,7 @@ export class UserEditComponent implements OnInit {
         next: () => {
           this.router.navigate(['/users']);
         },
-        error: (error) => {
-          console.error(error);
-        },
+        error: (error) => console.error(error),
       });
       // Aquí puedes llamar a tu servicio para enviar los datos
     } else {

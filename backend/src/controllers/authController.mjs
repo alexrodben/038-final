@@ -23,7 +23,7 @@ const login = (req, res) => {
             // Datos a incluir en el token
             const { password, ...userWithoutPassword } = results[0]; // Excluir el campo "password"
             // Generar el token
-            const token = jwt.sign(userWithoutPassword, SECRET_KEY, { expiresIn: '1h' });
+            const token = jwt.sign(userWithoutPassword, SECRET_KEY, { expiresIn: '10h' });
             // Usuario encontrado
             logger.info('Inicio de sesión exitoso', { user: userWithoutPassword });
             return res.json({ message: 'Inicio de sesión exitoso', token });
