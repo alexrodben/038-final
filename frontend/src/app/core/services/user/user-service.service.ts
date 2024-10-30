@@ -13,7 +13,7 @@ export class UserService extends HttpService {
     return this.get<UserModel[]>(this.baseUrl); // Utilizando el método get de HttpService
   }
 
-  getUserById(id: number): Observable<any> {
+  getUserById(id: string): Observable<any> {
     return this.get<UserModel>(`${this.baseUrl}/${id}`); // Utilizando el método get de HttpService
   }
 
@@ -25,7 +25,7 @@ export class UserService extends HttpService {
     return this.put<UserModel>(`${this.baseUrl}/${user.id}`, user); // Utilizando el método put de HttpService
   }
 
-  deleteUser(id: number): Observable<any> {
+  deleteUser(id: string): Observable<any> {
     return this.delete<UserModel>(`${this.baseUrl}/${id}`); // Utilizando el método delete de HttpService
   }
 }

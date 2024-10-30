@@ -11,7 +11,7 @@ const authenticateToken = (req, res, next) => {
     logger.info("Iniciando peticion...");
     const authHeader = req.headers['authorization'];
     logger.info(`Authorization: ${authHeader}`);
-    logger.info(`Datos recibidos: ${req.body}`);
+    logger.info(`Datos recibidos: `, req.body);
 
     const token = authHeader && authHeader.split(' ')[1];
     logger.info(`Token extraído: ${token}`);

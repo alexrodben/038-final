@@ -49,11 +49,6 @@ export class UserCreateComponent implements OnInit {
       colaborador_id: [null], // puedes ajustar el tipo según tu necesidad
     });
   }
-  createUser(): void {
-    this.userService.createUser(this.user).subscribe(() => {
-      this.router.navigate(['/users']); // Redirige a la lista de usuarios
-    });
-  }
 
   ngOnInit(): void {
     this.getCollaborators();

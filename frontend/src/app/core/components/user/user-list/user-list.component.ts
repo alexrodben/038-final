@@ -57,7 +57,7 @@ export class UserListComponent implements OnInit {
     this.router.navigate(['/users', id]);
   }
 
-  deleteUser(id: number): void {
+  deleteUser(id: string): void {
     if (confirm('¿Estás seguro de que deseas eliminar este usuario?')) {
       this.userService.deleteUser(id).subscribe(() => {
         this.getUsers(); // Actualiza la lista después de eliminar

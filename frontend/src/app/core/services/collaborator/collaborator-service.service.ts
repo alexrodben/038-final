@@ -15,7 +15,7 @@ export class CollaboratorServiceService extends HttpService {
   }
 
   // Obtener colaborador por ID
-  getCollaboratorById(id: number): Observable<CollaboratorModel> {
+  getCollaboratorById(id: string): Observable<CollaboratorModel> {
     return this.get<CollaboratorModel>(`${this.baseUrl}/${id}`);
   }
 
@@ -37,7 +37,7 @@ export class CollaboratorServiceService extends HttpService {
   }
 
   // Eliminar colaborador por ID
-  deleteCollaborator(id: number): Observable<any> {
+  deleteCollaborator(id: string): Observable<any> {
     return this.delete<CollaboratorModel>(`${this.baseUrl}/${id}`);
   }
 }
