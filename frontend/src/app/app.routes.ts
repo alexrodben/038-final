@@ -40,6 +40,10 @@ import { DocumentListComponent } from './core/components/document/document-list/
 import { AsignamentCreateComponent } from './core/components/asignament/asignament-create/asignament-create.component';
 import { AsignamentEditComponent } from './core/components/asignament/asignament-edit/asignament-edit.component';
 import { AsignamentListComponent } from './core/components/asignament/asignament-list/asignament-list.component';
+// Comment
+import { CommentCreateComponent } from './core/components/comment/comment-create/comment-create.component';
+import { CommentEditComponent } from './core/components/comment/comment-edit/comment-edit.component';
+import { CommentListComponent } from './core/components/comment/comment-list/comment-list.component';
 
 export const routes: Routes = [
   // Aquí definiremos nuestras rutas
@@ -86,6 +90,10 @@ export const routes: Routes = [
       { path: 'asignaments/create', component: AsignamentCreateComponent },
       { path: 'asignaments/:id', component: AsignamentEditComponent },
       { path: 'asignaments', component: AsignamentListComponent },
+      // Comment
+      { path: 'comments/create', component: CommentCreateComponent },
+      { path: 'comments/:id', component: CommentEditComponent },
+      { path: 'comments', component: CommentListComponent },
     ],
   },
   { path: '**', component: Error404Component }, // Ruta wildcard para manejar 404
