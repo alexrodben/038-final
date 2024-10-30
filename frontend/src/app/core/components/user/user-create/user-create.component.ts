@@ -5,10 +5,13 @@ import { MatFormFieldModule } from '@angular/material/form-field'; // Para form-
 import { MatInputModule } from '@angular/material/input'; // Para inputs
 
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
 import { Router } from '@angular/router';
+import { CollaboratorModel } from '../../../models/collaborator';
 import { UserModel } from '../../../models/user';
+import { CollaboratorServiceService } from '../../../services/collaborator/collaborator-service.service';
 import { UserService } from '../../../services/user/user-service.service';
 
 @Component({
@@ -21,6 +24,7 @@ import { UserService } from '../../../services/user/user-service.service';
     MatFormFieldModule,
     MatButtonModule,
     MatCardModule,
+    MatSelectModule,
   ],
   templateUrl: './user-create.component.html',
   styleUrl: './user-create.component.css',
@@ -28,10 +32,13 @@ import { UserService } from '../../../services/user/user-service.service';
 export class UserCreateComponent implements OnInit {
   user: any = {}; // Cambia el tipo según tu modelo
   userForm: FormGroup;
+  collaborators: CollaboratorModel[] = []; // Almacena la lista de colaboradores
 
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
+    private cdr: ChangeDetectorRef,
+    private collaboratorService: CollaboratorServiceService,
     private router: Router
   ) {
     this.userForm = this.fb.group({
@@ -47,7 +54,9 @@ export class UserCreateComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getCollaborators();
+  }
 
   onSubmit(): void {
     if (this.userForm.valid) {
@@ -60,5 +69,19 @@ export class UserCreateComponent implements OnInit {
     } else {
       console.log('El formulario no es válido');
     }
+  }
+
+  getCollaborators(): void {
+    // Lógica para obtener colaboradores
+    console.log('Obtener colaboradores');
+    this.collaboratorService.getAllCollaborators().subscribe({
+      next: (collaborators) => {
+        this.collaborators = collaborators;
+        this.cdr.markForCheck();
+      },
+      error: (error) => {
+        if (error.message.match(/403/i)) this.router.navigate(['/login']);
+      },
+    });
   }
 }

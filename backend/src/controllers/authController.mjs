@@ -37,8 +37,10 @@ const login = (req, res) => {
 
 const profile = (req, res) => {
     logger.info("Consultando perfil...");
+    logger.info('Datos recibidos', req.body);
     const authHeader = req.headers['authorization'];
-    logger.info('Encabezado Authorization:', authHeader);
+    logger.info('Encabezado Authorization:', { authHeader });
+    console.log('Encabezado Authorization:', authHeader);
 
     const token = authHeader && authHeader.split(' ')[1];
     logger.info('Token extraído:', token);

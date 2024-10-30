@@ -1,6 +1,8 @@
 <mat-card>
   <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="user-create-form">
     <h2>Crear/Editar Usuario</h2>
+
+    <!-- Nombre de usuario -->
     <mat-form-field appearance="fill">
       <mat-label>Nombre de usuario</mat-label>
       <input matInput id="username" formControlName="username" />
@@ -13,9 +15,14 @@
       </mat-error>
     </mat-form-field>
 
+    <!-- Rol -->
     <mat-form-field appearance="fill">
       <mat-label>Rol</mat-label>
-      <input matInput id="rol" formControlName="rol" />
+      <mat-select formControlName="rol" id="rol">
+        <mat-option value="Admin">Admin</mat-option>
+        <mat-option value="Colaborador">Colaborador</mat-option>
+        <mat-option value="Gerente">Gerente</mat-option>
+      </mat-select>
       <mat-error
         *ngIf="userForm.get('rol')?.invalid && userForm.get('rol')?.touched"
       >
@@ -23,9 +30,13 @@
       </mat-error>
     </mat-form-field>
 
+    <!-- Estado -->
     <mat-form-field appearance="fill">
       <mat-label>Estado</mat-label>
-      <input matInput id="estado" formControlName="estado" />
+      <mat-select formControlName="estado" id="estado">
+        <mat-option value="Activo">Activo</mat-option>
+        <mat-option value="Inactivo">Inactivo</mat-option>
+      </mat-select>
       <mat-error
         *ngIf="
           userForm.get('estado')?.invalid && userForm.get('estado')?.touched
@@ -35,16 +46,20 @@
       </mat-error>
     </mat-form-field>
 
+    <!-- Colaborador ID -->
     <mat-form-field appearance="fill">
       <mat-label>ID del colaborador</mat-label>
-      <input
-        matInput
-        id="colaborador_id"
-        formControlName="colaborador_id"
-        type="number"
-      />
+      <mat-select formControlName="colaborador_id" id="colaborador_id">
+        <mat-option
+          *ngFor="let colaborador of collaborators"
+          [value]="colaborador.id"
+        >
+          {{ colaborador.nombre_completo }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
 
+    <!-- Botón Guardar -->
     <button
       mat-raised-button
       color="primary"

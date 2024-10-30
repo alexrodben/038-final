@@ -36,6 +36,7 @@ export class UserListComponent implements OnInit {
     this.userService.getAllUsers().subscribe({
       next: (users) => {
         this.users = users;
+        this.cdr.markForCheck();
       },
       error: (error) => {
         if (error.message.match(/403/i)) this.router.navigate(['/login']);
