@@ -1,1 +1,57 @@
-<p>user-create works!</p>
+<mat-card>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="user-create-form">
+    <h2>Crear/Editar Usuario</h2>
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre de usuario</mat-label>
+      <input matInput id="username" formControlName="username" />
+      <mat-error
+        *ngIf="
+          userForm.get('username')?.invalid && userForm.get('username')?.touched
+        "
+      >
+        El nombre de usuario es obligatorio.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Rol</mat-label>
+      <input matInput id="rol" formControlName="rol" />
+      <mat-error
+        *ngIf="userForm.get('rol')?.invalid && userForm.get('rol')?.touched"
+      >
+        El rol es obligatorio.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Estado</mat-label>
+      <input matInput id="estado" formControlName="estado" />
+      <mat-error
+        *ngIf="
+          userForm.get('estado')?.invalid && userForm.get('estado')?.touched
+        "
+      >
+        El estado es obligatorio.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>ID del colaborador</mat-label>
+      <input
+        matInput
+        id="colaborador_id"
+        formControlName="colaborador_id"
+        type="number"
+      />
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="userForm.invalid"
+    >
+      Guardar
+    </button>
+  </form>
+</mat-card>

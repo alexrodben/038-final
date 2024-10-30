@@ -52,7 +52,7 @@ export class HttpService {
     }
 
     console.error(errorMessage);
-    return throwError(errorMessage);
+    return throwError(() => new Error(errorMessage));
   }
 
   protected get<T>(

@@ -19,7 +19,7 @@ body {
     #ff3f20 100%
   ); /* Degradado de fondo con múltiples colores */
   background-size: 400% 400%; /* Permite la animación del degradado */
-  animation: gradientAnimation 5s ease infinite; /* Animación del degradado */
+  animation: gradientAnimation 4s ease infinite; /* Animación del degradado */
 }
 @keyframes gradientAnimation {
   0% {

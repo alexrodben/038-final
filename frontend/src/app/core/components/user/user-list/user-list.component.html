@@ -45,11 +45,11 @@
     <td mat-cell *matCellDef="let element">
       <button
         mat-icon-button
-        color="accent"
-        (click)="editUser(element.id)"
-        aria-label="Editar usuario"
+        color="success"
+        (click)="showUser(element.id)"
+        aria-label="Mostrar usuario"
       >
-        <mat-icon>edit</mat-icon>
+        <mat-icon>visibility</mat-icon>
       </button>
       <button
         mat-icon-button

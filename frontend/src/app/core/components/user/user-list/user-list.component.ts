@@ -7,6 +7,7 @@ import {
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { UserModel } from '../../../models/user';
 import { UserService } from '../../../services/user/user-service.service';
 @Component({
@@ -23,7 +24,8 @@ export class UserListComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -31,25 +33,27 @@ export class UserListComponent implements OnInit {
   }
 
   getUsers(): void {
-    this.userService.getAllUsers().subscribe((users) => {
-      this.users = users;
-      this.cdr.markForCheck(); // Notifica a Angular que debe verificar cambios
+    this.userService.getAllUsers().subscribe({
+      next: (users) => {
+        this.users = users;
+      },
+      error: (error) => {
+        if (error.message.match(/403/i)) this.router.navigate(['/login']);
+      },
     });
   }
 
   addUser(): void {
     // Lógica para agregar un nuevo usuario
     console.log('Agregar nuevo usuario');
+    this.router.navigate(['/users/create']);
   }
 
-  editUser(id: number): void {
-    // Lógica para editar el usuario con el ID dado
-    console.log('Editar usuario con ID:', id);
-    if (confirm('¿Estás seguro de que deseas editar este usuario?')) {
-      this.userService.updateUser(id).subscribe(() => {
-        this.getUsers(); // Actualiza la lista después de editar
-      });
-    }
+  showUser(id: number): void {
+    // Lógica para mostrar un usuario
+    console.log(`Mostrar usuario ${id}`);
+    // Navegar a la ruta del usuario
+    this.router.navigate(['/users', id]);
   }
 
   deleteUser(id: number): void {
