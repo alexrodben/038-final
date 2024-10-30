@@ -24,6 +24,10 @@ import { TaskListComponent } from './core/components/task/task-list/task-list.co
 import { TaskTypeCreateComponent } from './core/components/task-type/task-type-create/task-type-create.component';
 import { TaskTypeEditComponent } from './core/components/task-type/task-type-edit/task-type-edit.component';
 import { TaskTypeListComponent } from './core/components/task-type/task-type-list/task-type-list.component';
+// Budgets
+import { BudgetCreateComponent } from './core/components/budget/budget-create/budget-create.component';
+import { BudgetEditComponent } from './core/components/budget/budget-edit/budget-edit.component';
+import { BudgetListComponent } from './core/components/budget/budget-list/budget-list.component';
 
 export const routes: Routes = [
   // Aquí definiremos nuestras rutas
@@ -54,6 +58,10 @@ export const routes: Routes = [
       { path: 'task-types/create', component: TaskTypeCreateComponent },
       { path: 'task-types/:id', component: TaskTypeEditComponent },
       { path: 'task-types', component: TaskTypeListComponent },
+      // Budgets
+      { path: 'budgets/create', component: BudgetCreateComponent },
+      { path: 'budgets/:id', component: BudgetEditComponent },
+      { path: 'budgets', component: BudgetListComponent },
     ],
   },
   { path: '**', component: Error404Component }, // Ruta wildcard para manejar 404
