@@ -36,6 +36,10 @@ import { RiskListComponent } from './core/components/risk/risk-list/risk-list.co
 import { DocumentCreateComponent } from './core/components/document/document-create/document-create.component';
 import { DocumentEditComponent } from './core/components/document/document-edit/document-edit.component';
 import { DocumentListComponent } from './core/components/document/document-list/document-list.component';
+// Asignament
+import { AsignamentCreateComponent } from './core/components/asignament/asignament-create/asignament-create.component';
+import { AsignamentEditComponent } from './core/components/asignament/asignament-edit/asignament-edit.component';
+import { AsignamentListComponent } from './core/components/asignament/asignament-list/asignament-list.component';
 
 export const routes: Routes = [
   // Aquí definiremos nuestras rutas
@@ -78,6 +82,10 @@ export const routes: Routes = [
       { path: 'documents/create', component: DocumentCreateComponent },
       { path: 'documents/:id', component: DocumentEditComponent },
       { path: 'documents', component: DocumentListComponent },
+      // Asignament
+      { path: 'asignaments/create', component: AsignamentCreateComponent },
+      { path: 'asignaments/:id', component: AsignamentEditComponent },
+      { path: 'asignaments', component: AsignamentListComponent },
     ],
   },
   { path: '**', component: Error404Component }, // Ruta wildcard para manejar 404
