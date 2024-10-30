@@ -32,6 +32,10 @@ import { BudgetListComponent } from './core/components/budget/budget-list/budget
 import { RiskCreateComponent } from './core/components/risk/risk-create/risk-create.component';
 import { RiskEditComponent } from './core/components/risk/risk-edit/risk-edit.component';
 import { RiskListComponent } from './core/components/risk/risk-list/risk-list.component';
+// Documents
+import { DocumentCreateComponent } from './core/components/document/document-create/document-create.component';
+import { DocumentEditComponent } from './core/components/document/document-edit/document-edit.component';
+import { DocumentListComponent } from './core/components/document/document-list/document-list.component';
 
 export const routes: Routes = [
   // Aquí definiremos nuestras rutas
@@ -70,6 +74,10 @@ export const routes: Routes = [
       { path: 'risks/create', component: RiskCreateComponent },
       { path: 'risks/:id', component: RiskEditComponent },
       { path: 'risks', component: RiskListComponent },
+      // Documents
+      { path: 'documents/create', component: DocumentCreateComponent },
+      { path: 'documents/:id', component: DocumentEditComponent },
+      { path: 'documents', component: DocumentListComponent },
     ],
   },
   { path: '**', component: Error404Component }, // Ruta wildcard para manejar 404
