@@ -1,1 +1,108 @@
-<p>collaborator-edit works!</p>
+<mat-card>
+  <form
+    [formGroup]="collaboratorForm"
+    (ngSubmit)="onSubmit()"
+    class="user-create-form"
+  >
+    <h2>Editar colaborador</h2>
+
+    <!-- Nombre de colaborador  -->
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre de colaborador</mat-label>
+      <input matInput id="nombre_completo " formControlName="nombre_completo" />
+      <mat-error
+        *ngIf="
+          collaboratorForm.get('nombre_completo ')?.invalid &&
+          collaboratorForm.get('nombre_completo ')?.touched
+        "
+      >
+        El nombre de colaborador es obligatorio.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Rol -->
+    <mat-form-field appearance="fill">
+      <mat-label>Rol</mat-label>
+      <mat-select formControlName="rol" id="rol">
+        <mat-option value="QA">QA</mat-option>
+        <mat-option value="Desarrollador">Desarrollador</mat-option>
+        <mat-option value="Gerente de Proyecto">Gerente de Proyecto</mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="
+          collaboratorForm.get('rol')?.invalid &&
+          collaboratorForm.get('rol')?.touched
+        "
+      >
+        El rol es obligatorio.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Email -->
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput id="email" formControlName="email" />
+      <mat-error
+        *ngIf="
+          collaboratorForm.get('email')?.invalid &&
+          collaboratorForm.get('email')?.touched
+        "
+      >
+        El email es obligatorio.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Teléfono -->
+    <mat-form-field appearance="fill">
+      <mat-label>Teléfono</mat-label>
+      <input matInput id="telefono" formControlName="telefono" />
+    </mat-form-field>
+
+    <!-- Estado -->
+    <mat-form-field appearance="fill">
+      <mat-label>Estado</mat-label>
+      <mat-select formControlName="estado" id="estado">
+        <mat-option value="Disponible">Disponible</mat-option>
+        <mat-option value="Ocupado">Ocupado</mat-option>
+        <mat-option value="En Vacaciones">En Vacaciones</mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="
+          collaboratorForm.get('estado')?.invalid &&
+          collaboratorForm.get('estado')?.touched
+        "
+      >
+        El estado es obligatorio.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Horas semanales -->
+    <mat-form-field appearance="fill">
+      <mat-label>Horas semanales</mat-label>
+      <input matInput id="horas_semanales" formControlName="horas_semanales" />
+    </mat-form-field>
+
+    <!-- Botones de acción -->
+    <div class="button-group">
+      <!-- Botón Guardar -->
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="collaboratorForm.invalid"
+      >
+        Guardar
+      </button>
+      <!-- Botón Cancelar -->
+      <button
+        mat-stroked-button
+        style="margin-top: 5px"
+        color="primary"
+        (click)="goBack()"
+        type="button"
+      >
+        Cancelar
+      </button>
+    </div>
+  </form>
+</mat-card>

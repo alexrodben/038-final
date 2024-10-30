@@ -48,7 +48,7 @@ export class CollaboratorListComponent implements OnInit {
   addCollaborator(): void {
     // Lógica para agregar un nuevo colaborador
     console.log('Agregar nuevo colaborador');
-    this.router.navigate(['/collaborators/create']);
+    this.router.navigate(['/collaborator/create']);
   }
 
   showCollaborator(id: number): void {
