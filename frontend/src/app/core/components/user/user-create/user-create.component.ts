@@ -43,6 +43,7 @@ export class UserCreateComponent implements OnInit {
   ) {
     this.userForm = this.fb.group({
       username: ['', Validators.required],
+      password: ['', Validators.required],
       rol: ['', Validators.required],
       estado: ['', Validators.required],
       colaborador_id: [null], // puedes ajustar el tipo según tu necesidad
@@ -65,6 +66,14 @@ export class UserCreateComponent implements OnInit {
         ...this.userForm.value,
       };
       console.log('Datos del usuario:', userData);
+      this.userService.createUser(userData).subscribe({
+        next: () => {
+          this.router.navigate(['/users']);
+        },
+        error: (error) => {
+          console.error(error);
+        },
+      });
       // Aquí puedes llamar a tu servicio para enviar los datos
     } else {
       console.log('El formulario no es válido');
@@ -83,5 +92,9 @@ export class UserCreateComponent implements OnInit {
         if (error.message.match(/403/i)) this.router.navigate(['/login']);
       },
     });
+  }
+
+  isCollaborator(): boolean {
+    return this.userForm.get('rol')?.value === 'Colaborador';
   }
 }

@@ -17,11 +17,11 @@ export class UserService extends HttpService {
     return this.get<UserModel>(`${this.baseUrl}/${id}`); // Utilizando el método get de HttpService
   }
 
-  createUser(user: any): Observable<any> {
+  createUser(user: UserModel): Observable<any> {
     return this.post<UserModel>(this.baseUrl, user); // Utilizando el método post de HttpService
   }
 
-  updateUser(user: any): Observable<any> {
+  updateUser(user: UserModel): Observable<any> {
     return this.put<UserModel>(`${this.baseUrl}/${user.id}`, user); // Utilizando el método put de HttpService
   }
 

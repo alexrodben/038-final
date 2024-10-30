@@ -1,6 +1,6 @@
 <mat-card>
   <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="user-create-form">
-    <h2>Crear/Editar Usuario</h2>
+    <h2>Crear Usuario</h2>
 
     <!-- Nombre de usuario -->
     <mat-form-field appearance="fill">
@@ -12,6 +12,24 @@
         "
       >
         El nombre de usuario es obligatorio.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Contraseña -->
+    <mat-form-field appearance="fill">
+      <mat-label>Contraseña</mat-label>
+      <input
+        matInput
+        id="password"
+        formControlName="password"
+        type="password"
+      />
+      <mat-error
+        *ngIf="
+          userForm.get('password')?.invalid && userForm.get('password')?.touched
+        "
+      >
+        La contraseña es obligatoria.
       </mat-error>
     </mat-form-field>
 
@@ -46,8 +64,8 @@
       </mat-error>
     </mat-form-field>
 
-    <!-- Colaborador ID -->
-    <mat-form-field appearance="fill">
+    <!-- ID del colaborador - Solo visible si el rol es "Colaborador" -->
+    <mat-form-field *ngIf="isCollaborator()" appearance="fill">
       <mat-label>ID del colaborador</mat-label>
       <mat-select formControlName="colaborador_id" id="colaborador_id">
         <mat-option
