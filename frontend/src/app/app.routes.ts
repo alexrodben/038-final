@@ -16,6 +16,10 @@ import { CollaboratorListComponent } from './core/components/collaborator/collab
 import { ProjectCreateComponent } from './core/components/project/project-create/project-create.component';
 import { ProjectEditComponent } from './core/components/project/project-edit/project-edit.component';
 import { ProjectListComponent } from './core/components/project/project-list/project-list.component';
+// Tasks
+import { TaskCreateComponent } from './core/components/task/task-create/task-create.component';
+import { TaskEditComponent } from './core/components/task/task-edit/task-edit.component';
+import { TaskListComponent } from './core/components/task/task-list/task-list.component';
 
 export const routes: Routes = [
   // Aquí definiremos nuestras rutas
@@ -38,6 +42,10 @@ export const routes: Routes = [
       { path: 'projects/create', component: ProjectCreateComponent },
       { path: 'projects/:id', component: ProjectEditComponent },
       { path: 'projects', component: ProjectListComponent },
+      // Tasks
+      { path: 'tasks/create', component: TaskCreateComponent },
+      { path: 'tasks/:id', component: TaskEditComponent },
+      { path: 'tasks', component: TaskListComponent },
     ],
   },
   { path: '**', component: Error404Component }, // Ruta wildcard para manejar 404
