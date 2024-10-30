@@ -20,6 +20,10 @@ import { ProjectListComponent } from './core/components/project/project-list/pro
 import { TaskCreateComponent } from './core/components/task/task-create/task-create.component';
 import { TaskEditComponent } from './core/components/task/task-edit/task-edit.component';
 import { TaskListComponent } from './core/components/task/task-list/task-list.component';
+// Task Types
+import { TaskTypeCreateComponent } from './core/components/task-type/task-type-create/task-type-create.component';
+import { TaskTypeEditComponent } from './core/components/task-type/task-type-edit/task-type-edit.component';
+import { TaskTypeListComponent } from './core/components/task-type/task-type-list/task-type-list.component';
 
 export const routes: Routes = [
   // Aquí definiremos nuestras rutas
@@ -46,6 +50,10 @@ export const routes: Routes = [
       { path: 'tasks/create', component: TaskCreateComponent },
       { path: 'tasks/:id', component: TaskEditComponent },
       { path: 'tasks', component: TaskListComponent },
+      // Task Types
+      { path: 'task-types/create', component: TaskTypeCreateComponent },
+      { path: 'task-types/:id', component: TaskTypeEditComponent },
+      { path: 'task-types', component: TaskTypeListComponent },
     ],
   },
   { path: '**', component: Error404Component }, // Ruta wildcard para manejar 404
