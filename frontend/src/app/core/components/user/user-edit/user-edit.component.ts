@@ -14,7 +14,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CollaboratorModel } from '../../../models/collaborator';
 import { UserModel } from '../../../models/user';
-import { CollaboratorServiceService } from '../../../services/collaborator/collaborator-service.service';
+import { CollaboratorService } from '../../../services/collaborator/collaborator-service.service';
 import { UserService } from '../../../services/user/user-service.service';
 
 @Component({
@@ -39,7 +39,7 @@ export class UserEditComponent implements OnInit {
   collaborators: CollaboratorModel[] = []; // Almacena la lista de colaboradores
 
   constructor(
-    private collaboratorService: CollaboratorServiceService,
+    private collaboratorService: CollaboratorService,
     private userService: UserService,
     private cdr: ChangeDetectorRef,
     private route: ActivatedRoute,

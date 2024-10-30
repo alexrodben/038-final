@@ -6,7 +6,7 @@ import { HttpService } from '../http.services'; // Asegúrate de que la ruta sea
 @Injectable({
   providedIn: 'root',
 })
-export class CollaboratorServiceService extends HttpService {
+export class CollaboratorService extends HttpService {
   private baseUrl = `api/collaborators`; // Cambia a la URL específica de colaboradores
 
   // Obtener todos los colaboradores

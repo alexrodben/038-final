@@ -11,7 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { Router } from '@angular/router';
 import { CollaboratorModel } from '../../../models/collaborator';
 import { UserModel } from '../../../models/user';
-import { CollaboratorServiceService } from '../../../services/collaborator/collaborator-service.service';
+import { CollaboratorService } from '../../../services/collaborator/collaborator-service.service';
 import { UserService } from '../../../services/user/user-service.service';
 
 @Component({
@@ -38,7 +38,7 @@ export class UserCreateComponent implements OnInit {
     private fb: FormBuilder,
     private userService: UserService,
     private cdr: ChangeDetectorRef,
-    private collaboratorService: CollaboratorServiceService,
+    private collaboratorService: CollaboratorService,
     private router: Router
   ) {
     this.userForm = this.fb.group({
