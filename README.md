@@ -32,6 +32,9 @@ Esta estructura de base de datos está diseñada para ser escalable y flexible, 
 
 La base de datos se denomina `gestion_proyectos` y contiene las siguientes tablas:
 
+![Base de datos](db.jpg)
+
+
 ### 1. Proyectos
 
 - **Descripción**: Almacena información básica sobre cada proyecto.
