@@ -55,7 +55,7 @@ export class CollaboratorListComponent implements OnInit {
     // Lógica para mostrar un colaborador
     console.log(`Mostrar colaborador ${id}`);
     // Navegar a la ruta del colaborador
-    this.router.navigate(['/collaborators', id]);
+    this.router.navigate(['/collaborator', id]);
   }
 
   deleteCollaborator(id: string): void {

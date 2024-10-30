@@ -62,14 +62,9 @@ export class UserCreateComponent implements OnInit {
       };
       console.log('Datos del usuario:', userData);
       this.userService.createUser(userData).subscribe({
-        next: () => {
-          this.router.navigate(['/users']);
-        },
-        error: (error) => {
-          console.error(error);
-        },
+        next: () => this.router.navigate(['/users']),
+        error: (error) => console.error(error),
       });
-      // Aquí puedes llamar a tu servicio para enviar los datos
     } else {
       console.log('El formulario no es válido');
     }
