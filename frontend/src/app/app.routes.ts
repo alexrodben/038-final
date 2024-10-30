@@ -8,6 +8,10 @@ import { ThemeComponent } from './core/layouts/theme/theme.component';
 import { UserCreateComponent } from './core/components/user/user-create/user-create.component';
 import { UserEditComponent } from './core/components/user/user-edit/user-edit.component';
 import { UserListComponent } from './core/components/user/user-list/user-list.component';
+// Colaboradores
+import { CollaboratorCreateComponent } from './core/components/collaborator/collaborator-create/collaborator-create.component';
+import { CollaboratorEditComponent } from './core/components/collaborator/collaborator-edit/collaborator-edit.component';
+import { CollaboratorListComponent } from './core/components/collaborator/collaborator-list/collaborator-list.component';
 
 export const routes: Routes = [
   // Aquí definiremos nuestras rutas
@@ -22,6 +26,10 @@ export const routes: Routes = [
       { path: 'users/create', component: UserCreateComponent },
       { path: 'users/:id', component: UserEditComponent },
       { path: 'users', component: UserListComponent },
+      // Colaboradores
+      { path: 'collaborator/create', component: CollaboratorCreateComponent },
+      { path: 'collaborator/:id', component: CollaboratorEditComponent },
+      { path: 'collaborator', component: CollaboratorListComponent },
     ],
   },
   { path: '**', component: Error404Component }, // Ruta wildcard para manejar 404
