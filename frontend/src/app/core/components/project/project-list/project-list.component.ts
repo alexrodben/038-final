@@ -21,7 +21,7 @@ export class ProjectListComponent {
     'id',
     'nombre',
     'cliente',
-    'fechaInicio',
+    'fecha_inicio',
     'actions',
   ];
 

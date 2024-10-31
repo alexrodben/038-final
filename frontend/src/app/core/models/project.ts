@@ -1,15 +1,15 @@
 export interface ProjectModel {
-  id: string;
+  id?: string;
   nombre: string;
   descripcion: string;
   cliente: string;
-  fechaInicio: Date;
-  fechaEstimacion: Date;
+  fecha_inicio: Date;
+  fecha_estimacion: Date;
   estado:
     | 'En Planificación'
     | 'En Desarrollo'
     | 'En Pruebas'
     | 'Completado'
     | 'Cancelado';
-  responsableId: number;
+  responsable_id: number;
 }

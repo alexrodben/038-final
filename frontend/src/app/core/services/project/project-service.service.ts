@@ -17,10 +17,10 @@ export class ProjectService extends HttpService {
       nombre: data.nombre,
       descripcion: data.descripcion,
       cliente: data.cliente,
-      fechaInicio: new Date(data.fecha_inicio), // Convertir a Date
-      fechaEstimacion: new Date(data.fecha_estimacion), // Convertir a Date
+      fecha_inicio: new Date(data.fecha_inicio), // Convertir a Date
+      fecha_estimacion: new Date(data.fecha_estimacion), // Convertir a Date
       estado: data.estado,
-      responsableId: data.responsable_id,
+      responsable_id: data.responsable_id,
     };
   }
 
@@ -45,8 +45,8 @@ export class ProjectService extends HttpService {
     return this.post<ProjectModel>(this.baseUrl, project);
   }
 
-  updateProject(project: ProjectModel): Observable<any> {
-    return this.put<ProjectModel>(`${this.baseUrl}/${project.id}`, project);
+  updateProject(id: string, project: ProjectModel): Observable<any> {
+    return this.put<ProjectModel>(`${this.baseUrl}/${id}`, project);
   }
 
   deleteProject(id: string): Observable<any> {

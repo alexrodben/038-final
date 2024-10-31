@@ -98,17 +98,13 @@ export class UserEditComponent implements OnInit {
   }
 
   getCollaborators(): void {
-    // Lógica para obtener colaboradores
-    console.log('Obtener colaboradores');
-    this.collaboratorService.getAllCollaborators().subscribe({
-      next: (collaborators) => {
+    console.log('Obteniendo colaboradores');
+    this.collaboratorService
+      .getAllCollaborators()
+      .subscribe((collaborators) => {
         this.collaborators = collaborators;
         this.cdr.markForCheck();
-      },
-      error: (error) => {
-        if (error.message.match(/403/i)) this.router.navigate(['/login']);
-      },
-    });
+      });
   }
 
   isCollaborator(): boolean {

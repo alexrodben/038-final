@@ -1,1 +1,161 @@
-<p>project-create works!</p>
+<mat-card>
+  <form
+    [formGroup]="projectForm"
+    (ngSubmit)="onSubmit()"
+    class="user-create-form"
+  >
+    <h2>Crear proyecto</h2>
+
+    <!-- Nombre de proyecto -->
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre de proyecto</mat-label>
+      <input matInput id="nombre" formControlName="nombre" />
+      <mat-error
+        *ngIf="
+          projectForm.get('nombre')?.invalid &&
+          projectForm.get('nombre')?.touched
+        "
+      >
+        El nombre de proyecto es obligatorio.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Descripción -->
+    <mat-form-field appearance="fill">
+      <mat-label>Descripción</mat-label>
+      <textarea
+        matInput
+        formControlName="descripcion"
+        id="descripcion"
+      ></textarea>
+      <mat-error
+        *ngIf="
+          projectForm.get('descripcion')?.invalid &&
+          projectForm.get('descripcion')?.touched
+        "
+      >
+        La descripción es obligatoria.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Cliente -->
+    <mat-form-field appearance="fill">
+      <mat-label>Cliente</mat-label>
+      <input matInput id="cliente" formControlName="cliente" />
+      <mat-error
+        *ngIf="
+          projectForm.get('cliente')?.invalid &&
+          projectForm.get('cliente')?.touched
+        "
+      >
+        El cliente es obligatorio.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Fecha de inicio -->
+    <mat-form-field appearance="fill">
+      <mat-label>Fecha de inicio</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        formControlName="fecha_inicio"
+        id="fecha_inicio"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error
+        *ngIf="
+          projectForm.get('fecha_inicio')?.invalid &&
+          projectForm.get('fecha_inicio')?.touched
+        "
+      >
+        La fecha de inicio es obligatoria.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Fecha de Estimacion -->
+    <mat-form-field appearance="fill">
+      <mat-label>Fecha de Estimacion</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker2"
+        formControlName="fecha_estimacion"
+        id="fecha_estimacion"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+      <mat-error
+        *ngIf="
+          projectForm.get('fecha_estimacion')?.invalid &&
+          projectForm.get('fecha_estimacion')?.touched
+        "
+      >
+        La fecha de estimacion es obligatoria.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Estado -->
+    <mat-form-field appearance="fill">
+      <mat-label>Estado</mat-label>
+      <mat-select formControlName="estado" id="estado">
+        <mat-option value="En Planificación">En Planificación</mat-option>
+        <mat-option value="En Desarrollo">En Desarrollo</mat-option>
+        <mat-option value="En Pruebas">En Pruebas</mat-option>
+        <mat-option value="Completado">Completado</mat-option>
+        <mat-option value="Cancelado">Cancelado</mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="
+          projectForm.get('estado')?.invalid &&
+          projectForm.get('estado')?.touched
+        "
+      >
+        El estado es obligatorio.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Responsable -->
+    <mat-form-field appearance="fill">
+      <mat-label>Responsable</mat-label>
+      <mat-select formControlName="responsable_id" id="responsable_id">
+        <mat-option
+          *ngFor="let colaborador of collaborators"
+          [value]="colaborador.id"
+        >
+          {{ colaborador.nombre_completo }}
+        </mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="
+          projectForm.get('responsable_id')?.invalid &&
+          projectForm.get('responsable_id')?.touched
+        "
+      >
+        El responsable es obligatorio.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Botones de acción -->
+    <div class="button-group">
+      <!-- Botón Guardar -->
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="projectForm.invalid"
+      >
+        Guardar
+      </button>
+      <!-- Botón Cancelar -->
+      <button
+        mat-stroked-button
+        style="margin-top: 5px"
+        color="primary"
+        (click)="goBack()"
+        type="button"
+      >
+        Cancelar
+      </button>
+    </div>
+  </form>
+</mat-card>

@@ -57,7 +57,6 @@ export class UserCreateComponent implements OnInit {
   onSubmit(): void {
     if (this.userForm.valid) {
       const userData: UserModel = {
-        id: 0, // Asigna un ID o manejar el ID en el backend
         ...this.userForm.value,
       };
       console.log('Datos del usuario:', userData);
@@ -71,17 +70,13 @@ export class UserCreateComponent implements OnInit {
   }
 
   getCollaborators(): void {
-    // Lógica para obtener colaboradores
-    console.log('Obtener colaboradores');
-    this.collaboratorService.getAllCollaborators().subscribe({
-      next: (collaborators) => {
+    console.log('Obteniendo colaboradores');
+    this.collaboratorService
+      .getAllCollaborators()
+      .subscribe((collaborators) => {
         this.collaborators = collaborators;
         this.cdr.markForCheck();
-      },
-      error: (error) => {
-        if (error.message.match(/403/i)) this.router.navigate(['/login']);
-      },
-    });
+      });
   }
 
   isCollaborator(): boolean {

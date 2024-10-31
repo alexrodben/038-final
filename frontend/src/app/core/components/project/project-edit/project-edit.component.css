@@ -1,0 +1,25 @@
+mat-form-field {
+  width: 100%; /* Asegura que los campos ocupen todo el ancho del formulario */
+  margin-bottom: 1rem; /* Espacio entre los campos */
+}
+
+button {
+  width: 100%; /* Botón ocupa todo el ancho */
+}
+.user-create-form {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.9
+  ); /* Fondo blanco semitransparente */
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra del formulario */
+}
+
+h2 {
+  margin: 0 0 1rem 0; /* Espaciado del título */
+  font-weight: bold; /* Texto en negrita */
+  text-align: center; /* Centra el texto */
+}
