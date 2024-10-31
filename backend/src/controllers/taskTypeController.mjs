@@ -4,7 +4,6 @@ import logger from '../config/logger.mjs'; // Importar el logger
 // Función para crear un nuevo tipo de tarea
 const createTaskType = (req, res) => {
     const { nombre } = req.body;
-
     const query = 'INSERT INTO Tipos_Tarea (nombre) VALUES (?)';
     db.execute(query, [nombre], (err, results) => {
         if (err) {
@@ -46,8 +45,8 @@ const getTaskTypeById = (req, res) => {
 
 // Función para actualizar un tipo de tarea
 const updateTaskType = (req, res) => {
-    const { id, nombre } = req.body;
-
+    const { id } = req.params;
+    const { nombre } = req.body;
     const query = 'UPDATE Tipos_Tarea SET nombre = ? WHERE id = ?';
     db.execute(query, [nombre, id], (err, results) => {
         if (err) {

@@ -4,7 +4,6 @@ import logger from '../config/logger.mjs'; // Importar el logger
 // Función para crear un nuevo documento
 const createDocument = (req, res) => {
     const { nombre, fecha_creacion, fecha_actualizacion, colaborador_responsable_id, tipo_documento, proyecto_id } = req.body;
-
     const query = 'INSERT INTO Documentos (nombre, fecha_creacion, fecha_actualizacion, colaborador_responsable_id, tipo_documento, proyecto_id) VALUES (?, ?, ?, ?, ?, ?)';
     db.execute(query, [nombre, fecha_creacion, fecha_actualizacion, colaborador_responsable_id, tipo_documento, proyecto_id], (err, results) => {
         if (err) {
@@ -46,8 +45,8 @@ const getDocumentById = (req, res) => {
 
 // Función para actualizar un documento
 const updateDocument = (req, res) => {
-    const { id, nombre, fecha_creacion, fecha_actualizacion, colaborador_responsable_id, tipo_documento, proyecto_id } = req.body;
-
+    const { id } = req.params;
+    const { nombre, fecha_creacion, fecha_actualizacion, colaborador_responsable_id, tipo_documento, proyecto_id } = req.body;
     const query = 'UPDATE Documentos SET nombre = ?, fecha_creacion = ?, fecha_actualizacion = ?, colaborador_responsable_id = ?, tipo_documento = ?, proyecto_id = ? WHERE id = ?';
     db.execute(query, [nombre, fecha_creacion, fecha_actualizacion, colaborador_responsable_id, tipo_documento, proyecto_id, id], (err, results) => {
         if (err) {
@@ -65,7 +64,6 @@ const updateDocument = (req, res) => {
 // Función para eliminar un documento
 const deleteDocument = (req, res) => {
     const { id } = req.params;
-
     const query = 'DELETE FROM Documentos WHERE id = ?';
     db.execute(query, [id], (err, results) => {
         if (err) {

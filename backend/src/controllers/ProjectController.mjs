@@ -4,7 +4,6 @@ import logger from '../config/logger.mjs'; // Importar el logger
 // Función para crear un nuevo proyecto
 const createProject = (req, res) => {
     const { nombre, descripcion, cliente, fecha_inicio, fecha_estimacion, estado, responsable_id } = req.body;
-
     const query = 'INSERT INTO Proyectos (nombre, descripcion, cliente, fecha_inicio, fecha_estimacion, estado, responsable_id) VALUES (?, ?, ?, ?, ?, ?, ?)';
     db.execute(query, [nombre, descripcion, cliente, fecha_inicio, fecha_estimacion, estado, responsable_id], (err, results) => {
         if (err) {
@@ -46,8 +45,8 @@ const getProjectById = (req, res) => {
 
 // Función para actualizar un proyecto
 const updateProject = (req, res) => {
-    const { id, nombre, descripcion, cliente, fecha_inicio, fecha_estimacion, estado, responsable_id } = req.body;
-
+    const { id } = req.params;
+    const { nombre, descripcion, cliente, fecha_inicio, fecha_estimacion, estado, responsable_id } = req.body;
     const query = 'UPDATE Proyectos SET nombre = ?, descripcion = ?, cliente = ?, fecha_inicio = ?, fecha_estimacion = ?, estado = ?, responsable_id = ? WHERE id = ?';
     db.execute(query, [nombre, descripcion, cliente, fecha_inicio, fecha_estimacion, estado, responsable_id, id], (err, results) => {
         if (err) {

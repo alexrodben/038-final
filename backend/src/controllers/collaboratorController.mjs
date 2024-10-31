@@ -4,7 +4,6 @@ import logger from '../config/logger.mjs'; // Importar el logger
 // Función para crear un nuevo colaborador
 const createCollaborator = (req, res) => {
     const { nombre_completo, rol, email, telefono, estado, horas_semanales } = req.body;
-
     const query = 'INSERT INTO Colaboradores (nombre_completo, rol, email, telefono, estado, horas_semanales) VALUES (?, ?, ?, ?, ?, ?)';
     db.execute(query, [nombre_completo, rol, email, telefono, estado, horas_semanales], (err, results) => {
         if (err) {
@@ -46,8 +45,8 @@ const getCollaboratorById = (req, res) => {
 
 // Función para actualizar un colaborador
 const updateCollaborator = (req, res) => {
-    const { id, nombre_completo, rol, email, telefono, estado, horas_semanales } = req.body;
-
+    const { id } = req.params;
+    const { nombre_completo, rol, email, telefono, estado, horas_semanales } = req.body;
     const query = 'UPDATE Colaboradores SET nombre_completo = ?, rol = ?, email = ?, telefono = ?, estado = ?, horas_semanales = ? WHERE id = ?';
     db.execute(query, [nombre_completo, rol, email, telefono, estado, horas_semanales, id], (err, results) => {
         if (err) {
@@ -62,7 +61,6 @@ const updateCollaborator = (req, res) => {
 // Función para eliminar un colaborador
 const deleteCollaborator = (req, res) => {
     const { id } = req.params;
-
     const query = 'DELETE FROM Colaboradores WHERE id = ?';
     db.execute(query, [id], (err, results) => {
         if (err) {

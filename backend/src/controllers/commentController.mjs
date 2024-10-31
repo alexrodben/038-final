@@ -4,7 +4,6 @@ import logger from '../config/logger.mjs'; // Importar el logger
 // Función para crear un nuevo comentario
 const createComment = (req, res) => {
     const { contenido, colaborador_id, tarea_id, documento_id } = req.body;
-
     const query = 'INSERT INTO Comentarios (contenido, colaborador_id, tarea_id, documento_id) VALUES (?, ?, ?, ?)';
     db.execute(query, [contenido, colaborador_id, tarea_id, documento_id], (err, results) => {
         if (err) {
@@ -46,8 +45,8 @@ const getCommentById = (req, res) => {
 
 // Función para actualizar un comentario
 const updateComment = (req, res) => {
-    const { id, contenido, colaborador_id, tarea_id, documento_id } = req.body;
-
+    const { id } = req.params;
+    const { contenido, colaborador_id, tarea_id, documento_id } = req.body;
     const query = 'UPDATE Comentarios SET contenido = ?, colaborador_id = ?, tarea_id = ?, documento_id = ? WHERE id = ?';
     db.execute(query, [contenido, colaborador_id, tarea_id, documento_id, id], (err, results) => {
         if (err) {
@@ -65,7 +64,6 @@ const updateComment = (req, res) => {
 // Función para eliminar un comentario
 const deleteComment = (req, res) => {
     const { id } = req.params;
-
     const query = 'DELETE FROM Comentarios WHERE id = ?';
     db.execute(query, [id], (err, results) => {
         if (err) {

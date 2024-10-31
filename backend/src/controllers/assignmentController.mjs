@@ -4,7 +4,6 @@ import logger from '../config/logger.mjs'; // Importar el logger
 // Función para crear una nueva asignación
 const createAssignment = (req, res) => {
     const { tarea_id, colaborador_id, fecha_asignacion } = req.body;
-
     const query = 'INSERT INTO Asignaciones (tarea_id, colaborador_id, fecha_asignacion) VALUES (?, ?, ?)';
     db.execute(query, [tarea_id, colaborador_id, fecha_asignacion], (err, results) => {
         if (err) {
@@ -46,8 +45,8 @@ const getAssignmentById = (req, res) => {
 
 // Función para actualizar una asignación
 const updateAssignment = (req, res) => {
-    const { id, tarea_id, colaborador_id, fecha_asignacion } = req.body;
-
+    const { id } = req.params;
+    const { tarea_id, colaborador_id, fecha_asignacion } = req.body;
     const query = 'UPDATE Asignaciones SET tarea_id = ?, colaborador_id = ?, fecha_asignacion = ? WHERE id = ?';
     db.execute(query, [tarea_id, colaborador_id, fecha_asignacion, id], (err, results) => {
         if (err) {
@@ -65,7 +64,6 @@ const updateAssignment = (req, res) => {
 // Función para eliminar una asignación
 const deleteAssignment = (req, res) => {
     const { id } = req.params;
-
     const query = 'DELETE FROM Asignaciones WHERE id = ?';
     db.execute(query, [id], (err, results) => {
         if (err) {

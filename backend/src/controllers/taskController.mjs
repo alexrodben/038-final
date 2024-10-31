@@ -4,7 +4,6 @@ import logger from '../config/logger.mjs'; // Importar el logger
 // Función para crear una nueva tarea
 const createTask = (req, res) => {
     const { nombre, descripcion, fecha_inicio, fecha_entrega, estado, prioridad, horas_estimadas, horas_registradas, proyecto_id, responsable_id, tipo_tarea_id } = req.body;
-
     const query = 'INSERT INTO Tareas (nombre, descripcion, fecha_inicio, fecha_entrega, estado, prioridad, horas_estimadas, horas_registradas, proyecto_id, responsable_id, tipo_tarea_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
     db.execute(query, [nombre, descripcion, fecha_inicio, fecha_entrega, estado, prioridad, horas_estimadas, horas_registradas, proyecto_id, responsable_id, tipo_tarea_id], (err, results) => {
         if (err) {
@@ -46,8 +45,8 @@ const getTaskById = (req, res) => {
 
 // Función para actualizar una tarea
 const updateTask = (req, res) => {
-    const { id, nombre, descripcion, fecha_inicio, fecha_entrega, estado, prioridad, horas_estimadas, horas_registradas, proyecto_id, responsable_id, tipo_tarea_id } = req.body;
-
+    const { id } = req.params;
+    const { nombre, descripcion, fecha_inicio, fecha_entrega, estado, prioridad, horas_estimadas, horas_registradas, proyecto_id, responsable_id, tipo_tarea_id } = req.body;
     const query = 'UPDATE Tareas SET nombre = ?, descripcion = ?, fecha_inicio = ?, fecha_entrega = ?, estado = ?, prioridad = ?, horas_estimadas = ?, horas_registradas = ?, proyecto_id = ?, responsable_id = ?, tipo_tarea_id = ? WHERE id = ?';
     db.execute(query, [nombre, descripcion, fecha_inicio, fecha_entrega, estado, prioridad, horas_estimadas, horas_registradas, proyecto_id, responsable_id, tipo_tarea_id, id], (err, results) => {
         if (err) {
@@ -65,7 +64,6 @@ const updateTask = (req, res) => {
 // Función para eliminar una tarea
 const deleteTask = (req, res) => {
     const { id } = req.params;
-
     const query = 'DELETE FROM Tareas WHERE id = ?';
     db.execute(query, [id], (err, results) => {
         if (err) {

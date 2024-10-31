@@ -4,7 +4,6 @@ import logger from '../config/logger.mjs'; // Importar el logger
 // Función para crear un nuevo presupuesto
 const createBudget = (req, res) => {
     const { proyecto_id, presupuesto_estimado, gastos_realizados, gastos_pendientes, variacion_presupuestaria, moneda } = req.body;
-
     const query = 'INSERT INTO Presupuestos (proyecto_id, presupuesto_estimado, gastos_realizados, gastos_pendientes, variacion_presupuestaria, moneda) VALUES (?, ?, ?, ?, ?, ?)';
     db.execute(query, [proyecto_id, presupuesto_estimado, gastos_realizados, gastos_pendientes, variacion_presupuestaria, moneda], (err, results) => {
         if (err) {
@@ -46,8 +45,8 @@ const getBudgetById = (req, res) => {
 
 // Función para actualizar un presupuesto
 const updateBudget = (req, res) => {
-    const { id, proyecto_id, presupuesto_estimado, gastos_realizados, gastos_pendientes, variacion_presupuestaria, moneda } = req.body;
-
+    const { id } = req.params;
+    const { proyecto_id, presupuesto_estimado, gastos_realizados, gastos_pendientes, variacion_presupuestaria, moneda } = req.body;
     const query = 'UPDATE Presupuestos SET proyecto_id = ?, presupuesto_estimado = ?, gastos_realizados = ?, gastos_pendientes = ?, variacion_presupuestaria = ?, moneda = ? WHERE id = ?';
     db.execute(query, [proyecto_id, presupuesto_estimado, gastos_realizados, gastos_pendientes, variacion_presupuestaria, moneda, id], (err, results) => {
         if (err) {
@@ -65,7 +64,6 @@ const updateBudget = (req, res) => {
 // Función para eliminar un presupuesto
 const deleteBudget = (req, res) => {
     const { id } = req.params;
-
     const query = 'DELETE FROM Presupuestos WHERE id = ?';
     db.execute(query, [id], (err, results) => {
         if (err) {

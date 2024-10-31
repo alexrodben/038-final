@@ -4,7 +4,6 @@ import logger from '../config/logger.mjs'; // Importar el logger
 // Función para crear un nuevo riesgo
 const createRisk = (req, res) => {
     const { descripcion, probabilidad, impacto, plan_mitigacion, responsable_id, proyecto_id } = req.body;
-
     const query = 'INSERT INTO Riesgos (descripcion, probabilidad, impacto, plan_mitigacion, responsable_id, proyecto_id) VALUES (?, ?, ?, ?, ?, ?)';
     db.execute(query, [descripcion, probabilidad, impacto, plan_mitigacion, responsable_id, proyecto_id], (err, results) => {
         if (err) {
@@ -46,8 +45,8 @@ const getRiskById = (req, res) => {
 
 // Función para actualizar un riesgo
 const updateRisk = (req, res) => {
-    const { id, descripcion, probabilidad, impacto, plan_mitigacion, responsable_id, proyecto_id } = req.body;
-
+    const { id } = req.params;
+    const { descripcion, probabilidad, impacto, plan_mitigacion, responsable_id, proyecto_id } = req.body;
     const query = 'UPDATE Riesgos SET descripcion = ?, probabilidad = ?, impacto = ?, plan_mitigacion = ?, responsable_id = ?, proyecto_id = ? WHERE id = ?';
     db.execute(query, [descripcion, probabilidad, impacto, plan_mitigacion, responsable_id, proyecto_id, id], (err, results) => {
         if (err) {
@@ -65,7 +64,6 @@ const updateRisk = (req, res) => {
 // Función para eliminar un riesgo
 const deleteRisk = (req, res) => {
     const { id } = req.params;
-
     const query = 'DELETE FROM Riesgos WHERE id = ?';
     db.execute(query, [id], (err, results) => {
         if (err) {
