@@ -1,5 +1,5 @@
 import { CommonModule, DatePipe } from '@angular/common';
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
@@ -15,7 +15,7 @@ import { ProjectService } from '../../../services/project/project-service.servic
   styleUrl: './project-list.component.css',
   providers: [DatePipe], // Añade DatePipe a los providers aquí
 })
-export class ProjectListComponent {
+export class ProjectListComponent implements OnInit {
   projects: ProjectModel[] = [];
   displayedColumns: string[] = [
     'id',
@@ -38,13 +38,9 @@ export class ProjectListComponent {
 
   getProjects(): void {
     this.projectService.getAllProjects().subscribe({
-      next: (projects) => {
-        this.projects = projects;
-        this.cdr.markForCheck();
-      },
-      error: (error) => {
-        if (error.message.match(/403/i)) this.router.navigate(['/login']);
-      },
+      next: (projects) => (this.projects = projects),
+      error: (error) => console.error('Error getting projects', error),
+      complete: () => this.cdr.markForCheck(),
     });
   }
 
@@ -60,13 +56,9 @@ export class ProjectListComponent {
 
   deleteProject(id: string): void {
     this.projectService.deleteProject(id).subscribe({
-      next: () => {
-        this.projects = this.projects.filter((project) => project.id !== id);
-        this.cdr.markForCheck();
-      },
-      error: (error) => {
-        console.error('Error deleting project', error);
-      },
+      next: () =>
+        (this.projects = this.projects.filter((project) => project.id !== id)),
+      error: (error) => console.error('Error deleting project', error),
     });
   }
 }

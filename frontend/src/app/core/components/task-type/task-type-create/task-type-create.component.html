@@ -1,1 +1,46 @@
-<p>task-type-create works!</p>
+<mat-card>
+  <form
+    [formGroup]="taskTypeForm"
+    (ngSubmit)="onSubmit()"
+    class="user-create-form"
+  >
+    <h2>{{ title }}</h2>
+
+    <!-- Nombre de proyecto -->
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre de tipo de tarea</mat-label>
+      <input matInput id="nombre" formControlName="nombre" />
+      <mat-error
+        *ngIf="
+          taskTypeForm.get('nombre')?.invalid &&
+          taskTypeForm.get('nombre')?.touched
+        "
+      >
+        El nombre de tipo de tarea es obligatorio.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Botones de acción -->
+    <div class="button-group">
+      <!-- Botón Guardar -->
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="taskTypeForm.invalid"
+      >
+        {{ button }}
+      </button>
+      <!-- Botón Cancelar -->
+      <button
+        mat-stroked-button
+        style="margin-top: 5px"
+        color="primary"
+        (click)="goBack()"
+        type="button"
+      >
+        Cancelar
+      </button>
+    </div>
+  </form>
+</mat-card>

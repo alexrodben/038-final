@@ -43,7 +43,6 @@ import { ProjectService } from '../../../services/project/project-service.servic
 export class ProjectCreateComponent implements OnInit {
   project: any = {}; // Cambia el tipo según tu modelo
   projectForm: FormGroup;
-  projectId: string = '0';
   collaborators: CollaboratorModel[] = []; // Almacena la lista de colaboradores
 
   constructor(

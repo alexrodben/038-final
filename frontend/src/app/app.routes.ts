@@ -22,7 +22,6 @@ import { TaskEditComponent } from './core/components/task/task-edit/task-edit.co
 import { TaskListComponent } from './core/components/task/task-list/task-list.component';
 // Task Types
 import { TaskTypeCreateComponent } from './core/components/task-type/task-type-create/task-type-create.component';
-import { TaskTypeEditComponent } from './core/components/task-type/task-type-edit/task-type-edit.component';
 import { TaskTypeListComponent } from './core/components/task-type/task-type-list/task-type-list.component';
 // Budgets
 import { BudgetCreateComponent } from './core/components/budget/budget-create/budget-create.component';
@@ -72,7 +71,7 @@ export const routes: Routes = [
       { path: 'tasks', component: TaskListComponent },
       // Task Types
       { path: 'task-types/create', component: TaskTypeCreateComponent },
-      { path: 'task-types/:id', component: TaskTypeEditComponent },
+      { path: 'task-types/:id', component: TaskTypeCreateComponent },
       { path: 'task-types', component: TaskTypeListComponent },
       // Budgets
       { path: 'budgets/create', component: BudgetCreateComponent },
