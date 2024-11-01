@@ -1,14 +1,14 @@
 <div class="demo-button-container">
   <h2>Lista de tipos de tareas</h2>
 
-  <!-- Botón para agregar un nuevo proyecto -->
+  <!-- Botón para agregar un nuevo tipo de tarea -->
   <button
     mat-raised-button
     color="primary"
     (click)="addTaskType()"
     class="demo-button"
   >
-    Agregar proyecto
+    Agregar tipo de tarea
   </button>
 </div>
 
@@ -53,7 +53,7 @@
         mat-icon-button
         color="success"
         (click)="showTaskType(element.id)"
-        aria-label="Mostrar proyecto"
+        aria-label="Mostrar tipo de tarea"
       >
         <mat-icon>visibility</mat-icon>
       </button>
@@ -61,7 +61,7 @@
         mat-icon-button
         color="warn"
         (click)="deleteTaskType(element.id)"
-        aria-label="Eliminar proyecto"
+        aria-label="Eliminar tipo de tarea"
       >
         <mat-icon>delete</mat-icon>
       </button>

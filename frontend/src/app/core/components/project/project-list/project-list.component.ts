@@ -56,7 +56,7 @@ export class ProjectListComponent implements OnInit {
     this.router.navigate(['/projects', id]);
   }
 
-  deleteProject(id: string): void {
+  deleteProject(id: number): void {
     this.projectService.deleteProject(id).subscribe({
       next: () =>
         (this.projects = this.projects.filter((project) => project.id !== id)),

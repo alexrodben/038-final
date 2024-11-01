@@ -18,7 +18,6 @@ import { ErrorModalComponent } from '../../error-modal/error-modal.component';
     MatIcon,
     MatButtonModule,
     CommonModule,
-    ErrorModalComponent,
     MatDialogModule,
   ],
   templateUrl: './task-type-list.component.html',

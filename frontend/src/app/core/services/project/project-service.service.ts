@@ -35,7 +35,7 @@ export class ProjectService extends HttpService {
     );
   }
 
-  getProjectById(id: string): Observable<ProjectModel> {
+  getProjectById(id: number): Observable<ProjectModel> {
     return this.get<ProjectModel>(`${this.baseUrl}/${id}`).pipe(
       map((data: any) => this.transformToProjectModel(data)) // Aplicamos la transformación aquí
     );
@@ -45,11 +45,11 @@ export class ProjectService extends HttpService {
     return this.post<ProjectModel>(this.baseUrl, project);
   }
 
-  updateProject(id: string, project: ProjectModel): Observable<any> {
+  updateProject(id: number, project: ProjectModel): Observable<any> {
     return this.put<ProjectModel>(`${this.baseUrl}/${id}`, project);
   }
 
-  deleteProject(id: string): Observable<any> {
+  deleteProject(id: number): Observable<any> {
     return this.delete<ProjectModel>(`${this.baseUrl}/${id}`);
   }
 }

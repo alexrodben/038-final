@@ -9,6 +9,7 @@ import {
 } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth/auth.service';
 @Component({
   selector: 'app-error-modal',
   standalone: true,
@@ -27,6 +28,7 @@ export class ErrorModalComponent {
   errorMessage: string = 'Error inesperado.';
   constructor(
     private router: Router,
+    private authService: AuthService,
     public dialogRef: MatDialogRef<ErrorModalComponent>,
     @Inject(MAT_DIALOG_DATA) public errorData: any
   ) {
@@ -41,6 +43,7 @@ export class ErrorModalComponent {
 
   onClose() {
     if (this.errorMessage.includes('403')) {
+      this.authService.logout(); // Elimina el token almacenado al recibir un error 403
       this.router.navigate(['/login']); // Redirige a /login si el error contiene 403
     }
     this.dialogRef.close(); // Cierra el modal en otros casos

@@ -17,7 +17,7 @@ const createTask = (req, res) => {
 
 // Función para obtener todas las tareas
 const getAllTasks = (req, res) => {
-    const query = 'SELECT id, nombre, estado, prioridad, fecha_entrega, responsable_id FROM Tareas';
+    const query = 'SELECT id, nombre, estado, prioridad, fecha_inicio, fecha_entrega, proyecto_id, responsable_id, tipo_tarea_id FROM Tareas';
     db.execute(query, (err, results) => {
         if (err) {
             logger.error('Error al obtener tareas:', err);
@@ -79,3 +79,4 @@ const deleteTask = (req, res) => {
 };
 
 export { createTask, deleteTask, getAllTasks, getTaskById, updateTask };
+

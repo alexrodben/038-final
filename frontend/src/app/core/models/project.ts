@@ -1,5 +1,5 @@
 export interface ProjectModel {
-  id?: string;
+  id?: number;
   nombre: string;
   descripcion: string;
   cliente: string;
