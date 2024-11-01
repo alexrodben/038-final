@@ -17,7 +17,6 @@ import { ProjectCreateComponent } from './core/components/project/project-create
 import { ProjectEditComponent } from './core/components/project/project-edit/project-edit.component';
 import { ProjectListComponent } from './core/components/project/project-list/project-list.component';
 // Tasks
-import { TaskCreateComponent } from './core/components/task/task-create/task-create.component';
 import { TaskEditComponent } from './core/components/task/task-edit/task-edit.component';
 import { TaskListComponent } from './core/components/task/task-list/task-list.component';
 // Task Types
@@ -66,7 +65,7 @@ export const routes: Routes = [
       { path: 'projects/:id', component: ProjectEditComponent },
       { path: 'projects', component: ProjectListComponent },
       // Tasks
-      { path: 'tasks/create', component: TaskCreateComponent },
+      { path: 'tasks/create', component: TaskEditComponent },
       { path: 'tasks/:id', component: TaskEditComponent },
       { path: 'tasks', component: TaskListComponent },
       // Task Types

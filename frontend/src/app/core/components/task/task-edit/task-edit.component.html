@@ -1,1 +1,233 @@
-<p>task-edit works!</p>
+<mat-card>
+  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" class="user-create-form">
+    <h2>{{ title }}</h2>
+
+    <!-- Nombre de tarea -->
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre de tipo de tarea</mat-label>
+      <input matInput id="nombre" formControlName="nombre" />
+      <mat-error
+        *ngIf="
+          taskForm.get('nombre')?.invalid && taskForm.get('nombre')?.touched
+        "
+      >
+        El nombre de tipo de tarea es obligatorio.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Descripción de tarea -->
+    <mat-form-field appearance="fill">
+      <mat-label>Descripción de tipo de tarea</mat-label>
+      <textarea
+        matInput
+        id="descripcion"
+        formControlName="descripcion"
+        rows="5"
+      ></textarea>
+      <mat-error
+        *ngIf="
+          taskForm.get('descripcion')?.invalid &&
+          taskForm.get('descripcion')?.touched
+        "
+      >
+        La descripción de tipo de tarea es obligatoria.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Fecha de inicio -->
+    <mat-form-field appearance="fill">
+      <mat-label>Fecha de inicio</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker1"
+        formControlName="fecha_inicio"
+        id="fecha_inicio"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+      <mat-error
+        *ngIf="
+          taskForm.get('fecha_inicio')?.invalid &&
+          taskForm.get('fecha_inicio')?.touched
+        "
+      >
+        La fecha de inicio es obligatoria.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Fecha de entrega -->
+    <mat-form-field appearance="fill">
+      <mat-label>Fecha de entrega</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker2"
+        formControlName="fecha_entrega"
+        id="fecha_entrega"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+      <mat-error
+        *ngIf="
+          taskForm.get('fecha_entrega')?.invalid &&
+          taskForm.get('fecha_entrega')?.touched
+        "
+      >
+        La fecha de entrega es obligatoria.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Estado -->
+    <mat-form-field appearance="fill">
+      <mat-label>Estado</mat-label>
+      <mat-select formControlName="estado" id="estado">
+        <mat-option value="No Iniciada">No Iniciada</mat-option>
+        <mat-option value="En Progreso">En Progreso</mat-option>
+        <mat-option value="En Revisión">En Revisión</mat-option>
+        <mat-option value="Completada">Completada</mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="
+          taskForm.get('estado')?.invalid && taskForm.get('estado')?.touched
+        "
+      >
+        El estado es obligatorio.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Prioridad -->
+    <mat-form-field appearance="fill">
+      <mat-label>Prioridad</mat-label>
+      <mat-select formControlName="prioridad" id="prioridad">
+        <mat-option value="Baja">Baja</mat-option>
+        <mat-option value="Media">Media</mat-option>
+        <mat-option value="Alta">Alta</mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="
+          taskForm.get('prioridad')?.invalid &&
+          taskForm.get('prioridad')?.touched
+        "
+      >
+        La prioridad es obligatoria.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Horas estimadas -->
+    <mat-form-field appearance="fill">
+      <mat-label>Horas estimadas</mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="horas_estimadas"
+        id="horas_estimadas"
+      />
+      <mat-error
+        *ngIf="
+          taskForm.get('horas_estimadas')?.invalid &&
+          taskForm.get('horas_estimadas')?.touched
+        "
+      >
+        Las horas estimadas son obligatorias.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Horas registradas -->
+    <mat-form-field appearance="fill">
+      <mat-label>Horas registradas</mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="horas_registradas"
+        id="horas_registradas"
+      />
+      <mat-error
+        *ngIf="
+          taskForm.get('horas_registradas')?.invalid &&
+          taskForm.get('horas_registradas')?.touched
+        "
+      >
+        Las horas registradas son obligatorias.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Proyecto -->
+    <mat-form-field appearance="fill">
+      <mat-label>Proyecto</mat-label>
+      <mat-select formControlName="proyecto_id" id="proyecto_id">
+        <mat-option *ngFor="let proyecto of projects" [value]="proyecto.id">
+          {{ proyecto.nombre }}
+        </mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="
+          taskForm.get('proyecto_id')?.invalid &&
+          taskForm.get('proyecto_id')?.touched
+        "
+      >
+        El proyecto ID es obligatorio.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Responsable -->
+    <mat-form-field appearance="fill">
+      <mat-label>Responsable</mat-label>
+      <mat-select formControlName="responsable_id" id="responsable_id">
+        <mat-option
+          *ngFor="let colaborador of collaborators"
+          [value]="colaborador.id"
+        >
+          {{ colaborador.nombre_completo }}
+        </mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="
+          taskForm.get('responsable_id')?.invalid &&
+          taskForm.get('responsable_id')?.touched
+        "
+      >
+        El responsable es obligatorio.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Tipo tarea -->
+    <mat-form-field appearance="fill">
+      <mat-label>Tipo tarea ID</mat-label>
+      <mat-select formControlName="tipo_tarea_id" id="tipo_tarea_id">
+        <mat-option *ngFor="let tipoTarea of taskTypes" [value]="tipoTarea.id">
+          {{ tipoTarea.nombre }}
+        </mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="
+          taskForm.get('tipo_tarea_id')?.invalid &&
+          taskForm.get('tipo_tarea_id')?.touched
+        "
+      >
+        El tipo tarea ID es obligatorio.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Botones de acción -->
+    <div class="button-group">
+      <!-- Botón Guardar -->
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="taskForm.invalid"
+      >
+        {{ button }}
+      </button>
+      <!-- Botón Cancelar -->
+      <button
+        mat-stroked-button
+        style="margin-top: 5px"
+        color="primary"
+        (click)="goBack()"
+        type="button"
+      >
+        Cancelar
+      </button>
+    </div>
+  </form>
+</mat-card>

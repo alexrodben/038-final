@@ -1,11 +1,5 @@
-import db from '../config/db.mjs'; // Importar la conexión a la base de datos
+import db, { formatToMySQLDate } from '../config/db.mjs'; // Importar la conexión a la base de datos
 import logger from '../config/logger.mjs'; // Importar el logger
-
-// Función auxiliar para formatear las fechas a MySQL
-function formatToMySQLDate(isoDateString) {
-    const date = new Date(isoDateString);
-    return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')} ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')}`;
-}
 
 // Función para crear un nuevo proyecto
 const createProject = (req, res) => {

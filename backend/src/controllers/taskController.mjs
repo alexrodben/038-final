@@ -1,11 +1,13 @@
-import db from '../config/db.mjs'; // Importar la conexión a la base de datos
+import db, { formatToMySQLDate } from '../config/db.mjs'; // Importar la conexión a la base de datos
 import logger from '../config/logger.mjs'; // Importar el logger
 
 // Función para crear una nueva tarea
 const createTask = (req, res) => {
     const { nombre, descripcion, fecha_inicio, fecha_entrega, estado, prioridad, horas_estimadas, horas_registradas, proyecto_id, responsable_id, tipo_tarea_id } = req.body;
+    const formattedFechaInicio = formatToMySQLDate(fecha_inicio);
+    const formattedFechaEntrega = formatToMySQLDate(fecha_entrega);
     const query = 'INSERT INTO Tareas (nombre, descripcion, fecha_inicio, fecha_entrega, estado, prioridad, horas_estimadas, horas_registradas, proyecto_id, responsable_id, tipo_tarea_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-    db.execute(query, [nombre, descripcion, fecha_inicio, fecha_entrega, estado, prioridad, horas_estimadas, horas_registradas, proyecto_id, responsable_id, tipo_tarea_id], (err, results) => {
+    db.execute(query, [nombre, descripcion, formattedFechaInicio, formattedFechaEntrega, estado, prioridad, horas_estimadas, horas_registradas, proyecto_id, responsable_id, tipo_tarea_id], (err, results) => {
         if (err) {
             logger.error('Error al crear la tarea:', err);
             return res.status(500).json({ error: err.message });
@@ -47,8 +49,10 @@ const getTaskById = (req, res) => {
 const updateTask = (req, res) => {
     const { id } = req.params;
     const { nombre, descripcion, fecha_inicio, fecha_entrega, estado, prioridad, horas_estimadas, horas_registradas, proyecto_id, responsable_id, tipo_tarea_id } = req.body;
+    const formattedFechaInicio = formatToMySQLDate(fecha_inicio);
+    const formattedFechaEntrega = formatToMySQLDate(fecha_entrega);
     const query = 'UPDATE Tareas SET nombre = ?, descripcion = ?, fecha_inicio = ?, fecha_entrega = ?, estado = ?, prioridad = ?, horas_estimadas = ?, horas_registradas = ?, proyecto_id = ?, responsable_id = ?, tipo_tarea_id = ? WHERE id = ?';
-    db.execute(query, [nombre, descripcion, fecha_inicio, fecha_entrega, estado, prioridad, horas_estimadas, horas_registradas, proyecto_id, responsable_id, tipo_tarea_id, id], (err, results) => {
+    db.execute(query, [nombre, descripcion, formattedFechaInicio, formattedFechaEntrega, estado, prioridad, horas_estimadas, horas_registradas, proyecto_id, responsable_id, tipo_tarea_id, id], (err, results) => {
         if (err) {
             logger.error('Error al actualizar la tarea:', err);
             return res.status(500).json({ error: err.message });
