@@ -5,11 +5,13 @@ import {
   OnInit,
 } from '@angular/core';
 import { MatButton, MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
 import { MatIcon } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { CollaboratorModel } from '../../../models/collaborator';
 import { CollaboratorService } from '../../../services/collaborator/collaborator-service.service';
+import { ErrorModalComponent } from '../../error-modal/error-modal.component';
 
 @Component({
   selector: 'app-collaborator-list',
@@ -26,6 +28,7 @@ export class CollaboratorListComponent implements OnInit {
   constructor(
     private collaboratorService: CollaboratorService,
     private cdr: ChangeDetectorRef,
+    private dialog: MatDialog,
     private router: Router
   ) {}
 
@@ -39,9 +42,7 @@ export class CollaboratorListComponent implements OnInit {
         this.collaborator = collaborators;
         this.cdr.markForCheck();
       },
-      error: (error) => {
-        if (error.message.match(/403/i)) this.router.navigate(['/login']);
-      },
+      error: (error) => this.dialog.open(ErrorModalComponent, { data: error }),
     });
   }
 

@@ -1,16 +1,26 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MatButton, MatButtonModule } from '@angular/material/button';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIcon } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { TaskTypeModel } from '../../../models/taskType';
 import { TaskTypeService } from '../../../services/taskType/task-type.service';
+import { ErrorModalComponent } from '../../error-modal/error-modal.component';
 
 @Component({
   selector: 'app-task-type-list',
   standalone: true,
-  imports: [MatTableModule, MatButton, MatIcon, MatButtonModule, CommonModule],
+  imports: [
+    MatTableModule,
+    MatButton,
+    MatIcon,
+    MatButtonModule,
+    CommonModule,
+    ErrorModalComponent,
+    MatDialogModule,
+  ],
   templateUrl: './task-type-list.component.html',
   styleUrl: './task-type-list.component.css',
 })
@@ -21,6 +31,7 @@ export class TaskTypeListComponent implements OnInit {
   constructor(
     private taskTypeService: TaskTypeService,
     private cdr: ChangeDetectorRef,
+    private dialog: MatDialog,
     private router: Router
   ) {}
 
@@ -31,7 +42,7 @@ export class TaskTypeListComponent implements OnInit {
   getTaskTypes(): void {
     this.taskTypeService.getAllTaskTypes().subscribe({
       next: (taskTypes) => (this.taskTypes = taskTypes),
-      error: (error) => console.log('Error getting task types', error),
+      error: (error) => this.dialog.open(ErrorModalComponent, { data: error }),
       complete: () => this.cdr.markForCheck(),
     });
   }
@@ -53,8 +64,8 @@ export class TaskTypeListComponent implements OnInit {
 
   deleteTaskType(id: string): void {
     this.taskTypeService.deleteTaskType(id).subscribe({
+      error: (error) => this.dialog.open(ErrorModalComponent, { data: error }),
       next: () => this.getTaskTypes(),
-      error: (error) => console.error(error),
     });
   }
 }

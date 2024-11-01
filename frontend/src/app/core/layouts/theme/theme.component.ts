@@ -8,12 +8,7 @@ import {
 import { MatIcon } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbar } from '@angular/material/toolbar';
-import {
-  Router,
-  RouterLink,
-  RouterLinkActive,
-  RouterOutlet,
-} from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service'; // Asegúrate de tener importado el servicio AuthService
 
 @Component({
@@ -36,7 +31,6 @@ export class ThemeComponent implements OnInit {
   username: string | null = null;
 
   constructor(
-    private router: Router,
     private authService: AuthService,
     private cdr: ChangeDetectorRef
   ) {}
@@ -46,11 +40,6 @@ export class ThemeComponent implements OnInit {
       next: (profile) => {
         this.username = profile.username; // Ajusta a cómo devuelve el nombre el endpoint
         this.cdr.markForCheck(); // Notifica a Angular que debe verificar cambios
-      },
-      error: (error) => {
-        if (error.message.match(/403/i)) this.router.navigate(['/login']);
-
-        console.error('Error al obtener el perfil', error);
       },
     });
   }

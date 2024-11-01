@@ -1,11 +1,13 @@
 import { CommonModule, DatePipe } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MatButton, MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
 import { MatIcon } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ProjectModel } from '../../../models/project';
 import { ProjectService } from '../../../services/project/project-service.service';
+import { ErrorModalComponent } from '../../error-modal/error-modal.component';
 
 @Component({
   selector: 'app-project-list',
@@ -26,9 +28,9 @@ export class ProjectListComponent implements OnInit {
   ];
 
   constructor(
-    private datePipe: DatePipe,
     private projectService: ProjectService,
     private cdr: ChangeDetectorRef,
+    private dialog: MatDialog,
     private router: Router
   ) {}
 
@@ -38,8 +40,8 @@ export class ProjectListComponent implements OnInit {
 
   getProjects(): void {
     this.projectService.getAllProjects().subscribe({
+      error: (error) => this.dialog.open(ErrorModalComponent, { data: error }),
       next: (projects) => (this.projects = projects),
-      error: (error) => console.error('Error getting projects', error),
       complete: () => this.cdr.markForCheck(),
     });
   }

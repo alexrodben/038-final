@@ -45,10 +45,12 @@ export class HttpService {
 
     if (error.error instanceof ErrorEvent) {
       // Error del lado del cliente
-      errorMessage = `Error: ${error.error.message}`;
+      errorMessage = `Client Error: ${error.error.message}`;
     } else {
       // Error del lado del servidor
-      errorMessage = `Error ${error.status}: ${error.message}`;
+      errorMessage = error.error?.message
+        ? `Server error: codigo ${error.status} ${error.error.message}`
+        : `Server error: codigo ${error.status} ${error.message}`;
     }
 
     console.error(errorMessage);

@@ -25,8 +25,12 @@ import {
 } from '../controllers/userController.mjs';
 import { authenticateToken } from '../middleware/authMiddleware.mjs';
 
+import { profile } from '../controllers/authController.mjs';
 
 const router = Router();
+// Rutas para autenticación
+router.get('/auth/profile', authenticateToken, profile);
+
 // Rutas para asignaciones
 router.post('/assignments', authenticateToken, createAssignment);
 router.get('/assignments', authenticateToken, getAllAssignments);

@@ -23,7 +23,7 @@ const login = (req, res) => {
             // Datos a incluir en el token
             const { password, ...userWithoutPassword } = results[0]; // Excluir el campo "password"
             // Generar el token
-            const token = jwt.sign(userWithoutPassword, SECRET_KEY, { expiresIn: '10h' });
+            const token = jwt.sign(userWithoutPassword, SECRET_KEY, { expiresIn: '1h' });
             // Usuario encontrado
             logger.info('Inicio de sesión exitoso', { user: userWithoutPassword });
             return res.json({ message: 'Inicio de sesión exitoso', token });
@@ -38,27 +38,16 @@ const login = (req, res) => {
 const profile = (req, res) => {
     logger.info("Consultando perfil...");
     logger.info('Datos recibidos', req.body);
-    const authHeader = req.headers['authorization'];
-    logger.info('Encabezado Authorization:', { authHeader });
-    console.log('Encabezado Authorization:', authHeader);
 
-    const token = authHeader && authHeader.split(' ')[1];
-    logger.info('Token extraído:', token);
+    // Verifica que el usuario esté disponible en req.user
+    if (!req.user) {
+        return res.status(401).json({ message: 'Access denied: User not authenticated' });
+    }
 
-    if (!token) return res.status(401).json({ message: 'Access denied from middleware' });
-
-    jwt.verify(token, SECRET_KEY, (err, user) => {
-        if (err) {
-            console.log(err);
-            logger.error('Invalid token from middleware', err);
-            return res.status(403).json({ message: 'Invalid token from middleware' });
-        }
-        req.user = user;
-        // Usuario del token
-        logger.info('Token válido', user);
-        return res.json(user);
-    });
-}
+    // Devuelve la información del usuario
+    logger.info('Usuario del token', req.user);
+    return res.json(req.user);
+};
 
 export { login, profile };
 

@@ -1,7 +1,12 @@
-<div class="modal-overlay">
-  <div class="modal">
-    <h2 style="color: red">Error</h2>
-    <p>{{ errorMessage }}</p>
-    <button (click)="onClose()">Cerrar</button>
-  </div>
+<div class="modal-header">
+  <mat-icon class="error-icon">error_outline</mat-icon>
+  <h2 mat-dialog-title class="error-title">Se ha producio un error</h2>
 </div>
+
+<mat-dialog-content class="error-content">
+  <p>{{ errorMessage }}</p>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button color="warn" (click)="onClose()">Cerrar</button>
+</mat-dialog-actions>

@@ -5,11 +5,13 @@ import {
   OnInit,
 } from '@angular/core';
 import { MatButton, MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
 import { MatIcon } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { UserModel } from '../../../models/user';
 import { UserService } from '../../../services/user/user-service.service';
+import { ErrorModalComponent } from '../../error-modal/error-modal.component';
 @Component({
   selector: 'app-user-list',
   standalone: true,
@@ -25,6 +27,7 @@ export class UserListComponent implements OnInit {
   constructor(
     private userService: UserService,
     private cdr: ChangeDetectorRef,
+    private dialog: MatDialog,
     private router: Router
   ) {}
 
@@ -38,9 +41,7 @@ export class UserListComponent implements OnInit {
         this.users = users;
         this.cdr.markForCheck();
       },
-      error: (error) => {
-        if (error.message.match(/403/i)) this.router.navigate(['/login']);
-      },
+      error: (error) => this.dialog.open(ErrorModalComponent, { data: error }),
     });
   }
 
