@@ -34,7 +34,6 @@ La base de datos se denomina `gestion_proyectos` y contiene las siguientes tabla
 
 ![Base de datos](db.jpg)
 
-
 ### 1. Proyectos
 
 - **Descripción**: Almacena información básica sobre cada proyecto.
@@ -160,7 +159,7 @@ La base de datos se denomina `gestion_proyectos` y contiene las siguientes tabla
 
 ## Enlace al Sitio de Pruebas
 
-[Enlace al sitio de pruebas](http://tu-sitio-de-pruebas.com)
+[Enlace al sitio de pruebas](http://74.208.201.3/final/)
 
 ## Consideraciones Finales
 
