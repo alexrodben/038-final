@@ -8,7 +8,12 @@ import {
 import { MatIcon } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbar } from '@angular/material/toolbar';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import {
+  Router,
+  RouterLink,
+  RouterLinkActive,
+  RouterOutlet,
+} from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service'; // Asegúrate de tener importado el servicio AuthService
 
 @Component({
@@ -32,7 +37,8 @@ export class ThemeComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -42,5 +48,10 @@ export class ThemeComponent implements OnInit {
         this.cdr.markForCheck(); // Notifica a Angular que debe verificar cambios
       },
     });
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']); // Asegúrate de tener importado el módulo de router
   }
 }

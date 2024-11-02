@@ -7,7 +7,7 @@
     </small>
   </div>
   <ng-template #loading> Cargando usuario... </ng-template>
-  <a mat-button routerLink="/logout" class="salir" style="margin-left: 10px">
+  <a mat-button (click)="logout()" class="salir" style="margin-left: 10px">
     <mat-icon>logout</mat-icon>
   </a>
 </mat-toolbar>
