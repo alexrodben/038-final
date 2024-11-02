@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { AppComponent } from './core/components/app/app.component';
 import { DashboardComponent } from './core/components/dashboard/dashboard.component';
 import { Error404Component } from './core/layouts/error-404/error-404.component';
 import { LoginComponent } from './core/layouts/login/login.component';
@@ -51,7 +50,6 @@ export const routes: Routes = [
     component: ThemeComponent,
     children: [
       { path: 'dashboard', component: DashboardComponent },
-      { path: 'app', component: AppComponent },
       // Users
       { path: 'users/create', component: UserCreateComponent },
       { path: 'users/:id', component: UserEditComponent },
