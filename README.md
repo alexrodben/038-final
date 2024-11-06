@@ -161,6 +161,9 @@ La base de datos se denomina `gestion_proyectos` y contiene las siguientes tabla
 
 [Enlace al sitio de pruebas](http://74.208.201.3/final/)
 
+- Usuario: __admin__
+- Contraseña: __admin__
+
 ## Consideraciones Finales
 
 Este sistema está diseñado para ser robusto y flexible, permitiendo la gestión eficaz de proyectos de desarrollo. Se pueden implementar funcionalidades adicionales según las necesidades del usuario y del entorno de trabajo.
