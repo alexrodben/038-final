@@ -1,24 +1,27 @@
 import dotenv from 'dotenv';
-import { createConnection } from 'mysql2';
+import { createPool } from 'mysql2';
 import logger from './logger.mjs';
 dotenv.config();
 
-
-// Crear la conexión
-const connection = createConnection({
+// Crear el pool de conexiones
+const pool = createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
+    waitForConnections: true,
+    connectionLimit: 10, // Número máximo de conexiones en el pool
+    queueLimit: 0        // Sin límite en la cola de espera
 });
 
-// Conectar a la base de datos
-connection.connect((err) => {
+// Probar la conexión
+pool.getConnection((err, connection) => {
     if (err) {
-        logger.error('Error conectando a la base de datos:', err);
+        logger.error('Error al conectar al pool de la base de datos:', err);
         return;
     }
-    logger.info('Conectado a la base de datos MySQL', process.env.DB_NAME);
+    logger.info('Conexión al pool de la base de datos MySQL exitosa', process.env.DB_NAME);
+    connection.release(); // Libera la conexión después de probar
 });
 
 // Función auxiliar para formatear las fechas a MySQL
@@ -27,5 +30,5 @@ export function formatToMySQLDate(isoDateString) {
     return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')} ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')}`;
 }
 
-// Exportar la conexión
-export default connection;
+// Exportar el pool
+export default pool;
