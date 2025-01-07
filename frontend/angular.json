@@ -30,7 +30,7 @@
               "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.css"
             ],
-            "baseHref": "/final/",
+            "baseHref": "/",
             "scripts": []
           },
           "configurations": {
