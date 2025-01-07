@@ -6,7 +6,7 @@ import {
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 
-const BASE_URL: string = 'http://74.208.201.3:5000'; // Base URL del servidor
+const BASE_URL: string = 'https://api.sertecrmgt.com'; // Base URL del servidor
 
 @Injectable({
   providedIn: 'root',
