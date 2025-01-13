@@ -22,16 +22,13 @@ const logger = createLogger({
     level: 'info', // Nivel de logging
     format: format.combine(
         format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }), // Formato de la marca de tiempo
-        format.printf(({ timestamp, level, message, stack }) => {
-            // Formato para logs de error
-            if (level === 'error' && stack) {
-                return `[${timestamp}] ${level.toUpperCase()}: ${message}\nStack Trace: ${stack}`; // Incluye stack trace
-            }
-        }),
-        format.printf(({ timestamp, level, message, ...meta }) => {
+        format.printf(({ timestamp, level, message, stack, ...meta }) => {
             if (level !== 'error') {
                 const metaString = Object.keys(meta).length ? JSON.stringify(meta) : ''; // Convertir el objeto adicional a una cadena JSON
                 return `[${timestamp}] ${level.toUpperCase()}: ${message} ${metaString}`.trim(); // Incluir el objeto adicional
+            } else {
+                console.error(meta); // Imprimir el stack trace en la consola
+                return `[${timestamp}] ${level.toUpperCase()}: ${message}\nStack Trace: ${stack}`; // Incluye stack trace
             }
         })
     ),

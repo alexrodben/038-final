@@ -20,7 +20,11 @@ pool.getConnection((err, connection) => {
         logger.error('Error al conectar al pool de la base de datos:', err);
         return;
     }
-    logger.info('Conexión al pool de la base de datos MySQL exitosa', process.env.DB_NAME);
+    // Registrar éxito en la conexión
+    logger.info(`Conexión al pool de la base de datos MySQL exitosa`, {
+        dbName: process.env.DB_NAME,
+        host: process.env.DB_HOST
+    });
     connection.release(); // Libera la conexión después de probar
 });
 
