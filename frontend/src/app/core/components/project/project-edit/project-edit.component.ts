@@ -57,7 +57,7 @@ export class ProjectEditComponent implements OnInit {
     this.projectForm = this.fb.group({
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required],
-      cliente: ['', Validators.required],
+      cliente_id: ['', Validators.required],
       fecha_inicio: ['', Validators.required],
       fecha_estimacion: ['', Validators.required],
       estado: ['', Validators.required],
@@ -81,7 +81,7 @@ export class ProjectEditComponent implements OnInit {
         id: project.id,
         nombre: project.nombre,
         descripcion: project.descripcion,
-        cliente: project.cliente,
+        cliente_id: project.cliente_id,
         fecha_inicio: project.fecha_inicio,
         fecha_estimacion: project.fecha_estimacion,
         estado: project.estado,

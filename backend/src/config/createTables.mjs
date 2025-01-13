@@ -24,15 +24,31 @@ const createTables = async () => {
                 FOREIGN KEY (colaborador_id) REFERENCES Colaboradores(id) ON DELETE SET NULL  -- La relación es opcional
             );`,
 
+            `CREATE TABLE IF NOT EXISTS Clientes (
+                id INT AUTO_INCREMENT PRIMARY KEY,               -- Identificador único del cliente
+                nombre VARCHAR(100) NOT NULL,                     -- Nombre del cliente
+                apellido VARCHAR(100) NOT NULL,                   -- Apellido del cliente
+                email VARCHAR(255) UNIQUE NOT NULL,               -- Correo electrónico (debe ser único)
+                telefono VARCHAR(15),                             -- Teléfono del cliente
+                direccion VARCHAR(255),                           -- Dirección del cliente
+                ciudad VARCHAR(100),                              -- Ciudad del cliente
+                estado VARCHAR(100),                              -- Estado o provincia del cliente
+                pais VARCHAR(100),                                -- País del cliente
+                fecha_nacimiento DATE,                            -- Fecha de nacimiento del cliente
+                fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Fecha en que se registró el cliente
+                activo BOOLEAN DEFAULT TRUE                       -- Estado del cliente (activo o inactivo)
+            );`,
+
             `CREATE TABLE IF NOT EXISTS Proyectos (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 nombre VARCHAR(255) NOT NULL,
                 descripcion TEXT,
-                cliente VARCHAR(255),
+                cliente_id INT,
                 fecha_inicio DATETIME,
                 fecha_estimacion DATETIME,
                 estado ENUM('En Planificación', 'En Desarrollo', 'En Pruebas', 'Completado', 'Cancelado') NOT NULL,
                 responsable_id INT,
+                FOREIGN KEY (cliente_id) REFERENCES Clientes(id),
                 FOREIGN KEY (responsable_id) REFERENCES Colaboradores(id)
             );`,
 

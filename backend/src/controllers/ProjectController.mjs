@@ -3,11 +3,11 @@ import logger from '../config/logger.mjs'; // Importar el logger
 
 // Función para crear un nuevo proyecto
 const createProject = (req, res) => {
-    const { nombre, descripcion, cliente, fecha_inicio, fecha_estimacion, estado, responsable_id } = req.body;
+    const { nombre, descripcion, cliente_id, fecha_inicio, fecha_estimacion, estado, responsable_id } = req.body;
     const formattedFechaInicio = formatToMySQLDate(fecha_inicio);
     const formattedFechaEstimacion = formatToMySQLDate(fecha_estimacion);
-    const query = 'INSERT INTO Proyectos (nombre, descripcion, cliente, fecha_inicio, fecha_estimacion, estado, responsable_id) VALUES (?, ?, ?, ?, ?, ?, ?)';
-    db.execute(query, [nombre, descripcion, cliente, formattedFechaInicio, formattedFechaEstimacion, estado, responsable_id], (err, results) => {
+    const query = 'INSERT INTO Proyectos (nombre, descripcion, cliente_id, fecha_inicio, fecha_estimacion, estado, responsable_id) VALUES (?, ?, ?, ?, ?, ?, ?)';
+    db.execute(query, [nombre, descripcion, cliente_id, formattedFechaInicio, formattedFechaEstimacion, estado, responsable_id], (err, results) => {
         if (err) {
             logger.error('Error al crear el proyecto:', err);
             return res.status(500).json({ error: err.message });
@@ -19,7 +19,7 @@ const createProject = (req, res) => {
 
 // Función para obtener todos los proyectos
 const getAllProjects = (req, res) => {
-    const query = 'SELECT id, nombre, descripcion, cliente, fecha_inicio, fecha_estimacion, estado, responsable_id FROM Proyectos';
+    const query = 'SELECT p.id, p.nombre, p.descripcion, p.cliente_id, c.nombre AS cliente, p.fecha_inicio, p.fecha_estimacion, p.estado, p.responsable_id, c.nombre AS cliente FROM Proyectos p JOIN clientes c ON p.cliente_id = c.id;';
     db.execute(query, (err, results) => {
         if (err) {
             logger.error('Error al obtener proyectos:', err);
@@ -32,7 +32,7 @@ const getAllProjects = (req, res) => {
 // Función para obtener un proyecto por su ID
 const getProjectById = (req, res) => {
     const { id } = req.params;
-    const query = 'SELECT id, nombre, descripcion, cliente, fecha_inicio, fecha_estimacion, estado, responsable_id FROM Proyectos WHERE id = ?';
+    const query = 'SELECT id, nombre, descripcion, cliente_id, fecha_inicio, fecha_estimacion, estado, responsable_id FROM Proyectos WHERE id = ?';
     db.execute(query, [id], (err, results) => {
         if (err) {
             logger.error('Error al obtener el proyecto:', err);
@@ -48,11 +48,11 @@ const getProjectById = (req, res) => {
 // Función para actualizar un proyecto
 const updateProject = (req, res) => {
     const { id } = req.params;
-    const { nombre, descripcion, cliente, fecha_inicio, fecha_estimacion, estado, responsable_id } = req.body;
+    const { nombre, descripcion, cliente_id, fecha_inicio, fecha_estimacion, estado, responsable_id } = req.body;
     const formattedFechaInicio = formatToMySQLDate(fecha_inicio);
     const formattedFechaEstimacion = formatToMySQLDate(fecha_estimacion);
-    const query = 'UPDATE Proyectos SET nombre = ?, descripcion = ?, cliente = ?, fecha_inicio = ?, fecha_estimacion = ?, estado = ?, responsable_id = ? WHERE id = ?';
-    db.execute(query, [nombre, descripcion, cliente, formattedFechaInicio, formattedFechaEstimacion, estado, responsable_id, id], (err, results) => {
+    const query = 'UPDATE Proyectos SET nombre = ?, descripcion = ?, cliente_id = ?, fecha_inicio = ?, fecha_estimacion = ?, estado = ?, responsable_id = ? WHERE id = ?';
+    db.execute(query, [nombre, descripcion, cliente_id, formattedFechaInicio, formattedFechaEstimacion, estado, responsable_id, id], (err, results) => {
         if (err) {
             logger.error('Error al actualizar el proyecto:', err);
             return res.status(500).json({ error: err.message });

@@ -32,13 +32,27 @@ const seedDatabase = async () => {
             });
         });
 
+        // Inserciones en Clientes
+        const insertClientes = `
+            INSERT INTO Clientes (nombre, apellido, email, telefono, direccion, ciudad, estado, pais, fecha_nacimiento)
+            VALUES 
+                ('Cliente A', 'Apellido A', 'correo_A@correo.com', '123456789', 'Calle 123', 'Ciudad A', 'Estado A', 'Pais A', '1990-01-01'),
+                ('Cliente B', 'Apellido B', 'correo_B@correo.com', '987654321', 'Calle 456', 'Ciudad B', 'Estado B', 'Pais B', '1995-01-01');
+        `;
+        await new Promise((resolve, reject) => {
+            connection.query(insertClientes, (err, result) => {
+                if (err) return reject(err);
+                resolve(result);
+            });
+        });
+
 
         // Inserciones en Proyectos
         const insertProyectos = `
-            INSERT INTO Proyectos (nombre, descripcion, cliente, fecha_inicio, fecha_estimacion, estado, responsable_id)
+            INSERT INTO Proyectos (nombre, descripcion, cliente_id, fecha_inicio, fecha_estimacion, estado, responsable_id)
             VALUES 
-                ('Proyecto Alpha', 'Descripción del Proyecto Alpha', 'Cliente A', '2024-01-01', '2024-06-01', 'En Desarrollo', 1),
-                ('Proyecto Beta', 'Descripción del Proyecto Beta', 'Cliente B', '2024-02-01', '2024-07-01', 'En Planificación', 2);
+                ('Proyecto Alpha', 'Descripción del Proyecto Alpha', 1, '2024-01-01', '2024-06-01', 'En Desarrollo', 1),
+                ('Proyecto Beta', 'Descripción del Proyecto Beta', 2, '2024-02-01', '2024-07-01', 'En Planificación', 2);
         `;
         await new Promise((resolve, reject) => {
             connection.query(insertProyectos, (err, result) => {

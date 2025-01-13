@@ -9,6 +9,7 @@ import { createCollaborator, deleteCollaborator, getAllCollaborators, getCollabo
 import {
     createComment, deleteComment, getAllComments, getCommentById, updateComment
 } from '../controllers/commentController.mjs';
+import { createCustomer, deleteCustomer, getAllCustomers, getCustomerById, updateCustomer } from '../controllers/customerController.mjs';
 import {
     createDocument, deleteDocument, getAllDocuments, getDocumentById, updateDocument
 } from '../controllers/documentController.mjs';
@@ -23,6 +24,7 @@ import { createTaskType, deleteTaskType, getAllTaskTypes, getTaskTypeById, updat
 import {
     createUser, deleteUser, getAllUsers, getUserById, updateUser
 } from '../controllers/userController.mjs';
+
 import { authenticateToken } from '../middleware/authMiddleware.mjs';
 
 import { profile } from '../controllers/authController.mjs';
@@ -100,5 +102,12 @@ router.get('/users', authenticateToken, getAllUsers);
 router.put('/users/:id', authenticateToken, updateUser);
 router.get('/users/:id', authenticateToken, getUserById);
 router.delete('/users/:id', authenticateToken, deleteUser);
+
+// Rutas para clientes
+router.post('/customers', authenticateToken, createCustomer);
+router.get('/customers', authenticateToken, getAllCustomers);
+router.put('/customers/:id', authenticateToken, updateCustomer);
+router.get('/customers/:id', authenticateToken, getCustomerById);
+router.delete('/customers/:id', authenticateToken, deleteCustomer);
 
 export default router;

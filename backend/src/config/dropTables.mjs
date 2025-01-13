@@ -11,6 +11,7 @@ const dropTables = async () => {
             'Tareas',
             'Tipos_Tarea',
             'Proyectos',
+            'Clientes',
             'Usuarios',
             'Colaboradores',
         ];

@@ -16,6 +16,7 @@ export class ProjectService extends HttpService {
       id: data.id,
       nombre: data.nombre,
       descripcion: data.descripcion,
+      cliente_id: data.cliente_id,
       cliente: data.cliente,
       fecha_inicio: new Date(data.fecha_inicio), // Convertir a Date
       fecha_estimacion: new Date(data.fecha_estimacion), // Convertir a Date
