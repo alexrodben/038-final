@@ -1,1 +1,69 @@
-<p>budget-list works!</p>
+<div class="demo-button-container">
+  <h2>Lista de presupuestos</h2>
+
+  <!-- Botón para agregar un nuevo presupuesto -->
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="addBudget()"
+    class="demo-button"
+  >
+    Agregar Presupuesto
+  </button>
+</div>
+
+<table mat-table [dataSource]="budgets" class="mat-elevation-z8">
+  <!-- ID Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef class="mat-header-primary">ID</th>
+    <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+  </ng-container>
+
+  <!-- Proyecto Column -->
+  <ng-container matColumnDef="proyecto">
+    <th mat-header-cell *matHeaderCellDef class="mat-header-primary">
+      Proyecto
+    </th>
+    <td mat-cell *matCellDef="let element">
+      {{ findProjectName(element.proyecto_id) }}
+    </td>
+  </ng-container>
+
+  <!-- Presupuesto estimado Column -->
+  <ng-container matColumnDef="presupuesto_estimado">
+    <th mat-header-cell *matHeaderCellDef class="mat-header-primary">
+      Presupuesto estimado
+    </th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.presupuesto_estimado }}
+    </td>
+  </ng-container>
+
+  <!-- Actions Column -->
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef class="mat-header-primary">
+      Acciones
+    </th>
+    <td mat-cell *matCellDef="let element">
+      <button
+        mat-icon-button
+        color="success"
+        (click)="showBudget(element.id)"
+        aria-label="Mostrar presupuesto"
+      >
+        <mat-icon>visibility</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        color="warn"
+        (click)="deleteBudget(element.id)"
+        aria-label="Eliminar presupuesto"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>

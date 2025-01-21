@@ -37,10 +37,8 @@ export class UserListComponent implements OnInit {
 
   getUsers(): void {
     this.userService.getAllUsers().subscribe({
-      next: (users) => {
-        this.users = users;
-        this.cdr.markForCheck();
-      },
+      next: (users) => (this.users = users),
+      complete: () => this.cdr.markForCheck(),
       error: (error) => this.dialog.open(ErrorModalComponent, { data: error }),
     });
   }

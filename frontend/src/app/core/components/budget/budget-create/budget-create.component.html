@@ -1,1 +1,154 @@
-<p>budget-create works!</p>
+<mat-card>
+  <form
+    [formGroup]="budgetForm"
+    (ngSubmit)="onSubmit()"
+    class="budget-create-form"
+  >
+    <h2>Crear presupusto nuevo</h2>
+
+    <!-- Seleccion del proyecto -->
+    <mat-form-field appearance="fill">
+      <mat-label>Seleccione el proyecto</mat-label>
+      <mat-select formControlName="proyecto_id" id="proyecto_id">
+        <mat-option *ngFor="let proyecto of projects" [value]="proyecto.id">
+          {{ proyecto.nombre }}
+        </mat-option>
+      </mat-select>
+      <mat-hint>
+        El nombre del proyecto es el nombre que se le dará al presupuesto.
+      </mat-hint>
+    </mat-form-field>
+
+    <!-- Presupuesto estimado -->
+    <mat-form-field appearance="fill">
+      <mat-label>Presupuesto estimado</mat-label>
+      <input
+        matInput
+        id="presupuesto_estimado"
+        formControlName="presupuesto_estimado"
+      />
+      <mat-error
+        *ngIf="
+          budgetForm.get('presupuesto_estimado')?.invalid &&
+          budgetForm.get('presupuesto_estimado')?.touched
+        "
+      >
+        El presupuesto estimado es obligatorio.
+      </mat-error>
+
+      <mat-hint>
+        El presupuesto estimado es el monto total que se espera gastar en el
+        proyecto.
+      </mat-hint>
+    </mat-form-field>
+
+    <!-- Gastos realizados -->
+    <mat-form-field appearance="fill">
+      <mat-label>Gastos realizados</mat-label>
+      <input
+        matInput
+        id="gastos_realizados"
+        formControlName="gastos_realizados"
+      />
+      <mat-error
+        *ngIf="
+          budgetForm.get('gastos_realizados')?.invalid &&
+          budgetForm.get('gastos_realizados')?.touched
+        "
+      >
+        Los gastos realizados son obligatorios.
+      </mat-error>
+
+      <mat-hint>
+        Los gastos realizados son el monto total que se ha gastado en el
+        proyecto.
+      </mat-hint>
+    </mat-form-field>
+
+    <!-- Gastos pendientes -->
+    <mat-form-field appearance="fill">
+      <mat-label>Gastos pendientes</mat-label>
+      <input
+        matInput
+        id="gastos_pendientes"
+        formControlName="gastos_pendientes"
+      />
+      <mat-error
+        *ngIf="
+          budgetForm.get('gastos_pendientes')?.invalid &&
+          budgetForm.get('gastos_pendientes')?.touched
+        "
+      >
+        Los gastos pendientes son obligatorios.
+      </mat-error>
+
+      <mat-hint>
+        Los gastos pendientes son el monto total que falta por gastar en el
+        proyecto.
+      </mat-hint>
+    </mat-form-field>
+
+    <!-- Variacion presupuestaria -->
+    <mat-form-field appearance="fill">
+      <mat-label>Variación presupuestaria</mat-label>
+      <input
+        matInput
+        id="variacion_presupuestaria"
+        formControlName="variacion_presupuestaria"
+      />
+      <mat-error
+        *ngIf="
+          budgetForm.get('variacion_presupuestaria')?.invalid &&
+          budgetForm.get('variacion_presupuestaria')?.touched
+        "
+      >
+        La variación presupuestaria es obligatoria.
+      </mat-error>
+
+      <mat-hint>
+        La variación presupuestaria es la diferencia entre el presupuesto
+        estimado y los gastos realizados.
+      </mat-hint>
+    </mat-form-field>
+
+    <!-- Moneda -->
+    <mat-form-field appearance="fill">
+      <mat-label>Moneda</mat-label>
+      <mat-select formControlName="moneda" id="moneda">
+        <mat-option value="USD">Dolares americanos</mat-option>
+        <mat-option value="EUR">Euros</mat-option>
+        <mat-option value="GTQ">Quetzales</mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="
+          budgetForm.get('moneda')?.invalid && budgetForm.get('moneda')?.touched
+        "
+      >
+        La moneda es obligatoria.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Botones de acción -->
+    <div class="button-group">
+      <!-- Botón Guardar -->
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="budgetForm.invalid"
+      >
+        Guardar
+      </button>
+      <!-- Botón Cancelar -->
+      <button
+        mat-stroked-button
+        style="margin-top: 5px"
+        color="warn"
+        (click)="goBack()"
+        type="button"
+      >
+        Cancelar
+      </button>
+    </div>
+  </form>
+</mat-card>

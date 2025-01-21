@@ -42,7 +42,7 @@ import { ProjectService } from '../../../services/project/project-service.servic
 export class ProjectEditComponent implements OnInit {
   project: any = {}; // Cambia el tipo según tu modelo
   projectForm: FormGroup;
-  projectId: number = 0;
+  projectId: string = '0';
   collaborators: CollaboratorModel[] = []; // Almacena la lista de colaboradores
 
   constructor(
@@ -66,15 +66,14 @@ export class ProjectEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id') || '0'; // Obtiene el ID de la ruta
-    this.projectId = parseInt(id, 10); // Convierte el ID a número
+    this.projectId = this.route.snapshot.paramMap.get('id') || '0'; // Obtiene el ID de la ruta
     if (this.projectId) {
       this.getCollaborators();
       this.getProject(this.projectId);
     }
   }
 
-  getProject(id: number): void {
+  getProject(id: string): void {
     this.projectService.getProjectById(id).subscribe((project) => {
       this.project = project;
       this.projectForm.patchValue({
