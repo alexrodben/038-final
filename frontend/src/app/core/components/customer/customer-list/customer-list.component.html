@@ -21,8 +21,12 @@
 
   <!-- Name Column -->
   <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef class="mat-header-primary">Nombre</th>
-    <td mat-cell *matCellDef="let element">{{ element.customername }}</td>
+    <th mat-header-cell *matHeaderCellDef class="mat-header-primary">
+      Nombre y apellido
+    </th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.nombre }} {{ element.apellido }}
+    </td>
   </ng-container>
 
   <!-- Email Column -->
@@ -31,10 +35,12 @@
     <td mat-cell *matCellDef="let element">{{ element.email }}</td>
   </ng-container>
 
-  <!-- Role Column -->
-  <ng-container matColumnDef="role">
-    <th mat-header-cell *matHeaderCellDef class="mat-header-primary">Rol</th>
-    <td mat-cell *matCellDef="let element">{{ element.rol }}</td>
+  <!-- Phone Column -->
+  <ng-container matColumnDef="telefono">
+    <th mat-header-cell *matHeaderCellDef class="mat-header -primary">
+      Teléfono
+    </th>
+    <td mat-cell *matCellDef="let element">{{ element.telefono }}</td>
   </ng-container>
 
   <!-- Actions Column -->

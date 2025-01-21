@@ -1,66 +1,95 @@
-<mat-toolbar color="primary">
-  <span>Mi Aplicación</span>
+<mat-toolbar color="primary" xLayout="row" fxLayoutAlign="space-between center">
+  <span *ngIf="!isMobile">Gestor de proyectos</span>
+  <!-- Botón de menú -->
+  <button
+    mat-icon-button
+    *ngIf="isMobile"
+    color="accent"
+    (click)="sidenav.toggle()"
+    class="menu-button"
+    style="position: absolute; z-index: 1000; margin: 0px 0px"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
   <span class="spacer"> </span>
   <div *ngIf="username; else loading">
-    <small>
-      <small> Bienvenido, {{ username }} </small>
-    </small>
+    <div fxFlex fxHide fxShow.gt-xs>
+      <small>{{ username.toUpperCase() }}</small>
+    </div>
   </div>
-  <ng-template #loading> Cargando usuario... </ng-template>
+  <ng-template #loading> ... </ng-template>
   <a mat-button (click)="logout()" class="salir" style="margin-left: 10px">
     <mat-icon>logout</mat-icon>
   </a>
 </mat-toolbar>
+
+<!-- Barra lateral -->
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav mode="side" opened class="sidebar">
-    <nav>
-      <a mat-button routerLink="/dashboard" routerLinkActive="active">
+  <mat-sidenav
+    #sidenav
+    [mode]="isMobile ? 'over' : 'side'"
+    [opened]="!isMobile"
+    class="sidebar"
+  >
+    <mat-nav-list>
+      <a mat-list-item routerLink="/dashboard" routerLinkActive="active">
         <mat-icon>dashboard</mat-icon> Tablero
       </a>
-      <a mat-button routerLink="/customers" routerLinkActive="active">
+      <a mat-list-item routerLink="/customers" routerLinkActive="active">
         <mat-icon>business</mat-icon> Clientes
       </a>
-      <a mat-button routerLink="/users" routerLinkActive="active">
+      <a mat-list-item routerLink="/users" routerLinkActive="active">
         <mat-icon>group</mat-icon> Usuarios
       </a>
-      <a mat-button routerLink="/projects" routerLinkActive="active">
+      <a mat-list-item routerLink="/projects" routerLinkActive="active">
         <mat-icon>folder</mat-icon> Proyectos
       </a>
-      <a mat-button routerLink="/collaborator" routerLinkActive="active">
+      <a mat-list-item routerLink="/collaborator" routerLinkActive="active">
         <mat-icon>people</mat-icon> Colaboradores
       </a>
-      <a mat-button routerLink="/tasks" routerLinkActive="active">
+      <a mat-list-item routerLink="/tasks" routerLinkActive="active">
         <mat-icon>check_circle</mat-icon> Tareas
       </a>
-      <a mat-button routerLink="/task-types" routerLinkActive="active">
+      <a mat-list-item routerLink="/task-types" routerLinkActive="active">
         <mat-icon>list</mat-icon> Tipos Tarea
       </a>
-      <a mat-button routerLink="/budgets" routerLinkActive="active">
+      <a mat-list-item routerLink="/budgets" routerLinkActive="active">
         <mat-icon>attach_money</mat-icon> Presupuestos
       </a>
-      <a mat-button routerLink="/risks" routerLinkActive="active">
+      <!--
+      <a mat-list-item routerLink="/risks" routerLinkActive="active">
         <mat-icon>warning</mat-icon> Riesgos
       </a>
-      <a mat-button routerLink="/documents" routerLinkActive="active">
+      <a mat-list-item routerLink="/documents" routerLinkActive="active">
         <mat-icon>description</mat-icon> Documentos
       </a>
-      <a mat-button routerLink="/asignaments" routerLinkActive="active">
+      <a mat-list-item routerLink="/asignaments" routerLinkActive="active">
         <mat-icon>assignment</mat-icon> Asignaciones
       </a>
-      <a mat-button routerLink="/comments" routerLinkActive="active">
+      <a mat-list-item routerLink="/comments" routerLinkActive="active">
         <mat-icon>chat</mat-icon> Comentarios
       </a>
-    </nav>
+    -->
+    </mat-nav-list>
   </mat-sidenav>
+
+  <!-- Contenido principal -->
   <mat-sidenav-content>
     <main class="main-content">
       <router-outlet></router-outlet>
-      <!-- Aquí se cargarán las vistas -->
     </main>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
 <footer>
-  <mat-toolbar color="primary" class="footer-toolbar">
-    <span>© 2024 Mi Aplicación. Todos los derechos reservados.</span>
+  <mat-toolbar
+    color="primary"
+    class="footer-toolbar"
+    fxLayout="row"
+    fxLayoutAlign="center center"
+  >
+    <span style="font-size: 0.85rem"
+      >© 2024 Mi Aplicación. Todos los derechos reservados.</span
+    >
   </mat-toolbar>
 </footer>

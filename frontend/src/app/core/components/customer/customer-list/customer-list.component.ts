@@ -22,7 +22,7 @@ import { ErrorModalComponent } from '../../error-modal/error-modal.component';
 })
 export class CustomerListComponent implements OnInit {
   customers: CustomerModel[] = []; // Cambia el tipo según tu modelo
-  displayedColumns: string[] = ['id', 'name', 'email', 'role', 'actions']; // Columnas a mostrar
+  displayedColumns: string[] = ['id', 'name', 'email', 'telefono', 'actions']; // Columnas a mostrar
 
   constructor(
     private customerService: CustomerService,

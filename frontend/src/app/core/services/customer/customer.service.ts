@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -44,14 +45,29 @@ export class CustomerService extends HttpService {
   }
 
   createCustomer(customer: CustomerModel): Observable<any> {
-    return this.post<CustomerModel>(this.baseUrl, customer);
+    return this.post<CustomerModel>(
+      this.baseUrl,
+      this.formatCustomer(customer)
+    );
   }
 
   updateCustomer(id: string, customer: CustomerModel): Observable<any> {
-    return this.put<CustomerModel>(`${this.baseUrl}/${id}`, customer);
+    return this.put<CustomerModel>(
+      `${this.baseUrl}/${id}`,
+      this.formatCustomer(customer)
+    );
   }
 
   deleteCustomer(id: string): Observable<any> {
     return this.delete<CustomerModel>(`${this.baseUrl}/${id}`);
+  }
+
+  formatCustomer(customer: CustomerModel): any {
+    return {
+      ...customer,
+      fecha_nacimiento: customer.fecha_nacimiento
+        ? formatDate(customer.fecha_nacimiento, 'yyyy-MM-dd', 'en-US')
+        : null,
+    };
   }
 }

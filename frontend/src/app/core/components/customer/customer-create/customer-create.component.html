@@ -163,14 +163,27 @@
     <!-- Activo -->
     <mat-checkbox formControlName="activo">Activo</mat-checkbox>
 
-    <!-- Botón Guardar -->
-    <button
-      mat-raised-button
-      color="primary"
-      type="submit"
-      [disabled]="customerForm.invalid"
-    >
-      Guardar
-    </button>
+    <!-- Botones de acción -->
+    <div class="button-group">
+      <!-- Botón Guardar -->
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="customerForm.invalid"
+      >
+        Guardar
+      </button>
+      <!-- Botón Cancelar -->
+      <button
+        mat-stroked-button
+        style="margin-top: 5px"
+        color="warn"
+        (click)="goBack()"
+        type="button"
+      >
+        Cancelar
+      </button>
+    </div>
   </form>
 </mat-card>

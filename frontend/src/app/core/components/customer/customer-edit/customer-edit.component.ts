@@ -8,6 +8,9 @@ import {
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button'; // Para botones
 import { MatCardModule } from '@angular/material/card'; // Para tarjetas
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { provideNativeDateAdapter } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field'; // Para form-field
 import { MatInputModule } from '@angular/material/input'; // Para inputs
 import { MatSelectModule } from '@angular/material/select';
@@ -28,7 +31,10 @@ import { CustomerService } from '../../../services/customer/customer.service';
     MatButtonModule,
     MatCardModule,
     MatSelectModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
   ],
+  providers: [provideNativeDateAdapter()],
   templateUrl: './customer-edit.component.html',
   styleUrl: './customer-edit.component.css',
 })
@@ -48,11 +54,17 @@ export class CustomerEditComponent implements OnInit {
     private router: Router
   ) {
     this.customerForm = this.fb.group({
-      customername: ['', Validators.required],
-      password: ['', Validators.required],
-      rol: ['', Validators.required],
-      estado: ['', Validators.required],
-      colaborador_id: [null], // puedes ajustar el tipo según tu necesidad
+      nombre: ['', Validators.required],
+      apellido: ['', Validators.required],
+      email: ['', Validators.required],
+      telefono: [''],
+      direccion: [''],
+      ciudad: [''],
+      estado: [''],
+      pais: [''],
+      fecha_nacimiento: [''],
+      fecha_registro: [''],
+      activo: [false, Validators.required],
     });
   }
 
@@ -106,7 +118,6 @@ export class CustomerEditComponent implements OnInit {
   }
 
   getCollaborators(): void {
-    console.log('Obteniendo colaboradores');
     this.collaboratorService
       .getAllCollaborators()
       .subscribe((collaborators) => {

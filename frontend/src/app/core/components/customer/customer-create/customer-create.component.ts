@@ -5,7 +5,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field'; // Para form-field
 import { MatInputModule } from '@angular/material/input'; // Para inputs
 
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { provideNativeDateAdapter } from '@angular/material/core';
@@ -41,10 +41,11 @@ export class CustomerCreateComponent implements OnInit {
   collaborators: CollaboratorModel[] = []; // Almacena la lista de colaboradores
 
   constructor(
-    private fb: FormBuilder,
+    private collaboratorService: CollaboratorService,
     private customerService: CustomerService,
     private cdr: ChangeDetectorRef,
-    private collaboratorService: CollaboratorService,
+    private location: Location,
+    private fb: FormBuilder,
     private router: Router
   ) {
     this.customerForm = this.fb.group({
@@ -82,7 +83,6 @@ export class CustomerCreateComponent implements OnInit {
   }
 
   getCollaborators(): void {
-    console.log('Obteniendo colaboradores');
     this.collaboratorService
       .getAllCollaborators()
       .subscribe((collaborators) => {
@@ -93,5 +93,9 @@ export class CustomerCreateComponent implements OnInit {
 
   isCollaborator(): boolean {
     return this.customerForm.get('rol')?.value === 'Colaborador';
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }
