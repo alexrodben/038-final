@@ -18,3 +18,12 @@
 .not-found p {
   font-size: 1.5rem;
 }
+
+.not-found button {
+  padding: 25px 50px; /* Ajusta según lo necesario */
+  margin: 10px 0; /* Margen vertical */
+  border-radius: 25px; /* Bordes redondeados */
+  color: white; /* Texto blanco */
+  font-size: 1.25rem;
+  min-width: 400px; /* Ancho mínimo */
+}

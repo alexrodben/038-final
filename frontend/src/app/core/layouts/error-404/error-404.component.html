@@ -1,7 +1,8 @@
 <div class="not-found">
   <h1>404 - Página No Encontrada</h1>
   <p>Lo sentimos, la página que buscas no existe.</p>
-  <button mat-raised-button color="warn" routerLink="/login">
+  <button mat-raised-button color="primary" (click)="goBack()">Regresar</button>
+  <button mat-raised-button color="warn" routerLink="/dashboard">
     Volver a la Página Principal
   </button>
 </div>
