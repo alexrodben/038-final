@@ -41,7 +41,10 @@ import { AsignamentListComponent } from './core/components/asignament/asignament
 import { CommentCreateComponent } from './core/components/comment/comment-create/comment-create.component';
 import { CommentEditComponent } from './core/components/comment/comment-edit/comment-edit.component';
 import { CommentListComponent } from './core/components/comment/comment-list/comment-list.component';
-
+// Customers
+import { CustomerCreateComponent } from './core/components/customer/customer-create/customer-create.component';
+import { CustomerEditComponent } from './core/components/customer/customer-edit/customer-edit.component';
+import { CustomerListComponent } from './core/components/customer/customer-list/customer-list.component';
 export const routes: Routes = [
   // Aquí definiremos nuestras rutas
   { path: 'login', component: LoginComponent },
@@ -90,6 +93,10 @@ export const routes: Routes = [
       { path: 'comments/create', component: CommentCreateComponent },
       { path: 'comments/:id', component: CommentEditComponent },
       { path: 'comments', component: CommentListComponent },
+      // Customers
+      { path: 'customers/create', component: CustomerCreateComponent },
+      { path: 'customers/:id', component: CustomerEditComponent },
+      { path: 'customers', component: CustomerListComponent },
     ],
   },
   { path: '**', component: Error404Component }, // Ruta wildcard para manejar 404

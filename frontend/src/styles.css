@@ -21,3 +21,6 @@ thead tr th {
   background-color: #3f51b5 !important;
   color: white !important;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
