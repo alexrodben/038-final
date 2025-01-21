@@ -1,5 +1,5 @@
 export interface CustomerModel {
-  id?: number; // Opcional, ya que no se proporciona al crear un nuevo comentario
+  id: number; // Opcional, ya que no se proporciona al crear un nuevo comentario
   nombre: string; // Obligatorio, contenido del comentario
   apellido: string; // Obligatorio, contenido del comentario
   email: string; // Obligatorio, contenido del comentario

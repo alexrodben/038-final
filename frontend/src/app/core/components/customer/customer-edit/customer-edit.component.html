@@ -1,0 +1,93 @@
+<mat-card>
+  <form
+    [formGroup]="customerForm"
+    (ngSubmit)="onSubmit()"
+    class="customer-create-form"
+  >
+    <h2>Editar / revisar Usuario</h2>
+
+    <!-- Nombre de usuario -->
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre de usuario</mat-label>
+      <input matInput id="customername" formControlName="customername" />
+      <mat-error
+        *ngIf="
+          customerForm.get('customername')?.invalid &&
+          customerForm.get('customername')?.touched
+        "
+      >
+        El nombre de usuario es obligatorio.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Rol -->
+    <mat-form-field appearance="fill">
+      <mat-label>Rol</mat-label>
+      <mat-select formControlName="rol" id="rol">
+        <mat-option value="Admin">Admin</mat-option>
+        <mat-option value="Colaborador">Colaborador</mat-option>
+        <mat-option value="Gerente">Gerente</mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="
+          customerForm.get('rol')?.invalid && customerForm.get('rol')?.touched
+        "
+      >
+        El rol es obligatorio.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Estado -->
+    <mat-form-field appearance="fill">
+      <mat-label>Estado</mat-label>
+      <mat-select formControlName="estado" id="estado">
+        <mat-option value="Activo">Activo</mat-option>
+        <mat-option value="Inactivo">Inactivo</mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="
+          customerForm.get('estado')?.invalid &&
+          customerForm.get('estado')?.touched
+        "
+      >
+        El estado es obligatorio.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- ID del colaborador - Solo visible si el rol es "Colaborador" -->
+    <mat-form-field *ngIf="isCollaborator()" appearance="fill">
+      <mat-label>ID del colaborador</mat-label>
+      <mat-select formControlName="colaborador_id" id="colaborador_id">
+        <mat-option
+          *ngFor="let colaborador of collaborators"
+          [value]="colaborador.id"
+        >
+          {{ colaborador.nombre_completo }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Botones de acción -->
+    <div class="button-group">
+      <!-- Botón Guardar -->
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="customerForm.invalid"
+      >
+        Guardar
+      </button>
+      <!-- Botón Cancelar -->
+      <button
+        mat-stroked-button
+        style="margin-top: 5px"
+        color="primary"
+        (click)="goBack()"
+        type="button"
+      >
+        Cancelar
+      </button>
+    </div>
+  </form>
+</mat-card>
