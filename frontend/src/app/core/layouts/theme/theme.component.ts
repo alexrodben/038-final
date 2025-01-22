@@ -21,31 +21,35 @@ import {
 } from '@angular/router';
 import { ErrorModalComponent } from '../../components/error-modal/error-modal.component';
 import { AuthService } from '../../services/api/auth.service'; // Asegúrate de tener importado el servicio AuthService
+import { IsMobileService } from '../../services/is-mobile.services';
 
 @Component({
-    selector: 'app-theme',
-    imports: [
-        MatButtonModule,
-        RouterOutlet,
-        MatToolbar,
-        RouterLink,
-        MatSidenavModule,
-        MatIconModule,
-        MatListModule,
-        RouterLinkActive,
-        MatMenuModule,
-        CommonModule,
-    ],
-    templateUrl: './theme.component.html',
-    styleUrls: ['./theme.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'app-theme',
+  imports: [
+    MatButtonModule,
+    RouterOutlet,
+    MatToolbar,
+    RouterLink,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    RouterLinkActive,
+    MatMenuModule,
+    CommonModule,
+  ],
+  templateUrl: './theme.component.html',
+  styleUrls: ['./theme.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ThemeComponent implements OnInit {
-  private mediaQueryListener: (() => void) | any;
+  private mediaQueryListener:
+    | ((event: MediaQueryListEvent) => void)
+    | undefined;
   username: string | null = null;
   isMobile: boolean = false;
 
   constructor(
+    private isMobileService: IsMobileService,
     private authService: AuthService,
     private cdr: ChangeDetectorRef,
     private media: MediaMatcher,
@@ -55,18 +59,24 @@ export class ThemeComponent implements OnInit {
 
   ngOnInit() {
     const mediaQuery = this.media.matchMedia('(max-width: 600px)');
+    this.isMobileService.setIsMobile(mediaQuery.matches);
     this.isMobile = mediaQuery.matches;
-    this.mediaQueryListener = () => {
-      this.isMobile = mediaQuery.matches;
-      this.cdr.markForCheck();
+
+    // Usamos addEventListener en lugar de addListener
+    this.mediaQueryListener = (event: MediaQueryListEvent) => {
+      this.isMobileService.setIsMobile(event.matches);
+      this.isMobile = event.matches;
+      this.cdr.markForCheck(); // Marcar el componente para detección de cambios
     };
-    mediaQuery.addListener(this.mediaQueryListener);
+
+    // Escuchar cambios en el MediaQuery
+    mediaQuery.addEventListener('change', this.mediaQueryListener);
 
     this.authService.getProfile().subscribe({
       error: (error) => this.dialog.open(ErrorModalComponent, { data: error }),
       next: (profile) => {
         this.username = profile.username; // Ajusta a cómo devuelve el nombre el endpoint
-        this.cdr.markForCheck(); // Notifica a Angular que debe verificar cambios
+        this.cdr.markForCheck(); // Notificar a Angular que debe verificar cambios
       },
     });
   }
@@ -74,7 +84,9 @@ export class ThemeComponent implements OnInit {
   ngOnDestroy() {
     // Limpieza: eliminar el listener al destruir el componente
     const mediaQuery = this.media.matchMedia('(max-width: 600px)');
-    mediaQuery.removeListener(this.mediaQueryListener);
+    if (this.mediaQueryListener) {
+      mediaQuery.removeEventListener('change', this.mediaQueryListener);
+    }
   }
 
   logout() {

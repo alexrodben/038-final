@@ -5,163 +5,199 @@
     class="customer-create-form"
   >
     <h2>Crear Cliente nuevo</h2>
+    <mat-grid-list [cols]="cols" rowHeight="85px" [gutterSize]="gutterSize">
+      <!-- Nombre -->
+      <mat-grid-tile>
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre</mat-label>
+          <input matInput id="nombre" formControlName="nombre" />
+          <mat-error
+            *ngIf="
+              customerForm.get('nombre')?.invalid &&
+              customerForm.get('nombre')?.touched
+            "
+          >
+            El nombre es obligatorio.
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
 
-    <!-- Nombre -->
-    <mat-form-field appearance="fill">
-      <mat-label>Nombre</mat-label>
-      <input matInput id="nombre" formControlName="nombre" />
-      <mat-error
-        *ngIf="
-          customerForm.get('nombre')?.invalid &&
-          customerForm.get('nombre')?.touched
-        "
-      >
-        El nombre es obligatorio.
-      </mat-error>
-    </mat-form-field>
+      <!-- Apellido -->
+      <mat-grid-tile>
+        <mat-form-field appearance="fill">
+          <mat-label>Apellido</mat-label>
+          <input matInput id="apellido" formControlName="apellido" />
+          <mat-error
+            *ngIf="
+              customerForm.get('apellido')?.invalid &&
+              customerForm.get('apellido')?.touched
+            "
+          >
+            El apellido es obligatorio.
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
 
-    <!-- Apellido -->
-    <mat-form-field appearance="fill">
-      <mat-label>Apellido</mat-label>
-      <input matInput id="apellido" formControlName="apellido" />
-      <mat-error
-        *ngIf="
-          customerForm.get('apellido')?.invalid &&
-          customerForm.get('apellido')?.touched
-        "
-      >
-        El apellido es obligatorio.
-      </mat-error>
-    </mat-form-field>
+      <!-- Email -->
+      <mat-grid-tile>
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput id="email" formControlName="email" />
+          <mat-error
+            *ngIf="
+              customerForm.get('email')?.invalid &&
+              customerForm.get('email')?.touched
+            "
+          >
+            El email es obligatorio.
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
 
-    <!-- Email -->
-    <mat-form-field appearance="fill">
-      <mat-label>Email</mat-label>
-      <input matInput id="email" formControlName="email" />
-      <mat-error
-        *ngIf="
-          customerForm.get('email')?.invalid &&
-          customerForm.get('email')?.touched
-        "
-      >
-        El email es obligatorio.
-      </mat-error>
-    </mat-form-field>
+      <!-- Teléfono -->
+      <mat-grid-tile>
+        <mat-form-field appearance="fill">
+          <mat-label>Teléfono</mat-label>
+          <input matInput id="telefono" formControlName="telefono" />
+          <mat-error
+            *ngIf="
+              customerForm.get('telefono')?.invalid &&
+              customerForm.get('telefono')?.touched
+            "
+          >
+            El teléfono es obligatorio.
+          </mat-error>
+          <mat-hint>Formato: 123-456-7890</mat-hint>
+        </mat-form-field>
+      </mat-grid-tile>
 
-    <!-- Teléfono -->
-    <mat-form-field appearance="fill">
-      <mat-label>Teléfono</mat-label>
-      <input matInput id="telefono" formControlName="telefono" />
-      <mat-error
-        *ngIf="
-          customerForm.get('telefono')?.invalid &&
-          customerForm.get('telefono')?.touched
-        "
-      >
-        El teléfono es obligatorio.
-      </mat-error>
-      <mat-hint>Formato: 123-456-7890</mat-hint>
-    </mat-form-field>
+      <!-- Dirección -->
+      <mat-grid-tile>
+        <mat-form-field appearance="fill">
+          <mat-label>Dirección</mat-label>
+          <input matInput id="direccion" formControlName="direccion" />
+          <mat-error
+            *ngIf="
+              customerForm.get('direccion')?.invalid &&
+              customerForm.get('direccion')?.touched
+            "
+          >
+            La dirección es obligatoria.
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
 
-    <!-- Dirección -->
-    <mat-form-field appearance="fill">
-      <mat-label>Dirección</mat-label>
-      <input matInput id="direccion" formControlName="direccion" />
-      <mat-error
-        *ngIf="
-          customerForm.get('direccion')?.invalid &&
-          customerForm.get('direccion')?.touched
-        "
-      >
-        La dirección es obligatoria.
-      </mat-error>
-    </mat-form-field>
+      <!-- Ciudad -->
+      <mat-grid-tile>
+        <mat-form-field appearance="fill">
+          <mat-label>Ciudad</mat-label>
+          <input matInput id="ciudad" formControlName="ciudad" />
+          <mat-error
+            *ngIf="
+              customerForm.get('ciudad')?.invalid &&
+              customerForm.get('ciudad')?.touched
+            "
+          >
+            La ciudad es obligatoria.
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
 
-    <!-- Ciudad -->
-    <mat-form-field appearance="fill">
-      <mat-label>Ciudad</mat-label>
-      <input matInput id="ciudad" formControlName="ciudad" />
-      <mat-error
-        *ngIf="
-          customerForm.get('ciudad')?.invalid &&
-          customerForm.get('ciudad')?.touched
-        "
-      >
-        La ciudad es obligatoria.
-      </mat-error>
-    </mat-form-field>
+      <!-- Estado -->
+      <mat-grid-tile>
+        <mat-form-field appearance="fill">
+          <mat-label>Estado</mat-label>
+          <input matInput id="estado" formControlName="estado" />
+          <mat-error
+            *ngIf="
+              customerForm.get('estado')?.invalid &&
+              customerForm.get('estado')?.touched
+            "
+          >
+            El estado es obligatorio.
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
 
-    <!-- Estado -->
-    <mat-form-field appearance="fill">
-      <mat-label>Estado</mat-label>
-      <input matInput id="estado" formControlName="estado" />
-      <mat-error
-        *ngIf="
-          customerForm.get('estado')?.invalid &&
-          customerForm.get('estado')?.touched
-        "
-      >
-        El estado es obligatorio.
-      </mat-error>
-    </mat-form-field>
+      <!-- País -->
+      <mat-grid-tile>
+        <mat-form-field appearance="fill">
+          <mat-label>País</mat-label>
+          <input matInput id="pais" formControlName="pais" />
+          <mat-error
+            *ngIf="
+              customerForm.get('pais')?.invalid &&
+              customerForm.get('pais')?.touched
+            "
+          >
+            El país es obligatorio.
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
 
-    <!-- País -->
-    <mat-form-field appearance="fill">
-      <mat-label>País</mat-label>
-      <input matInput id="pais" formControlName="pais" />
-      <mat-error
-        *ngIf="
-          customerForm.get('pais')?.invalid && customerForm.get('pais')?.touched
-        "
-      >
-        El país es obligatorio.
-      </mat-error>
-    </mat-form-field>
+      <!-- Fecha de nacimiento -->
+      <mat-grid-tile>
+        <mat-form-field appearance="fill">
+          <mat-label>Fecha de nacimiento</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker1"
+            id="fecha_nacimiento"
+            formControlName="fecha_nacimiento"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker1"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+          <mat-error
+            *ngIf="
+              customerForm.get('fecha_nacimiento')?.invalid &&
+              customerForm.get('fecha_nacimiento')?.touched
+            "
+          >
+            La fecha de nacimiento es obligatoria.
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
 
-    <!-- Fecha de nacimiento -->
-    <mat-form-field appearance="fill">
-      <mat-label>Fecha de nacimiento</mat-label>
-      <input
-        matInput
-        [matDatepicker]="picker1"
-        id="fecha_nacimiento"
-        formControlName="fecha_nacimiento"
-      />
-      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-      <mat-datepicker #picker1></mat-datepicker>
-      <mat-error
-        *ngIf="
-          customerForm.get('fecha_nacimiento')?.invalid &&
-          customerForm.get('fecha_nacimiento')?.touched
-        "
-      >
-        La fecha de nacimiento es obligatoria.
-      </mat-error>
-    </mat-form-field>
-
-    <!-- Fecha de registro -->
-    <mat-form-field appearance="fill">
-      <mat-label>Fecha de registro</mat-label>
-      <input
-        matInput
-        [matDatepicker]="picker2"
-        id="fecha_registro"
-        formControlName="fecha_registro"
-      />
-      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-      <mat-datepicker #picker2></mat-datepicker>
-      <mat-error
-        *ngIf="
-          customerForm.get('fecha_registro')?.invalid &&
-          customerForm.get('fecha_registro')?.touched
-        "
-      >
-        La fecha de registro es obligatoria.
-      </mat-error>
-    </mat-form-field>
-
-    <!-- Activo -->
-    <mat-checkbox formControlName="activo">Activo</mat-checkbox>
+      <!-- Fecha de registro -->
+      <mat-grid-tile>
+        <mat-form-field appearance="fill">
+          <mat-label>Fecha de registro</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker2"
+            id="fecha_registro"
+            formControlName="fecha_registro"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker2"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+          <mat-error
+            *ngIf="
+              customerForm.get('fecha_registro')?.invalid &&
+              customerForm.get('fecha_registro')?.touched
+            "
+          >
+            La fecha de registro es obligatoria.
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-grid-tile-header
+          style="
+            color: rgba(0, 0, 0, 0.4);
+            background-color: rgba(0, 0, 0, 0.04);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+          "
+        >
+          <mat-checkbox formControlName="activo">Activo</mat-checkbox>
+        </mat-grid-tile-header>
+      </mat-grid-tile>
+    </mat-grid-list>
 
     <!-- Botones de acción -->
     <div class="button-group">

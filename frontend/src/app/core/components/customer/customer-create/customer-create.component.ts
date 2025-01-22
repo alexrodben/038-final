@@ -10,38 +10,43 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectModule } from '@angular/material/select';
 import { Router } from '@angular/router';
 import { CollaboratorModel } from '../../../models/collaborator';
 import { CustomerModel } from '../../../models/customer';
 import { CollaboratorService } from '../../../services/api/collaborator-service.service';
 import { CustomerService } from '../../../services/api/customer.service';
-
+import { IsMobileService } from '../../../services/is-mobile.services';
 @Component({
-    selector: 'app-customer-create',
-    imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        MatInputModule,
-        MatFormFieldModule,
-        MatButtonModule,
-        MatCardModule,
-        MatSelectModule,
-        MatCheckboxModule,
-        MatDatepickerModule,
-    ],
-    providers: [provideNativeDateAdapter()],
-    templateUrl: './customer-create.component.html',
-    styleUrl: './customer-create.component.css'
+  selector: 'app-customer-create',
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatCardModule,
+    MatGridListModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+  ],
+  providers: [provideNativeDateAdapter()],
+  templateUrl: './customer-create.component.html',
+  styleUrl: './customer-create.component.css',
 })
 export class CustomerCreateComponent implements OnInit {
-  customer: any = {}; // Cambia el tipo según tu modelo
-  customerForm: FormGroup;
   collaborators: CollaboratorModel[] = []; // Almacena la lista de colaboradores
+  customerForm: FormGroup;
+  gutterSize: string = '15px'; // Tamaño del espacio entre las tarjetas
+  customer: any = {}; // Cambia el tipo según tu modelo
+  cols: number = 3; // Número de columnas para el grid
 
   constructor(
     private collaboratorService: CollaboratorService,
     private customerService: CustomerService,
+    private isMobileService: IsMobileService,
     private cdr: ChangeDetectorRef,
     private location: Location,
     private fb: FormBuilder,
@@ -64,6 +69,10 @@ export class CustomerCreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCollaborators();
+    this.isMobileService.isMobile$.subscribe((value) => {
+      this.gutterSize = value ? '0px' : '15px';
+      this.cols = value ? 1 : 3;
+    });
   }
 
   onSubmit(): void {
