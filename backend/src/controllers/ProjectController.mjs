@@ -19,7 +19,7 @@ const createProject = (req, res) => {
 
 // Función para obtener todos los proyectos
 const getAllProjects = (req, res) => {
-    const query = 'SELECT p.id, p.nombre, p.descripcion, p.cliente_id, c.nombre AS cliente, p.fecha_inicio, p.fecha_estimacion, p.estado, p.responsable_id, c.nombre AS cliente FROM Proyectos p JOIN clientes c ON p.cliente_id = c.id;';
+    const query = 'SELECT p.id, p.nombre, p.descripcion, p.cliente_id, c.nombre AS cliente, p.fecha_inicio, p.fecha_estimacion, p.estado, p.responsable_id, c.nombre AS cliente FROM Proyectos p JOIN Clientes c ON p.cliente_id = c.id;';
     db.execute(query, (err, results) => {
         if (err) {
             logger.error('Error al obtener proyectos:', err);
