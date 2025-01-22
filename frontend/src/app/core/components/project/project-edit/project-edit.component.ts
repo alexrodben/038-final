@@ -22,22 +22,21 @@ import { CollaboratorService } from '../../../services/api/collaborator-service.
 import { ProjectService } from '../../../services/api/project-service.service';
 
 @Component({
-  selector: 'app-project-edit',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatCardModule,
-    MatSelectModule,
-    MatDatepicker,
-    MatDatepickerModule,
-  ],
-  providers: [provideNativeDateAdapter()],
-  templateUrl: './project-edit.component.html',
-  styleUrl: './project-edit.component.css',
+    selector: 'app-project-edit',
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatButtonModule,
+        MatCardModule,
+        MatSelectModule,
+        MatDatepicker,
+        MatDatepickerModule,
+    ],
+    providers: [provideNativeDateAdapter()],
+    templateUrl: './project-edit.component.html',
+    styleUrl: './project-edit.component.css'
 })
 export class ProjectEditComponent implements OnInit {
   project: any = {}; // Cambia el tipo según tu modelo

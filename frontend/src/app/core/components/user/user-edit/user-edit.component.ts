@@ -18,19 +18,18 @@ import { CollaboratorService } from '../../../services/api/collaborator-service.
 import { UserService } from '../../../services/api/user-service.service';
 
 @Component({
-  selector: 'app-user-edit',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatCardModule,
-    MatSelectModule,
-  ],
-  templateUrl: './user-edit.component.html',
-  styleUrl: './user-edit.component.css',
+    selector: 'app-user-edit',
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatButtonModule,
+        MatCardModule,
+        MatSelectModule,
+    ],
+    templateUrl: './user-edit.component.html',
+    styleUrl: './user-edit.component.css'
 })
 export class UserEditComponent implements OnInit {
   user: any = {}; // Cambia el tipo según tu modelo

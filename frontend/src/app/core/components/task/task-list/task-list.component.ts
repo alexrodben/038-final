@@ -16,12 +16,11 @@ import { TaskService } from '../../../services/api/task.service';
 import { ErrorModalComponent } from '../../error-modal/error-modal.component';
 
 @Component({
-  selector: 'app-task-list',
-  standalone: true,
-  imports: [MatTableModule, MatButton, MatIcon, MatButtonModule, CommonModule],
-  templateUrl: './task-list.component.html',
-  styleUrl: './task-list.component.css',
-  providers: [DatePipe], // Añade DatePipe a los providers aquí
+    selector: 'app-task-list',
+    imports: [MatTableModule, MatButton, MatIcon, MatButtonModule, CommonModule],
+    templateUrl: './task-list.component.html',
+    styleUrl: './task-list.component.css',
+    providers: [DatePipe]
 })
 export class TaskListComponent implements OnInit {
   tasks: TaskModel[] = [];

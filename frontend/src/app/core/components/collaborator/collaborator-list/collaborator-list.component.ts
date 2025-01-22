@@ -14,12 +14,11 @@ import { CollaboratorService } from '../../../services/api/collaborator-service.
 import { ErrorModalComponent } from '../../error-modal/error-modal.component';
 
 @Component({
-  selector: 'app-collaborator-list',
-  standalone: true,
-  imports: [MatTableModule, MatButton, MatIcon, MatButtonModule],
-  templateUrl: './collaborator-list.component.html',
-  styleUrl: './collaborator-list.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-collaborator-list',
+    imports: [MatTableModule, MatButton, MatIcon, MatButtonModule],
+    templateUrl: './collaborator-list.component.html',
+    styleUrl: './collaborator-list.component.css',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CollaboratorListComponent implements OnInit {
   collaborator: CollaboratorModel[] = []; // Cambia el tipo según tu modelo

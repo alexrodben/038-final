@@ -15,12 +15,11 @@ import { BudgetService } from '../../../services/api/budget.service';
 import { ProjectService } from '../../../services/api/project-service.service';
 import { ErrorModalComponent } from '../../error-modal/error-modal.component';
 @Component({
-  selector: 'app-budget-list',
-  standalone: true,
-  imports: [MatTableModule, MatButton, MatIcon, MatButtonModule],
-  templateUrl: './budget-list.component.html',
-  styleUrl: './budget-list.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-budget-list',
+    imports: [MatTableModule, MatButton, MatIcon, MatButtonModule],
+    templateUrl: './budget-list.component.html',
+    styleUrl: './budget-list.component.css',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BudgetListComponent implements OnInit {
   budgets: BudgetModel[] = []; // Cambia el tipo según tu modelo

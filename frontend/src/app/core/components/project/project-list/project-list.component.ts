@@ -10,12 +10,11 @@ import { ProjectService } from '../../../services/api/project-service.service';
 import { ErrorModalComponent } from '../../error-modal/error-modal.component';
 
 @Component({
-  selector: 'app-project-list',
-  standalone: true,
-  imports: [MatTableModule, MatButton, MatIcon, MatButtonModule, CommonModule],
-  templateUrl: './project-list.component.html',
-  styleUrl: './project-list.component.css',
-  providers: [DatePipe], // Añade DatePipe a los providers aquí
+    selector: 'app-project-list',
+    imports: [MatTableModule, MatButton, MatIcon, MatButtonModule, CommonModule],
+    templateUrl: './project-list.component.html',
+    styleUrl: './project-list.component.css',
+    providers: [DatePipe]
 })
 export class ProjectListComponent implements OnInit {
   projects: ProjectModel[] = [];

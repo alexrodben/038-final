@@ -13,19 +13,18 @@ import { CollaboratorModel } from '../../../models/collaborator';
 import { CollaboratorService } from '../../../services/api/collaborator-service.service';
 
 @Component({
-  selector: 'app-collaborator-create',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatCardModule,
-    MatSelectModule,
-  ],
-  templateUrl: './collaborator-create.component.html',
-  styleUrl: './collaborator-create.component.css',
+    selector: 'app-collaborator-create',
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatButtonModule,
+        MatCardModule,
+        MatSelectModule,
+    ],
+    templateUrl: './collaborator-create.component.html',
+    styleUrl: './collaborator-create.component.css'
 })
 export class CollaboratorCreateComponent {
   collaborator: any = {}; // Cambia el tipo según tu modelo

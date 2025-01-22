@@ -11,18 +11,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/api/auth.service';
 @Component({
-  selector: 'app-error-modal',
-  standalone: true,
-  imports: [
-    MatDialogModule,
-    MatDialogContent,
-    MatDialogActions,
-    MatButtonModule,
-    MatIconModule,
-  ], // Importar los módulos necesarios
-  templateUrl: './error-modal.component.html',
-  styleUrl: './error-modal.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-error-modal',
+    imports: [
+        MatDialogModule,
+        MatDialogContent,
+        MatDialogActions,
+        MatButtonModule,
+        MatIconModule,
+    ], // Importar los módulos necesarios
+    templateUrl: './error-modal.component.html',
+    styleUrl: './error-modal.component.css',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ErrorModalComponent {
   errorMessage: string = 'Error inesperado.';

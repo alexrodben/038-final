@@ -15,19 +15,18 @@ import { CollaboratorService } from '../../../services/api/collaborator-service.
 import { UserService } from '../../../services/api/user-service.service';
 
 @Component({
-  selector: 'app-user-create',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatCardModule,
-    MatSelectModule,
-  ],
-  templateUrl: './user-create.component.html',
-  styleUrl: './user-create.component.css',
+    selector: 'app-user-create',
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatButtonModule,
+        MatCardModule,
+        MatSelectModule,
+    ],
+    templateUrl: './user-create.component.html',
+    styleUrl: './user-create.component.css'
 })
 export class UserCreateComponent implements OnInit {
   user: any = {}; // Cambia el tipo según tu modelo

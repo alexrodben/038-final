@@ -20,22 +20,21 @@ import { ProjectService } from '../../../services/api/project-service.service';
 import { ErrorModalComponent } from '../../error-modal/error-modal.component';
 
 @Component({
-  selector: 'app-budget-create',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatCardModule,
-    MatSelectModule,
-    MatCheckboxModule,
-    MatDatepickerModule,
-  ],
-  providers: [provideNativeDateAdapter()],
-  templateUrl: './budget-create.component.html',
-  styleUrl: './budget-create.component.css',
+    selector: 'app-budget-create',
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatButtonModule,
+        MatCardModule,
+        MatSelectModule,
+        MatCheckboxModule,
+        MatDatepickerModule,
+    ],
+    providers: [provideNativeDateAdapter()],
+    templateUrl: './budget-create.component.html',
+    styleUrl: './budget-create.component.css'
 })
 export class BudgetCreateComponent implements OnInit {
   budget: any = {}; // Cambia el tipo según tu modelo

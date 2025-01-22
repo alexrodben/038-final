@@ -21,22 +21,21 @@ import { BudgetService } from '../../../services/api/budget.service';
 import { ProjectService } from '../../../services/api/project-service.service';
 
 @Component({
-  selector: 'app-budget-edit',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatCardModule,
-    MatSelectModule,
-    MatCheckboxModule,
-    MatDatepickerModule,
-  ],
-  providers: [provideNativeDateAdapter()],
-  templateUrl: './budget-edit.component.html',
-  styleUrl: './budget-edit.component.css',
+    selector: 'app-budget-edit',
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatButtonModule,
+        MatCardModule,
+        MatSelectModule,
+        MatCheckboxModule,
+        MatDatepickerModule,
+    ],
+    providers: [provideNativeDateAdapter()],
+    templateUrl: './budget-edit.component.html',
+    styleUrl: './budget-edit.component.css'
 })
 export class BudgetEditComponent implements OnInit {
   budget: any = {}; // Cambia el tipo según tu modelo

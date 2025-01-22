@@ -8,17 +8,16 @@ import { Router } from '@angular/router'; // Importar Router
 import { AuthService, LoginCredentials } from '../../services/api/auth.service';
 
 @Component({
-  selector: 'app-login',
-  standalone: true, // Asegúrate de que sea standalone
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
-  imports: [
-    CommonModule,
-    FormsModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatButtonModule,
-  ], // Importar módulos de Material y CommonModule
+    selector: 'app-login', // Asegúrate de que sea standalone
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css'],
+    imports: [
+        CommonModule,
+        FormsModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatButtonModule,
+    ]
 })
 export class LoginComponent {
   username: string = '';

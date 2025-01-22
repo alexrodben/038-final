@@ -25,22 +25,21 @@ import { TaskService } from '../../../services/api/task.service';
 import { ErrorModalComponent } from '../../error-modal/error-modal.component';
 
 @Component({
-  selector: 'app-task-edit',
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    MatInputModule,
-    MatButtonModule,
-    MatCardModule,
-    CommonModule,
-    MatSelect,
-    MatSelectModule,
-    MatDatepicker,
-    MatDatepickerModule,
-  ],
-  templateUrl: './task-edit.component.html',
-  styleUrl: './task-edit.component.css',
-  providers: [provideNativeDateAdapter()],
+    selector: 'app-task-edit',
+    imports: [
+        ReactiveFormsModule,
+        MatInputModule,
+        MatButtonModule,
+        MatCardModule,
+        CommonModule,
+        MatSelect,
+        MatSelectModule,
+        MatDatepicker,
+        MatDatepickerModule,
+    ],
+    templateUrl: './task-edit.component.html',
+    styleUrl: './task-edit.component.css',
+    providers: [provideNativeDateAdapter()]
 })
 export class TaskEditComponent implements OnInit {
   button: string = 'Guardar';

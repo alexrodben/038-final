@@ -18,22 +18,21 @@ import { CollaboratorService } from '../../../services/api/collaborator-service.
 import { CustomerService } from '../../../services/api/customer.service';
 
 @Component({
-  selector: 'app-customer-create',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatCardModule,
-    MatSelectModule,
-    MatCheckboxModule,
-    MatDatepickerModule,
-  ],
-  providers: [provideNativeDateAdapter()],
-  templateUrl: './customer-create.component.html',
-  styleUrl: './customer-create.component.css',
+    selector: 'app-customer-create',
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatButtonModule,
+        MatCardModule,
+        MatSelectModule,
+        MatCheckboxModule,
+        MatDatepickerModule,
+    ],
+    providers: [provideNativeDateAdapter()],
+    templateUrl: './customer-create.component.html',
+    styleUrl: './customer-create.component.css'
 })
 export class CustomerCreateComponent implements OnInit {
   customer: any = {}; // Cambia el tipo según tu modelo

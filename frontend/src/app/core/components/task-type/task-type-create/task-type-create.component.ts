@@ -14,17 +14,16 @@ import { TaskTypeModel } from '../../../models/taskType';
 import { TaskTypeService } from '../../../services/api/task-type.service';
 
 @Component({
-  selector: 'app-task-type-create',
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    MatInputModule,
-    MatButtonModule,
-    MatCardModule,
-    CommonModule,
-  ],
-  templateUrl: './task-type-create.component.html',
-  styleUrl: './task-type-create.component.css',
+    selector: 'app-task-type-create',
+    imports: [
+        ReactiveFormsModule,
+        MatInputModule,
+        MatButtonModule,
+        MatCardModule,
+        CommonModule,
+    ],
+    templateUrl: './task-type-create.component.html',
+    styleUrl: './task-type-create.component.css'
 })
 export class TaskTypeCreateComponent implements OnInit {
   button: string = 'Guardar';

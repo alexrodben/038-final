@@ -13,12 +13,11 @@ import { CustomerModel } from '../../../models/customer';
 import { CustomerService } from '../../../services/api/customer.service';
 import { ErrorModalComponent } from '../../error-modal/error-modal.component';
 @Component({
-  selector: 'app-customer-list',
-  standalone: true,
-  imports: [MatTableModule, MatButton, MatIcon, MatButtonModule],
-  templateUrl: './customer-list.component.html',
-  styleUrl: './customer-list.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-customer-list',
+    imports: [MatTableModule, MatButton, MatIcon, MatButtonModule],
+    templateUrl: './customer-list.component.html',
+    styleUrl: './customer-list.component.css',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CustomerListComponent implements OnInit {
   customers: CustomerModel[] = []; // Cambia el tipo según tu modelo

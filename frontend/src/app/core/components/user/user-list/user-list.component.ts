@@ -13,12 +13,11 @@ import { UserModel } from '../../../models/user';
 import { UserService } from '../../../services/api/user-service.service';
 import { ErrorModalComponent } from '../../error-modal/error-modal.component';
 @Component({
-  selector: 'app-user-list',
-  standalone: true,
-  imports: [MatTableModule, MatButton, MatIcon, MatButtonModule],
-  templateUrl: './user-list.component.html',
-  styleUrl: './user-list.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-user-list',
+    imports: [MatTableModule, MatButton, MatIcon, MatButtonModule],
+    templateUrl: './user-list.component.html',
+    styleUrl: './user-list.component.css',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserListComponent implements OnInit {
   users: UserModel[] = []; // Cambia el tipo según tu modelo

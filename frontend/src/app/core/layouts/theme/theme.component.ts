@@ -23,23 +23,22 @@ import { ErrorModalComponent } from '../../components/error-modal/error-modal.co
 import { AuthService } from '../../services/api/auth.service'; // Asegúrate de tener importado el servicio AuthService
 
 @Component({
-  selector: 'app-theme',
-  standalone: true,
-  imports: [
-    MatButtonModule,
-    RouterOutlet,
-    MatToolbar,
-    RouterLink,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    RouterLinkActive,
-    MatMenuModule,
-    CommonModule,
-  ],
-  templateUrl: './theme.component.html',
-  styleUrls: ['./theme.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-theme',
+    imports: [
+        MatButtonModule,
+        RouterOutlet,
+        MatToolbar,
+        RouterLink,
+        MatSidenavModule,
+        MatIconModule,
+        MatListModule,
+        RouterLinkActive,
+        MatMenuModule,
+        CommonModule,
+    ],
+    templateUrl: './theme.component.html',
+    styleUrls: ['./theme.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ThemeComponent implements OnInit {
   private mediaQueryListener: (() => void) | any;

@@ -10,18 +10,17 @@ import { TaskTypeService } from '../../../services/api/task-type.service';
 import { ErrorModalComponent } from '../../error-modal/error-modal.component';
 
 @Component({
-  selector: 'app-task-type-list',
-  standalone: true,
-  imports: [
-    MatTableModule,
-    MatButton,
-    MatIcon,
-    MatButtonModule,
-    CommonModule,
-    MatDialogModule,
-  ],
-  templateUrl: './task-type-list.component.html',
-  styleUrl: './task-type-list.component.css',
+    selector: 'app-task-type-list',
+    imports: [
+        MatTableModule,
+        MatButton,
+        MatIcon,
+        MatButtonModule,
+        CommonModule,
+        MatDialogModule,
+    ],
+    templateUrl: './task-type-list.component.html',
+    styleUrl: './task-type-list.component.css'
 })
 export class TaskTypeListComponent implements OnInit {
   taskTypes: TaskTypeModel[] = [];
