@@ -10,7 +10,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { UserModel } from '../../../models/user';
-import { UserService } from '../../../services/user/user-service.service';
+import { UserService } from '../../../services/api/user-service.service';
 import { ErrorModalComponent } from '../../error-modal/error-modal.component';
 @Component({
   selector: 'app-user-list',

@@ -21,7 +21,7 @@ import { CollaboratorModel } from '../../../models/collaborator';
 import { ProjectModel } from '../../../models/project';
 import { TaskModel } from '../../../models/task';
 import { TaskTypeModel } from '../../../models/taskType';
-import { TaskService } from '../../../services/task/task.service';
+import { TaskService } from '../../../services/api/task.service';
 import { ErrorModalComponent } from '../../error-modal/error-modal.component';
 
 @Component({

@@ -6,7 +6,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ProjectModel } from '../../../models/project';
-import { ProjectService } from '../../../services/project/project-service.service';
+import { ProjectService } from '../../../services/api/project-service.service';
 import { ErrorModalComponent } from '../../error-modal/error-modal.component';
 
 @Component({

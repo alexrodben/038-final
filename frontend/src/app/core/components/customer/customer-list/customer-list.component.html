@@ -1,14 +1,14 @@
 <div class="demo-button-container">
-  <h2>Lista de usuarios</h2>
+  <h2>Lista de clientes</h2>
 
-  <!-- Botón para agregar un nuevo usuario -->
+  <!-- Botón para agregar un nuevo cliente -->
   <button
     mat-raised-button
     color="primary"
     (click)="addCustomer()"
     class="demo-button"
   >
-    Agregar Usuario
+    Agregar cliente
   </button>
 </div>
 
@@ -53,7 +53,7 @@
         mat-icon-button
         color="success"
         (click)="showCustomer(element.id)"
-        aria-label="Mostrar usuario"
+        aria-label="Mostrar cliente"
       >
         <mat-icon>visibility</mat-icon>
       </button>
@@ -61,7 +61,7 @@
         mat-icon-button
         color="warn"
         (click)="deleteCustomer(element.id)"
-        aria-label="Eliminar usuario"
+        aria-label="Eliminar cliente"
       >
         <mat-icon>delete</mat-icon>
       </button>

@@ -13,7 +13,7 @@ import { MatInputModule } from '@angular/material/input'; // Para inputs
 import { MatSelectModule } from '@angular/material/select';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CollaboratorModel } from '../../../models/collaborator';
-import { CollaboratorService } from '../../../services/collaborator/collaborator-service.service';
+import { CollaboratorService } from '../../../services/api/collaborator-service.service';
 
 @Component({
   selector: 'app-collaborator-edit',

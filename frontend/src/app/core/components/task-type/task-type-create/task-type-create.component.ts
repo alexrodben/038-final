@@ -11,7 +11,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TaskTypeModel } from '../../../models/taskType';
-import { TaskTypeService } from '../../../services/taskType/task-type.service';
+import { TaskTypeService } from '../../../services/api/task-type.service';
 
 @Component({
   selector: 'app-task-type-create',

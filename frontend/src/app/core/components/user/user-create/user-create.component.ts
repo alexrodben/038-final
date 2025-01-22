@@ -11,8 +11,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { Router } from '@angular/router';
 import { CollaboratorModel } from '../../../models/collaborator';
 import { UserModel } from '../../../models/user';
-import { CollaboratorService } from '../../../services/collaborator/collaborator-service.service';
-import { UserService } from '../../../services/user/user-service.service';
+import { CollaboratorService } from '../../../services/api/collaborator-service.service';
+import { UserService } from '../../../services/api/user-service.service';
 
 @Component({
   selector: 'app-user-create',

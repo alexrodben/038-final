@@ -6,7 +6,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { TaskTypeModel } from '../../../models/taskType';
-import { TaskTypeService } from '../../../services/taskType/task-type.service';
+import { TaskTypeService } from '../../../services/api/task-type.service';
 import { ErrorModalComponent } from '../../error-modal/error-modal.component';
 
 @Component({

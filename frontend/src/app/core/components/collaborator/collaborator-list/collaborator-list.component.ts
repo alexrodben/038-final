@@ -10,7 +10,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { CollaboratorModel } from '../../../models/collaborator';
-import { CollaboratorService } from '../../../services/collaborator/collaborator-service.service';
+import { CollaboratorService } from '../../../services/api/collaborator-service.service';
 import { ErrorModalComponent } from '../../error-modal/error-modal.component';
 
 @Component({

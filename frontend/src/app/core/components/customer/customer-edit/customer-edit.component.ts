@@ -17,8 +17,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CollaboratorModel } from '../../../models/collaborator';
 import { CustomerModel } from '../../../models/customer';
-import { CollaboratorService } from '../../../services/collaborator/collaborator-service.service';
-import { CustomerService } from '../../../services/customer/customer.service';
+import { CollaboratorService } from '../../../services/api/collaborator-service.service';
+import { CustomerService } from '../../../services/api/customer.service';
 
 @Component({
   selector: 'app-customer-edit',
@@ -102,7 +102,7 @@ export class CustomerEditComponent implements OnInit {
         id: this.customerId,
         ...this.customerForm.value,
       };
-      console.log('Datos del usuario:', customerData);
+      console.log('Datos del cliente:', customerData);
       this.customerService
         .updateCustomer(this.customerId ?? '0', customerData)
         .subscribe({

@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { Router } from '@angular/router';
 import { CollaboratorModel } from '../../../models/collaborator';
-import { CollaboratorService } from '../../../services/collaborator/collaborator-service.service';
+import { CollaboratorService } from '../../../services/api/collaborator-service.service';
 
 @Component({
   selector: 'app-collaborator-create',

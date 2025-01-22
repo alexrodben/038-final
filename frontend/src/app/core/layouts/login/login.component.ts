@@ -5,10 +5,7 @@ import { MatButtonModule } from '@angular/material/button'; // Módulo para boto
 import { MatFormFieldModule } from '@angular/material/form-field'; // Módulo para mat-form-field
 import { MatInputModule } from '@angular/material/input'; // Módulo para matInput
 import { Router } from '@angular/router'; // Importar Router
-import {
-  AuthService,
-  LoginCredentials,
-} from '../../services/auth/auth.service';
+import { AuthService, LoginCredentials } from '../../services/api/auth.service';
 
 @Component({
   selector: 'app-login',

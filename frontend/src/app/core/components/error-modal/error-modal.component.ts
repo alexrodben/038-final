@@ -9,7 +9,7 @@ import {
 } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth/auth.service';
+import { AuthService } from '../../services/api/auth.service';
 @Component({
   selector: 'app-error-modal',
   standalone: true,

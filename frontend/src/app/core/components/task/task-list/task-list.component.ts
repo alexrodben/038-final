@@ -9,10 +9,10 @@ import { CollaboratorModel } from '../../../models/collaborator';
 import { ProjectModel } from '../../../models/project';
 import { TaskModel } from '../../../models/task';
 import { TaskTypeModel } from '../../../models/taskType';
-import { CollaboratorService } from '../../../services/collaborator/collaborator-service.service';
-import { ProjectService } from '../../../services/project/project-service.service';
-import { TaskService } from '../../../services/task/task.service';
-import { TaskTypeService } from '../../../services/taskType/task-type.service';
+import { CollaboratorService } from '../../../services/api/collaborator-service.service';
+import { ProjectService } from '../../../services/api/project-service.service';
+import { TaskTypeService } from '../../../services/api/task-type.service';
+import { TaskService } from '../../../services/api/task.service';
 import { ErrorModalComponent } from '../../error-modal/error-modal.component';
 
 @Component({

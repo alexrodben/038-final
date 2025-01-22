@@ -20,7 +20,7 @@ import {
   RouterOutlet,
 } from '@angular/router';
 import { ErrorModalComponent } from '../../components/error-modal/error-modal.component';
-import { AuthService } from '../../services/auth/auth.service'; // Asegúrate de tener importado el servicio AuthService
+import { AuthService } from '../../services/api/auth.service'; // Asegúrate de tener importado el servicio AuthService
 
 @Component({
   selector: 'app-theme',

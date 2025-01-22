@@ -19,8 +19,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { Router } from '@angular/router';
 import { CollaboratorModel } from '../../../models/collaborator';
 import { ProjectModel } from '../../../models/project';
-import { CollaboratorService } from '../../../services/collaborator/collaborator-service.service';
-import { ProjectService } from '../../../services/project/project-service.service';
+import { CollaboratorService } from '../../../services/api/collaborator-service.service';
+import { ProjectService } from '../../../services/api/project-service.service';
 
 @Component({
   selector: 'app-project-create',

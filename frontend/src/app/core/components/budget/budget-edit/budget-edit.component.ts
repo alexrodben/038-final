@@ -17,8 +17,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BudgetModel } from '../../../models/budget';
 import { ProjectModel } from '../../../models/project';
-import { BudgetService } from '../../../services/budget/budget.service';
-import { ProjectService } from '../../../services/project/project-service.service';
+import { BudgetService } from '../../../services/api/budget.service';
+import { ProjectService } from '../../../services/api/project-service.service';
 
 @Component({
   selector: 'app-budget-edit',

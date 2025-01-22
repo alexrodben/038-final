@@ -10,7 +10,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { CustomerModel } from '../../../models/customer';
-import { CustomerService } from '../../../services/customer/customer.service';
+import { CustomerService } from '../../../services/api/customer.service';
 import { ErrorModalComponent } from '../../error-modal/error-modal.component';
 @Component({
   selector: 'app-customer-list',
@@ -46,20 +46,20 @@ export class CustomerListComponent implements OnInit {
   }
 
   addCustomer(): void {
-    // Lógica para agregar un nuevo usuario
-    console.log('Agregar nuevo usuario');
+    // Lógica para agregar un nuevo cliente
+    console.log('Agregar nuevo cliente');
     this.router.navigate(['/customers/create']);
   }
 
   showCustomer(id: number): void {
-    // Lógica para mostrar un usuario
-    console.log(`Mostrar usuario ${id}`);
-    // Navegar a la ruta del usuario
+    // Lógica para mostrar un cliente
+    console.log(`Mostrar cliente ${id}`);
+    // Navegar a la ruta del cliente
     this.router.navigate(['/customers', id]);
   }
 
   deleteCustomer(id: string): void {
-    if (confirm('¿Estás seguro de que deseas eliminar este usuario?')) {
+    if (confirm('¿Estás seguro de que deseas eliminar este cliente?')) {
       this.customerService.deleteCustomer(id).subscribe(() => {
         this.getCustomers(); // Actualiza la lista después de eliminar
       });
